@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class userSeeder extends Seeder
@@ -21,7 +22,7 @@ class userSeeder extends Seeder
             [
                 'name' => 'ando',
                 'username' => 'ando',
-                'password' => '123123123',
+                'password' => Hash::make('123123123'),
                 'status' => 1,
                 'created_at' => $nowDate,
             ],

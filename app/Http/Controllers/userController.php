@@ -14,20 +14,15 @@ class userController extends Controller
     }
 
     public function signIn(Request $request) {
-         $validator = Validator::make($request->all(), [
-            'username' => 'required|string|max:255',
-            'password' => 'required|string|max:255|min:8'
-         ]);
+        $validator = Validator::make($request->all(), [
+        'username' => 'required|string|max:255',
+        'password' => 'required|string|max:255|min:8'
+        ]);
 
-         if ($validator->fails()) {
-            return ResponseFormatter::error(null, $validator->errors(), 422);
-         }
-
-         // jika berhasil valid
-         if(Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
-            return redirect('/admin')->with('success', 'Berhasil Login!');
-         }
-         
-         return back()->with('error', 'Username atau Password Salah!');
+        if(Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+            return redirect()->route('dashboard');
+        }
+        
+        return redirect()->route('signIn')->with('message', 'Username Atau Password Salah!');
     }
 }

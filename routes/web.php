@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', function () {
-//     return view('login');
+//     return view('welcome');
 // });
 
-Route::group(['middleware' => 'guest'], function() {
-    Route::get('',[]);
-});
+Route::get('/', [userController::class, 'index'])->name('signIn');
+Route::post('/signin', [userController::class, 'signIn'])->name('signInPost');
 
-route::group(['prefix' => 'signin', 'as' => 'signin.'], function() {
-    route::get('/', [userController::class, 'index'])->name('index');
-    route::post('store', [userController::class, 'signIn'])->name('store');
+Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
+
+Route::group(['middleware' => ['auth','cekStatus:1']], function() {
 });
