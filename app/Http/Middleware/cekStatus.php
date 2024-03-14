@@ -15,9 +15,9 @@ class cekStatus
      */
     public function handle(Request $request, Closure $next, ...$status): Response
     {
-        if(in_array($request->user()->status,$status)){
+        if($request->user() && in_array($request->user()->status,$status)){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/')->with('message', 'Anda tidak memiliki akses!');
     }
 }
