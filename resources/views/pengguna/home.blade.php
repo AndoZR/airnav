@@ -50,17 +50,16 @@
             </div>
         </nav>
     </div>
+
+    {{-- MASTERHEAD --}}
+    <header class="masthead transBg">
+        <div class="container d-flex justify-content-start">
+            <h1 class="text-primary fw-bold">Hi! Selamat Datang di <br>Airnav Assist</h1>
+        </div>
+    </header>    
+    
+    <!-- SLIDER -->
     <div class="container">
-        <!-- MASTERHEAD
-        <header class="masthead transBg">
-            <div class="container">
-                <h1>Hi! Selamat Datang di</h1> <br>
-                <h1>Airnav Assist</h1>
-            </div>
-        </header> -->
-        <!-- SLIDER -->
-        <!-- <span class="separator"></span> -->
-        <!-- page-section -->
         <section class="mt-5 pt-3 pb-3 slider-nav">
             <div class=" d-flex flex-row justify-content-between">
                 <div class="display-slider">
@@ -69,30 +68,16 @@
                 <div class="slider-wrapper w-100">
                     <div class="d-flex flex-column">
                         <div id="owl-carousel" class="">
-                            <div class="slide-item">
-                                <div class="slide card" style="background-image: url('{{ asset(`src/img/sld0.png`) }}')">
-                                    <h4 class="text-center">Air One</h4>
-                                    <div class="des">Lorem ipsum dolor sit amet fuga molestias?</div>
-                                    <hr>
-                                    <button class="btn btn-light">See More</button>
+                            @foreach ($dataArtikel as $item)
+                                <div class="slide-item">
+                                    <div class="slide card" style="background-image: url('{{ asset('src/img/artikel1.jpeg') }}')">
+                                        <h4 class="text-center">{{ $item->judul }}</h4>
+                                        <div class="des">{{ $item->deskripsi }}</div>
+                                        <hr>
+                                        <button class="btn btn-light">See More</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="slide-item">
-                                <div class="slide card" style="background-image: url('{{ asset(`src/img/sld0.png`) }}')">
-                                    <h4 class="text-center">Air Two</h4>
-                                    <div class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, amet? Voluptas similique temporibus cumque ab! Culpa nesciunt nemo saepe ducimus unde hic eveniet nulla provident aut quibusdam! Aspernatur, fuga molestias?</div>
-                                    <hr>
-                                    <button class="btn btn-light">See More</button>
-                                </div>
-                            </div>
-                            <div class="slide-item">
-                                <div class="slide card" style="background-image: url('{{ asset(`src/img/sld0.png`) }}')">
-                                    <h4 class="text-center">Air Three</h4>
-                                    <div class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, amet? Voluptas similique temporibus cumque ab! Culpa nesciunt nemo saepe ducimus unde hic eveniet nulla provident aut quibusdam! Aspernatur, fuga molestias?</div>
-                                    <hr>
-                                    <button class="btn btn-light">See More</button>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <div id="owl-nav" class="align-self-center mt-3">
                             <button type="button" class="owl-prev mx-5 btn btn-light"><i class="fa-solid fa-arrow-left"></i></button>
