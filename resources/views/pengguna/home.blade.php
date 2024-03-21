@@ -45,7 +45,9 @@
                             <a class="nav-link active text-light" aria-current="page" href="#">Akun</a>
                         </li>
                     </ul>
-                    <a href="{{ route('signIn') }}" class="btn btn-sm btn-outline-light" type="button">Log In</a>
+                    @if (!Auth::guard('web')->check())
+                        <a href="{{ route('signIn') }}" class="btn btn-sm btn-outline-light" type="button">Log In</a>
+                    @endif
                 </div>
             </div>
         </nav>
@@ -56,14 +58,15 @@
         <div class="container d-flex justify-content-start">
             <h1 class="text-primary fw-bold">Hi! Selamat Datang di <br>Airnav Assist</h1>
         </div>
-    </header>    
+    </header>
     
     <!-- SLIDER -->
     <div class="container">
         <section class="mt-5 pt-3 pb-3 slider-nav">
             <div class=" d-flex flex-row justify-content-between">
                 <div class="display-slider">
-                    <img src="" alt="">
+                    <h3><b>Artikel Edukasi</b></h3>
+                    <p>Baca berbagai informasi terbaru bandara untuk meningkatkan pemahamanmu</p>
                 </div>
                 <div class="slider-wrapper w-100">
                     <div class="d-flex flex-column">
@@ -89,6 +92,168 @@
         </section>
     </div>
 
+    {{-- BACKGROUND II --}}
+    <header class="background transBg">
+        <div class="container d-flex justify-content-start">
+            
+        </div>
+    </header>
+
+    {{-- VISI MISI --}}
+    <div class="row">
+        <div class="col-sm-4">
+          <div class="card h-100 w-100 shadow ms-5">
+            <div class="card-body">
+              <h5 class="card-title">Visi</h5>
+              <p class="card-text">Menjadi penyedia jasa navigasi penerbangan bertaraf internasional</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card h-100 w-100 shadow cardVisiMisi">
+            <div class="card-body">
+              <h5 class="card-title">Misi</h5>
+              <p class="card-text">Menyediakan layanan navigasi penerbangan yang mengutamakan keselamatan,
+                efisiensi penerbangan dan ramah lingkungan demi memenuhi ekspetasi pengguna jasa</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <img class="img-fluid logoVisiMisi" src="{{ asset('src/img/logo.png') }}" alt="Logo">
+        </div>
+    </div>
+
+    {{-- BACKGROUND III --}}
+    <header class="background transBg position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-center align-items-center">
+                    <h1 class="text-primary fw-bold" style="margin-top: -30rem;">Struktur Organisasi Cabang<br>Tanjung Pinang<br>Bagang Manajerial</h1>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <img src="{{ asset('src/img/bagan.png') }}" alt="Bagan" style="max-width: 100%;">
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    {{-- FOOTER --}}
+    <footer class="text-center text-lg-start text-white" style="background-color: #3e4551">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Links -->
+            <section class="">
+                <!--Grid row-->
+                <div class="row">
+                    <!--Grid column I-->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">KONTAK</h5>
+                        <p style="width: 80%">
+                            Jl. Adi Sucipto No.KM.12, Pinang Kencana, Kec. Tanjungpinang Tim., Kota Tanjung Pinang, Kepulauan Riau 29125<br>
+                            Telp: 0771-7335581<br>
+                            Email: airnavtnj@gmail.com
+                        </p>
+                    </div>
+                    <!--Grid column-->
+        
+                    <!--Grid column II-->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
+                        <h5 class="text-uppercase">LAYANAN</h5>
+            
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                            <a href="#!" class="text-white">Beranda</a>
+                            </li>
+                            <li>
+                            <a href="#!" class="text-white">Artikel</a>
+                            </li>
+                            <li>
+                            <a href="#!" class="text-white">Pembelajaran</a>
+                            </li>
+                            <li>
+                            <a href="#!" class="text-white">Organisasi Cabang</a>
+                            </li>
+                            <li>
+                            <a href="#!" class="text-white">Akun</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column III-->
+                    <div class="col-lg-4 col-md-6 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
+                        <img class="w-100" src="{{ asset('src/img/logoairnav.png') }}" alt="logo">
+                    </div>                    
+                    <!--Grid column-->
+                    
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+    
+            <hr class="mb-4"/>
+    
+            <!-- Section: Social media -->
+            <section class="mb-4 text-center">
+            <!-- Facebook -->
+            <a
+                class="btn btn-outline-light btn-floating m-1"
+                href="#!"
+                role="button"
+                ><i class="fab fa-facebook-f"></i
+                ></a>
+    
+            <!-- Twitter -->
+            <a
+                class="btn btn-outline-light btn-floating m-1"
+                href="#!"
+                role="button"
+                ><i class="fab fa-twitter"></i
+                ></a>
+    
+            <!-- Google -->
+            <a
+                class="btn btn-outline-light btn-floating m-1"
+                href="#!"
+                role="button"
+                ><i class="fab fa-google"></i
+                ></a>
+    
+            <!-- Instagram -->
+            <a
+                class="btn btn-outline-light btn-floating m-1"
+                href="#!"
+                role="button"
+                ><i class="fab fa-instagram"></i
+                ></a>
+    
+            <!-- Linkedin -->
+            <a
+                class="btn btn-outline-light btn-floating m-1"
+                href="#!"
+                role="button"
+                ><i class="fab fa-linkedin-in"></i
+                ></a>
+    
+            <!-- Github -->
+            <a
+                class="btn btn-outline-light btn-floating m-1"
+                href="#!"
+                role="button"
+                ><i class="fab fa-github"></i
+                ></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+  
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2024 Copyright:
+            <a class="text-white" href="https://airnavassist.com/">Airnav Assist</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 
 </body>
 <script src="{{ asset('src/bootstrap/js/bootstrap.js') }}"></script>
