@@ -71,15 +71,33 @@
                 <div class="slider-wrapper w-100">
                     <div class="d-flex flex-column">
                         <div id="owl-carousel" class="">
-                            @foreach ($dataArtikel as $item)
-                                <div class="slide-item">
-                                    <div class="slide card" style="background-image: url('{{ asset('src/img/artikel1.jpeg') }}')">
-                                        <h4 class="text-center">{{ $item->judul }}</h4>
-                                        <div class="des">{{ $item->deskripsi }}</div>
+                            <div class="slide-item">
+                                <div class="slide card" style="background-image: url('{{ asset('src/img/artikel1.jpeg') }}'); background-size: cover;">
+                                    <h4 class="text-center">Test 1</h4>
+                                    <div class="des">Teks deskripsi sederhana untuk card div dan memeriksa lebar width sudah sesuai apa belum</div>
+                                    <hr>
+                                    <button class="btn btn-light">See More</button>
+                                </div>
+                            </div>
+                            <div class="slide-item">
+                                <div class="position-relative">
+                                    <div class="slide card" style="background-image: url('{{ asset('src/img/artikel1.jpeg') }}'); background-size: cover;">
+                                        <h4 class="text-center" >Test 2</h4>
+                                        <div class="des">Teks deskripsi sederhana untuk card div dan memeriksa lebar width sudah sesuai apa belum</div>
                                         <hr>
                                         <button class="btn btn-light">See More</button>
                                     </div>
                                 </div>
+                            </div>
+                            @foreach ($dataArtikel as $item)
+                            <div class="slide-item">
+                                <div class="slide card" style="background-image: url('{{ asset('src/img/artikel1.jpeg') }}')">
+                                    <h4 class="text-center">{{ $item->judul }}</h4>
+                                    <div class="des">{{ $item->deskripsi }}</div>
+                                    <hr>
+                                    <button class="btn btn-light">See More</button>
+                                </div>
+                            </div>
                             @endforeach
                         </div>
                         <div id="owl-nav" class="align-self-center mt-3">
