@@ -82,9 +82,9 @@
                             </div>
                             @endforeach
                         </div>
-                        <div id="owl-nav" class="align-self-center mt-3 slider-button">
-                            <button type="button" class="owl-prev mx-5 btn btn-light"><i class="fa-solid fa-arrow-left"></i></button>
-                            <button type="button" class="owl-next mx-5 btn btn-light"><i class="fa-solid fa-arrow-right"></i></button>
+                        <div id="owl-nav" class="align-self-center mt-3 slider-button flex-fill">
+                            <button type="button" class="owl-prev btn mx-5 btn-light px-4"><i class="fa-solid fa-arrow-left"></i></button>
+                            <button type="button" class="owl-next btn mx-5 btn-light px-4"><i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div>
