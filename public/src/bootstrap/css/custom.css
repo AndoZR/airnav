@@ -3,32 +3,37 @@
 }
 
 .slider-nav{
-    background: #f5f5f5;
-    box-shadow: 0 30px 50px #dbdbdb;
+    background-color: white;
 }
-.display-slider{
+#display-slider{
     display: flex; 
     flex-direction: column; 
     justify-content: center; 
     color:#49548C;
-    width: 50vw;
-    /* background-color: chartreuse; */
+    width: 50%;
     margin-left: 2vw;
-    margin-right: 1vw;
+    padding-left: 2vw;
+    border-left: #49548c88 solid;
 }
 .slider-wrapper{
     overflow-x: hidden;
     overflow-y: hidden;
-    margin-left: 1vw;
-    margin-right: 2vw;
+    border-left: #49548c6b solid;
+    /* box-shadow: inset 20px 0 30px -30px rgba(0, 0, 0, 0.531), inset -20px 0 30px -30px rgba(0, 0, 0, 0.515), inset 0 -7px 20px -0px rgb(255, 255, 255); */
+}
+.slider-button{
+    
 }
 .slide {
-    /* margin: 10px; */
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
     padding: 1rem;
-    width: 25rem;
-    height: 15rem;
+    width: 400px;
+    height: 70%;
+    box-shadow: 0px 0px 10px rgba(17, 17, 17, 0.23);
+    border-radius: 1rem;
 }
 
 @keyframes animate {
@@ -42,36 +47,60 @@
 }
 
 /* MASTERHEAD */
-header.masthead {
+header.masterhead {
     padding-top: 15rem;
     padding-bottom: 15rem;
     text-align: center;
-    background: linear-gradient(to top, #ffffff, transparent 80%), url("../../img/masthead.jpeg");
+    background: linear-gradient(to top, #ffffff, transparent 70%), url("../../img/Bandar_Udara_Hang_Nadim_-_panoramio.jpg");
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-position: center center;
+    background-position: center;
     background-size: cover;
 }
 
 /* Background */
 header.background {
     margin-top: 15rem;
-    padding-top: 15rem;
-    padding-bottom: 15rem;
+    margin-bottom: 10rem;
+    height: 30rem;
     text-align: center;
-    background: linear-gradient(to bottom, #ffffff, transparent 50%), linear-gradient(to top, #ffffff, transparent 50%), url("../../img/masthead.jpeg");
+    background: linear-gradient(to bottom, #ffffff, transparent 35%), linear-gradient(to top, #ffffff, transparent 50%), url("../../img/masthead.jpeg");
     background-repeat: no-repeat;
     background-attachment: scroll;
-    background-position: center center;
+    background-position: top;
     background-size: cover;
 }
 
-.logoVisiMisi{
-    max-width: 200px;
+.endbackground {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    height: 5rem;
+    text-align: center;
+    background: white
 }
 
-.cardVisiMisi{
+.lastbackground {
+    margin-top: 15rem;
+    text-align: center;
+    background: linear-gradient(to bottom, #ffffff, transparent 90%), url("../../img/dashboard.png");
+    background-repeat: no-repeat;
+    background-attachment: scroll scroll;
+    background-position: bottom;
+    background-size: cover;
+}
+
+
+.logoVisiMisi{
+    max-width: 200px;
+    margin: 10px;
+}
+
+#visi{
+    height: 200px;
+    width: 60%;
+}
+#misi{
+    height: 200px;
     top: 100px; 
-    left: -500px; 
-    width: 500px;
+    left: 200px;
 }
