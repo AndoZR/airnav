@@ -12,10 +12,10 @@ use App\Http\Controllers\pengguna\berandaController;
 
 Route::get('/', [loginController::class, 'index'])->name('signIn');
 Route::post('/signin', [loginController::class, 'signIn'])->name('signInPost');
+Route::get('logout', [loginController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => 'cekStatus:1'], function() {
-    Route::get('logout', [loginController::class, 'logout'])->name('logout');
     Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {

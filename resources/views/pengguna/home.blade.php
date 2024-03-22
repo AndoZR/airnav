@@ -45,8 +45,8 @@
                             <a class="nav-link active text-light" aria-current="page" href="#">Akun</a>
                         </li>
                     </ul>
-                    @if (!Auth::guard('web')->check())
-                        <a href="{{ route('signIn') }}" class="btn btn-sm btn-outline-light" type="button">Log In</a>
+                    @if (Auth::guard('web')->check())
+                        <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-light" type="button">Log Out</a>
                     @endif
                 </div>
             </div>
