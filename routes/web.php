@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\akunController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\penggunaController;
@@ -29,5 +30,9 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
 Route::group(['middleware' => 'cekStatus:2'], function () {
     Route::group(['prefix' => 'beranda', 'as' => 'beranda'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
+    });
+
+    Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {
+        Route::get('/', [akunController::class, 'index'])->name('index');
     });
 });
