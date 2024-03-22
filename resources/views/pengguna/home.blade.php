@@ -56,7 +56,7 @@
     {{-- MASTERHEAD --}}
     <header class="masterhead">
         <div class="container d-flex justify-content-start">
-            <h1 class="text-primary fw-bold" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, 5px 5px 20px white;">Hi! Selamat Datang di <br> Airnav Assist</h1>
+            <h1 class="text-primary fw-bold" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;">Hi! Selamat Datang di <br> Airnav Assist</h1>
         </div>
     </header>
 
@@ -137,7 +137,7 @@
         <div class="container text-center">
             <div class="row" style="padding-bottom: 10rem;">
                 <div class="d-flex justify-content-center align-items-center" style="margin-top: 5rem;">
-                    <h1 class="text-primary fw-bold" style="margin-top: -20rem;">Struktur Organisasi Cabang<br>Tanjung Pinang<br>Bagang Manajerial</h1>
+                    <h1 class="text-primary fw-bold" style="margin-top: -20rem;">Struktur Organisasi Cabang<br>Tanjung Pinang<br>(Bagan Managerial)</h1>
                 </div>
                 <div class="d-flex justify-content-center align-items-center" style="margin-bottom: 5rem;">
                     <img src="{{ asset('src/img/bagan.png') }}" alt="Bagan" style="max-width: 100%;">
