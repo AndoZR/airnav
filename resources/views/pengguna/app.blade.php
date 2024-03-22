@@ -30,11 +30,9 @@
 <script>
     var slider = tns({
         container: '#owl-carousel',
-        mode: 'carousel',
         mouseDrag: true,
         nav: false,
         axis: "horizontal",
-        // gutter: 50,
         autoWidth: true,
         center: true,
         controlsContainer: document.getElementById('owl-nav'),

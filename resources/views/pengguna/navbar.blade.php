@@ -1,6 +1,6 @@
-<div class="position-relative top-0">
+<div class="position-relative bottom-0">
     <nav class="navbar navbar-expand-lg" style="background-color: #49548C">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="{{ asset('src/img/logoAirNav.png') }}" alt="Airnav Assist" height="40">
             </a>
@@ -8,29 +8,29 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="#">Home</a>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="#">Artikel</a>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Artikel</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="#">Pembelajaran</a>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Pembelajaran</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="#">Organisasi Cabang</a>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Organisasi Cabang</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="#">Test</a>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Akun</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active text-light" aria-current="page" href="{{ route('akun.index') }}">Akun</a>
+                    <li class="nav-item align-self-center">
+                        @if (Auth::guard('web')->check())
+                        <a href="{{ route('logout') }}" class=" nav-link active link-underlinel ink-underline-opacity-0"><button class=" btn btn-outline-light rounded-pil fw-medium" style="text-decoration: none;">Log Out</button></a>
+                        @endif
                     </li>
                 </ul>
-                @if (Auth::guard('web')->check())
-                    <a href="{{ route('logout') }}" class="btn btn-sm btn-outline-light" type="button">Log Out</a>
-                @endif
+
             </div>
         </div>
     </nav>

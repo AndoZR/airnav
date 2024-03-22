@@ -15,26 +15,26 @@
                     </p>
                 </div>
                 <!--Grid column-->
-    
+
                 <!--Grid column II-->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase">LAYANAN</h5>
-        
+
                     <ul class="list-unstyled mb-0">
                         <li>
-                        <a href="#!" class="text-white">Beranda</a>
+                            <a href="#!" class="text-white">Beranda</a>
                         </li>
                         <li>
-                        <a href="#!" class="text-white">Artikel</a>
+                            <a href="#!" class="text-white">Artikel</a>
                         </li>
                         <li>
-                        <a href="#!" class="text-white">Pembelajaran</a>
+                            <a href="#!" class="text-white">Pembelajaran</a>
                         </li>
                         <li>
-                        <a href="#!" class="text-white">Organisasi Cabang</a>
+                            <a href="#!" class="text-white">Organisasi Cabang</a>
                         </li>
                         <li>
-                        <a href="#!" class="text-white">Akun</a>
+                            <a href="#!" class="text-white">Akun</a>
                         </li>
                     </ul>
                 </div>
@@ -42,66 +42,36 @@
 
                 <!--Grid column III-->
                 <div class="col-lg-4 col-md-6 mb-4 mb-md-0 d-flex justify-content-center align-items-center">
-                    <img class="w-100" src="{{ asset('src/img/logoairnav.png') }}" alt="logo">
-                </div>                    
+                    <img class="w-75" src="{{ asset('src/img/logoAirNav.png') }}" alt="logo">
+                </div>
                 <!--Grid column-->
-                
+
             </div>
             <!--Grid row-->
         </section>
         <!-- Section: Links -->
 
-        <hr class="mb-4"/>
+        <hr class="mb-4" />
 
         <!-- Section: Social media -->
         <section class="mb-4 text-center">
-        <!-- Facebook -->
-        <a
-            class="btn btn-outline-light btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fab fa-facebook-f"></i
-            ></a>
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
 
-        <!-- Twitter -->
-        <a
-            class="btn btn-outline-light btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fab fa-twitter"></i
-            ></a>
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
 
-        <!-- Google -->
-        <a
-            class="btn btn-outline-light btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fab fa-google"></i
-            ></a>
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
 
-        <!-- Instagram -->
-        <a
-            class="btn btn-outline-light btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fab fa-instagram"></i
-            ></a>
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
 
-        <!-- Linkedin -->
-        <a
-            class="btn btn-outline-light btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fab fa-linkedin-in"></i
-            ></a>
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
 
-        <!-- Github -->
-        <a
-            class="btn btn-outline-light btn-floating m-1"
-            href="#!"
-            role="button"
-            ><i class="fab fa-github"></i
-            ></a>
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
         </section>
         <!-- Section: Social media -->
     </div>
