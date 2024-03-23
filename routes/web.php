@@ -19,6 +19,11 @@ Route::get('logout', [loginController::class, 'logout'])->name('logout');
 Route::group(['middleware' => 'cekStatus:1'], function() {
     Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
 
+    Route::group(['prefix' => 'adminAkun', 'as' => 'adminAkun.'], function () {
+        Route::get('/',[dashboardController::class, 'akun'])->name('index');
+        Route::post('/edit',[dashboardController::class, 'edit'])->name('edit');
+    });
+
     Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
         Route::get('/', [penggunaController::class, 'index'])->name('index');
         Route::post('/store', [penggunaController::class, 'storePengguna'])->name('store');
@@ -28,11 +33,12 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
 });
 
 Route::group(['middleware' => 'cekStatus:2'], function () {
-    Route::group(['prefix' => 'beranda', 'as' => 'beranda'], function () {
+    Route::group(['prefix' => 'beranda', 'as' => 'beranda.'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
     });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {
         Route::get('/', [akunController::class, 'index'])->name('index');
+        Route::post('/edit',[akunController::class, 'edit'])->name('edit');
     });
 });

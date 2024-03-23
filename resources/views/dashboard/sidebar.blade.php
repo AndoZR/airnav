@@ -89,12 +89,28 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  ">
-                    <a href="{{ route('logout') }}" class='sidebar-link'>
-                        <i class="bi bi-cash"></i>
-                        <span>Log Out</span>
+                {{-- AKUN --}}
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Profil</span>
                     </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item  ">
+                            <a href="{{ route('adminAkun.index') }}" class="submenu-link">
+                                <i class="bi bi-cash"></i>
+                                <span>Akun</span>
+                            </a>
+                        </li>
+                        <li class="submenu-item  ">
+                            <a href="{{ route('logout') }}" class="submenu-link">
+                                <i class="bi bi-cash"></i>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+
             </ul>
         </div>
     </div>

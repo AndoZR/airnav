@@ -1,7 +1,7 @@
 <div class="position-relative bottom-0">
     <nav class="navbar navbar-expand-lg" style="background-color: #49548C">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route("beranda.index") }}">
                 <img src="{{ asset('src/img/logoAirNav.png') }}" alt="Airnav Assist" height="40">
             </a>
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Organisasi Cabang</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Akun</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route("akun.index") }}">Akun</a>
                     </li>
                     <li class="nav-item align-self-center">
                         @if (Auth::guard('web')->check())

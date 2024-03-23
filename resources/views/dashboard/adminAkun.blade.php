@@ -1,8 +1,9 @@
-@extends('pengguna.app')
+@extends('dashboard.dashboard')
 @section('tab', 'Akun')
+@section('title', 'PROFIL')
 
 @section('content')
-  
+
 <!-- Modal -->
 <div class="modal fade" id="modal-edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modal-editLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -37,7 +38,7 @@
     </div>
 </div>
 
-<div class="container mt-5 mb-5">
+<div class="container mb-5">
     <div class="card mb-5" style="background-image: linear-gradient(150deg, #49548C, #3eabfe);">
         <div class="card-body">
             <div class="row">
@@ -56,7 +57,7 @@
         <div class="row px-5">
             <div class="col-sm-6">
                 <div class="card-body">
-                    <h5 class="card-title"><b>Akun</b></h5>
+                    <h5 class="card-title"><b>Akun Admin</b></h5>
                     <p class="card-text">Nama: {{ $user->name }}</p>
                     <p class="card-text">Username: {{ $user->username }}</p>
                 </div>
@@ -70,6 +71,7 @@
         </div>
     </div>   
 </div>
+
 @endsection
 
 @push('scripts')
@@ -82,7 +84,7 @@
             var formData = new FormData($("#form-edit")[0]);
             $.ajax({
                 type: "POST",
-                url: '{{ route('akun.edit') }}',
+                url: '{{ route('adminAkun.edit') }}',
                 data: formData,
                 processData: false,
                 contentType: false,

@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section( 'content' )
-<div class="page-content"> 
+{{-- <div class="page-content"> 
     <section class="row">
         <div class="col-12 col-lg-9">
             <div class="row">
@@ -263,5 +263,5 @@
             </div>
         </div>
     </section>
-</div>
+</div> --}}
 @endsection
