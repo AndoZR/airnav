@@ -78,8 +78,7 @@
     </div>
 
     {{-- BACKGROUND III --}}
-    <div class="endbackground container-fluid">
-    </div>
+    <div class="endbackground container-fluid"></div>
 
     <div class="lastbackground">
         <div class="container text-center">
