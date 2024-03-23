@@ -4,7 +4,7 @@
 @section( 'content' )
     {{-- MASTERHEAD --}}
     <header class="masterhead">
-        <div class="container d-flex justify-content-around align-items-center">
+        <div class="container d-flex justify-content-between align-items-center">
             <h1 class="text-primary fw-bold" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;">Hi! Selamat Datang di <br> Airnav Assist</h1>
             <img src="{{asset('src/img/airplane_pic.png')}}" alt="airplane" width="400">
         </div>
