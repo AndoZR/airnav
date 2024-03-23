@@ -10,7 +10,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.index') }}">Home</a>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Artikel</a>
@@ -19,7 +19,16 @@
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Pembelajaran</a>
                     </li>
                     <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Test</a>
+                    </li>
+                    <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Organisasi Cabang</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">E-Logbook</a>
+                    </li>
+                    <li class="nav-item align-self-center">
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Performance Check</a>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route("akun.index") }}">Akun</a>
