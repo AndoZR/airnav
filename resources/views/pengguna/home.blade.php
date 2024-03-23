@@ -83,7 +83,7 @@
 
     <div class="lastbackground">
         <div class="container text-center">
-            <div class="row" style="padding-bottom: 10rem;">
+            <div class="row" style="padding-bottom: 3rem;">
                 <div class="d-flex justify-content-center align-items-center" style="margin-top: 5rem;">
                     <h1 class="text-primary fw-bold" style="margin-top: -20rem;">Struktur Organisasi Cabang<br>Tanjung Pinang<br>(Bagan Managerial)</h1>
                 </div>
