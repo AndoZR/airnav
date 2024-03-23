@@ -44,7 +44,7 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
                 {{-- Dashborad --}}
-                <li class="sidebar-item {{ set_active('dashboard*') }} ">
+                <li class="sidebar-item">
                     <a href="{{ route('dashboard') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
@@ -82,7 +82,7 @@
                 </li>
 
                 {{-- Pengguna --}}
-                <li class="sidebar-item {{ set_active('pengguna.index*') }}">
+                <li class="sidebar-item">
                     <a href="{{ route('pengguna.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Pengguna</span>
