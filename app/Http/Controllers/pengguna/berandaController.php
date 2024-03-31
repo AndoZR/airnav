@@ -19,4 +19,27 @@ class berandaController extends Controller
         $dataArtikel = artikel::take(3)->orderBy('created_at','desc')->get();
         return $dataArtikel;
     }
+
+    public function artikel() {
+        $dataArtikel = artikel::get();
+    
+        $filteredArtikel = [];
+        foreach ($dataArtikel as $item) {
+            if (strlen($item->deskripsi) >= 100) {
+                $item->deskripsi = substr($item->deskripsi, 0, 100) . '...';
+                $filteredArtikel[] = $item;
+            }
+            else {
+                $filteredArtikel[] = $item;
+            }
+        }
+    
+        return view('pengguna.artikel', ['artikel' => $filteredArtikel]);
+    }
+
+    public function detailArtikel($id) {
+        $dataArtikel = artikel::where('id', $id)->first();
+
+        return view('pengguna.detailArtikel', ['artikel' => $dataArtikel]);
+    }
 }

@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\akunController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\akunController;
 use App\Http\Controllers\loginController;
-use App\Http\Controllers\penggunaController;
-use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\admin\artikelController;
+use App\Http\Controllers\admin\penggunaController;
+use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\pengguna\berandaController;
 
 // Route::get('/', function () {
@@ -24,6 +25,13 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::post('/edit',[dashboardController::class, 'edit'])->name('edit');
     });
 
+    Route::group(['prefix' => 'artikel', 'as' => 'artikel.'], function () {
+        Route::get('/', [artikelController::class, 'index'])->name('index');
+        Route::post('/store', [artikelController::class, 'storeArtikel'])->name('store');
+        Route::post('/update/{id}', [artikelController::class, 'updateArtikel'])->name('update');
+        Route::get('/delete/{id}', [artikelController::class, 'deleteArtikel'])->name('delete');
+    });
+
     Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
         Route::get('/', [penggunaController::class, 'index'])->name('index');
         Route::post('/store', [penggunaController::class, 'storePengguna'])->name('store');
@@ -35,6 +43,8 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
 Route::group(['middleware' => 'cekStatus:2'], function () {
     Route::group(['prefix' => 'beranda', 'as' => 'beranda.'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
+        Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
+        Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
     });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {

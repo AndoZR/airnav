@@ -13,7 +13,7 @@
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.index') }}">Home</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Artikel</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route("beranda.artikel") }}">Artikel</a>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Pembelajaran</a>
