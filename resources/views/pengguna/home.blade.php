@@ -23,11 +23,11 @@
                         <div id="owl-carousel" class="">
                             @foreach ($dataArtikel as $item)
                             <div class="slide-item">
-                                <div class="slide" style="background-image: linear-gradient(to bottom, #ffffff, transparent 150%), url('{{ asset('src/img/artikel1.jpeg') }}');  background-repeat: no-repeat; background-attachment: scroll; background-position: top; background-size: 300%;">
+                                <div class="slide" style="background-image: linear-gradient(to bottom, #ffffff, transparent 150%), url('{{ Storage::url('artikel/' . $item->file) }}');  background-repeat: no-repeat; background-attachment: scroll; background-position: top; background-size: 300%;">
                                     <h4 class="text-center fw-bold">{{ $item->judul }}</h4>
                                     <div class="des fw-normal text-body-secondary">{{ $item->deskripsi }}</div>
                                     <br>
-                                    <button class="btn btn-light fw-semibold">Selengkapnya...</button>
+                                    <a href="{{ route('beranda.detailArtikel',['id'=>$item->id]) }}" class="btn btn-light fw-semibold">Selengkapnya...</a>
                                 </div>
                             </div>
                             @endforeach

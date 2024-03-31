@@ -17,7 +17,18 @@ class berandaController extends Controller
     public function slider()
     {
         $dataArtikel = artikel::take(3)->orderBy('created_at','desc')->get();
-        return $dataArtikel;
+
+        $filteredArtikel = [];
+        foreach ($dataArtikel as $item) {
+            if (strlen($item->deskripsi) >= 100) {
+                $item->deskripsi = substr($item->deskripsi, 0, 100) . '...';
+                $filteredArtikel[] = $item;
+            }
+            else {
+                $filteredArtikel[] = $item;
+            }
+        }
+        return $filteredArtikel;
     }
 
     public function artikel() {
