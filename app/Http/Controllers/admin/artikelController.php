@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class artikelController extends Controller
@@ -26,6 +27,7 @@ class artikelController extends Controller
         $validator = Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+            'file' => 'required|mimes:png,jpg,jpeg|max:5120', // 5 MB = 5120 KB
         ]);
 
         if ($validator->fails()) {
@@ -33,9 +35,13 @@ class artikelController extends Controller
         };
 
         try {
+            $file = $request->file('file');
+            $storage = Storage::putFileAs('public/artikel', $file, time() . '_' .  $file->getClientOriginalName());
+
             $artikel = artikel::create([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
+                'file' => time() . '_' . $request->file->getClientOriginalName(),
             ]);
 
             return ResponseFormatter::success($artikel, "Data Artikel Berhasil Dibuat!");
@@ -49,6 +55,7 @@ class artikelController extends Controller
         $validator = Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+            'file' => 'mimes:png,jpg,jpeg|max:5120', // 5 MB = 5120 KB
         ]);
 
         if ($validator->fails()) {
@@ -56,10 +63,18 @@ class artikelController extends Controller
         };
 
         try {
+            $file = $request->file('file');
+            $storage = Storage::putFileAs('public/artikel', $file, time() . '_' .  $file->getClientOriginalName());
+
             $artikel = artikel::find($request->id);
+
+            // hapus file sebelum update
+            $deteleFile = Storage::delete('public/artikel/'.$artikel->file);
+
             $artikel->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
+                'file' => time() . '_' . $request->file->getClientOriginalName(),
             ]);
 
             return ResponseFormatter::success($artikel, "Data Artikel Berhasil Diubah!");
@@ -72,6 +87,7 @@ class artikelController extends Controller
     public function deleteArtikel(Request $request){
         try{
             $artikel = artikel::find($request->id);
+            $deteleFile = Storage::delete('public/artikel/'.$artikel->file);
             $artikel->delete();
         } catch (Exception $e) {
             Log::error($e->getMessage());

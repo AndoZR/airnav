@@ -1,6 +1,6 @@
-@extends('dashboard.dashboard');
-@section('tab', 'Artikel');
-@section('title', 'Manajemen Artikel');
+@extends('dashboard.dashboard')
+@section('tab', 'Artikel')
+@section('title', 'Manajemen Artikel')
 
 @section('content')
 <section class="section">
@@ -55,6 +55,15 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="file">File <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="file" id="file" autofocus autocomplete="off">
+                        <div class="invalid-feedback deskripsi_error"></div>
+                    </div>
+                </div>
+            </div>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn" data-bs-dismiss="modal">
@@ -81,8 +90,7 @@
             $('.custom-file-label').html('Pilih file...');
         });
 
-        var idArtikel;
-        var idArtikelDelete;
+        var idArtikel = null;
         let url;
         let urlArtikel = '{{ route('artikel.index') }}';
 
@@ -152,7 +160,7 @@
         $('#form-create-artikel').submit(function(e) {
             e.preventDefault();
 
-            if(idArtikel !== undefined){
+            if(idArtikel !== null){
                 url = "{{ route('artikel.update', ['id' => ':id']) }}";
                 url = url.replace(':id', idArtikel)
             }else{
@@ -178,6 +186,7 @@
                         text: response.meta.message,
                     });
                     tableArtikel.ajax.reload();
+                    idArtikel = null;
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     switch (xhr.status) {

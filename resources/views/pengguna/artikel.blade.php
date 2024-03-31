@@ -12,7 +12,7 @@
   <div class="card mb-3 mx-5 col-md-6" style="max-width: 40rem;">
       <div class="row g-0" style="display: flex;">
         <div class="col-md-4 d-flex align-items-center justify-content-center">
-          <img src="{{ asset('src/img/sld3.png') }}" class="my-2 img-fluid rounded" alt="Gambar">
+          <img src="{{ Storage::url('artikel/'.$item->file) }}" class="my-2 img-fluid rounded" alt="Gambar">
         </div>      
         <div class="col-md-8">
           <div class="card-body">
