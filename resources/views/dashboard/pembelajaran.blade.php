@@ -4,84 +4,45 @@
 
 @section('content')
 <section class="section">
-    <div class="card">
-        <div class="card-body">
-            <div>
-                
-            </div>
-            <!-- <div class="table-responsive ">
-                <table id="tableArtikel" class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Judul</th>
-                            <th scope="col">Deskripsi</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div> -->
-        </div>
-    </div>
-</section>
 
-<!-- Modal Create artikel -->
-<div class="modal fade" id="modal-create-artikel" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tambah Artikel</h5>
-                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                    <i data-feather="x"></i>
-                </button>
+    <div class="card p-3">
+        <div class="row g-0">
+            <div class="col-sm-3 border">
+                <img class="" src="" class="m-2" alt="">
             </div>
-            <form id="form-create-artikel">
-                @csrf
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="judul">Judul Artikel <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="judul" id="judul" placeholder="Isi Judul" autofocus autocomplete="off">
-                                <div class="invalid-feedback judul_error"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="deskripsi">Deskripsi <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" name="deskripsi" id="deskripsi" placeholder="Isi deskripsi" autofocus autocomplete="off">
-                                <div class="invalid-feedback deskripsi_error"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label for="file">File <span class="text-danger">*</span></label>
-                                <input type="file" class="form-control" name="file" id="file" autofocus autocomplete="off">
-                                <div class="invalid-feedback deskripsi_error"></div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-sm-9">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a href="#" class="btn btn-danger">PDF File</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-warning">Remove</a>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn" data-bs-dismiss="modal">
-                        <i class="bx bx-x d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Batal</span>
-                    </button>
-                    <button type="submit" class="btn btn-primary ms-1">
-                        <i class="bx bx-check d-block d-sm-none"></i>
-                        <span class="d-none d-sm-block">Simpan</span>
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+    <hr>
+
+    <div class="card p-3">
+        <div class="row g-0">
+            <div class="col-sm-3 border">
+                <img class="" src="" class="m-2" alt="">
+            </div>
+            <div class="col-sm-9">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a href="#" class="btn btn-danger">PDF File</a>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                    <a href="#" class="btn btn-warning">Remove</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>
 @endsection
 
 @push('scripts')
