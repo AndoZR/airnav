@@ -15,9 +15,12 @@
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <a href="#" class="btn btn-danger">PDF File</a>
-                    <a href="#" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-warning">Remove</a>
+                    <div class="d-grid gap-2 d-sm-block">
+
+                        <button type="button" class="btn btn-danger">PDF File</button>
+                        <button type="button" class="btn btn-warning">Remove</button>
+                        <button type="button" class="btn btn-primary">Edit</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,9 +37,12 @@
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <a href="#" class="btn btn-danger">PDF File</a>
-                    <a href="#" class="btn btn-primary">Edit</a>
-                    <a href="#" class="btn btn-warning">Remove</a>
+                    <div class="d-grid gap-2 d-sm-block">
+
+                        <button type="button" class="btn btn-danger">PDF File</button>
+                        <button type="button" class="btn btn-warning">Remove</button>
+                        <button type="button" class="btn btn-primary">Edit</button>
+                    </div>
                 </div>
             </div>
         </div>
