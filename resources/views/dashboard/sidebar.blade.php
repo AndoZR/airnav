@@ -67,7 +67,7 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item  ">
-                            <a href="component-accordion.html" class="submenu-link">Airport</a>
+                            <a href="{{ route('pembelajaran.index') }}" class="submenu-link">Airport</a>
                             
                         </li>                                                           
                     </ul>

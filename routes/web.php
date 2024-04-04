@@ -6,6 +6,7 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\admin\artikelController;
 use App\Http\Controllers\admin\penggunaController;
 use App\Http\Controllers\admin\dashboardController;
+use App\Http\Controllers\pembelajaranController;
 use App\Http\Controllers\pengguna\berandaController;
 
 // Route::get('/', function () {
@@ -37,6 +38,10 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::post('/store', [penggunaController::class, 'storePengguna'])->name('store');
         Route::post('/update/{id}', [penggunaController::class, 'updatePengguna'])->name('update');
         Route::get('/delete/{id}', [penggunaController::class, 'deletePengguna'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'pembelajaran', 'as' => 'pembelajaran.'], function () {
+        Route::get('/', [pembelajaranController::class, 'index'])->name('index');
     });
 });
 
