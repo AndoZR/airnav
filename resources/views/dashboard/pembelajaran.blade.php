@@ -4,6 +4,14 @@
 
 @section('content')
 <section class="section">
+    <div class="card">
+        <div class="row m-3">
+            <div class="col-12 text-end">
+                <button type="button" class="btn btn-primary">Tambah Materi</button>
+            </div>
+
+        </div>
+    </div>
 
     <div class="card p-3">
         <div class="row g-0">
@@ -16,7 +24,6 @@
                     <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <div class="d-grid gap-2 d-sm-block">
-
                         <button type="button" class="btn btn-danger">PDF File</button>
                         <button type="button" class="btn btn-warning">Remove</button>
                         <button type="button" class="btn btn-primary">Edit</button>
@@ -38,7 +45,6 @@
                     <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                     <div class="d-grid gap-2 d-sm-block">
-
                         <button type="button" class="btn btn-danger">PDF File</button>
                         <button type="button" class="btn btn-warning">Remove</button>
                         <button type="button" class="btn btn-primary">Edit</button>

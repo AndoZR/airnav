@@ -13,10 +13,10 @@
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.index') }}">Home</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route("beranda.artikel") }}">Artikel</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.artikel') }}">Artikel</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Pembelajaran</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}">Pembelajaran</a>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Test</a>
@@ -31,7 +31,7 @@
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Performance Check</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route("akun.index") }}">Akun</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('akun.index') }}">Akun</a>
                     </li>
                     <li class="nav-item align-self-center">
                         @if (Auth::guard('web')->check())

@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\penggunaController;
 use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\pembelajaranController;
 use App\Http\Controllers\pengguna\berandaController;
+use App\Http\Controllers\pengguna\pembelajaranUserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
         Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
+        Route::get('/pembelajaran', [pembelajaranUserController::class, 'pembelajaran'])->name('pembelajaran');
     });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {

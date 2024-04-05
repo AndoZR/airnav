@@ -19,7 +19,7 @@
 
     <!-- Content -->
     @yield('content')
-    
+
     {{-- FOOTER --}}
     @include('pengguna.footer')
 
@@ -32,14 +32,20 @@
 
 <script>
     var slider = tns({
-        container: '#owl-carousel',
+        items: 1,
+        controls: false,
+        responsive: {
+            200: {
+                items: 2,
+                controls: true,
+            },
+        },
+        container: "#owl-carousel",
+        swipeAngle: false,
         mouseDrag: true,
-        nav: false,
-        axis: "horizontal",
-        autoWidth: true,
         center: true,
+        nav:false,
         controlsContainer: document.getElementById('owl-nav'),
-        viewportMax: 'fixedWidth',
     });
 </script>
 
