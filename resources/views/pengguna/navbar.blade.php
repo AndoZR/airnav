@@ -1,7 +1,7 @@
 <div class="position-relative bottom-0">
     <nav class="navbar navbar-expand-lg" style="background-color: #49548C">
         <div class="container">
-            <a class="navbar-brand" href="{{ route("beranda.index") }}">
+            <a class="navbar-brand" href="{{ route('beranda.index') }}">
                 <img src="{{ asset('src/img/logoAirNav.png') }}" alt="Airnav Assist" height="40">
             </a>
             <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,8 +15,18 @@
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.artikel') }}">Artikel</a>
                     </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}">Pembelajaran</a>
+                    <li class="nav-item dropdown-center align-self-center">
+
+                        <a class="nav-link active text-light fw-semibold dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                            Pembelajaran
+                        </a>
+
+                        <ul class="dropdown-menu p-2" style="background-color: #49548C;">
+                            <li class="border-bottom border-secondary-subtle py-1"><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> Hang Nadim Tower </a></li>
+                            <li class="border-bottom border-secondary-subtle py-1"><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Link 2 </a></li>
+                            <li class="border-bottom border-secondary-subtle py-1"><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Link 3 </a></li>
+                            <li class="py-1"><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Link 4 </a></li>
+                        </ul>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Test</a>

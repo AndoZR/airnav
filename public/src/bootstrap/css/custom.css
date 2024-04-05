@@ -105,3 +105,8 @@ header.background {
     top: 100px; 
     left: 200px;
 }
+
+.dropdown-menu > li > a:hover {
+    background-color: #5a68ae;
+    /* Adjust other styles like text color if needed */
+  }
