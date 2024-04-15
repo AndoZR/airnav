@@ -106,6 +106,7 @@ header.background {
     left: 200px;
 }
 
+<<<<<<< HEAD
 /* Background Pembelajaran*/
 header.masterheadBelajar {
     padding-top: 12rem;
@@ -416,3 +417,9 @@ header.backgroundVIDEO {
       p {
           margin-left:3em;
       }
+=======
+.dropdown-menu > li > a:hover {
+    background-color: #5a68ae;
+    /* Adjust other styles like text color if needed */
+  }
+>>>>>>> cee8fdf84147f53a9a35687ceead287fccbd8fca

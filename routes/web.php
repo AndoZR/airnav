@@ -7,7 +7,9 @@ use App\Http\Controllers\loginController;
 use App\Http\Controllers\admin\artikelController;
 use App\Http\Controllers\admin\penggunaController;
 use App\Http\Controllers\admin\dashboardController;
+use App\Http\Controllers\pembelajaranController;
 use App\Http\Controllers\pengguna\berandaController;
+use App\Http\Controllers\pengguna\pembelajaranUserController;
 
 // Route::get('/', function () {
 //     return view('welcome');

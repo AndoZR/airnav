@@ -21,27 +21,33 @@
 
     <!-- Content -->
     @yield('content')
-    
+
     {{-- FOOTER --}}
     @include('pengguna.footer')
 
 </body>
-<script src="{{ asset('src/bootstrap/js/bootstrap.js') }}"></script>
 <script src="{{ asset('src/jquery/jquery.js') }}"></script>
+<script src="{{ asset('src/bootstrap/js/bootstrap.bundle.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @stack('scripts')
 
 <script>
     var slider = tns({
-        container: '#owl-carousel',
+        items: 1,
+        controls: false,
+        responsive: {
+            200: {
+                items: 2,
+                controls: true,
+            },
+        },
+        container: "#owl-carousel",
+        swipeAngle: false,
         mouseDrag: true,
-        nav: false,
-        axis: "horizontal",
-        autoWidth: true,
         center: true,
+        nav:false,
         controlsContainer: document.getElementById('owl-nav'),
-        viewportMax: 'fixedWidth',
     });
 </script>
 
