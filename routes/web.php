@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\airportController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\akunController;
 use App\Http\Controllers\loginController;
@@ -38,6 +39,10 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::post('/update/{id}', [penggunaController::class, 'updatePengguna'])->name('update');
         Route::get('/delete/{id}', [penggunaController::class, 'deletePengguna'])->name('delete');
     });
+
+    Route::group(['prefix' => 'airport', 'as' => 'airport.'], function () {
+        Route::get('',[airportController::class, 'index'])->name('index');
+    });
 });
 
 Route::group(['middleware' => 'cekStatus:2'], function () {
@@ -45,6 +50,8 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
         Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
+        
+        Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
     });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {

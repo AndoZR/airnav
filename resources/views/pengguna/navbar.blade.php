@@ -15,8 +15,13 @@
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route("beranda.artikel") }}">Artikel</a>
                     </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Pembelajaran</a>
+                    <li class="nav-item dropdown align-self-center">
+                        <a class="nav-link dropdown-toggle nav-link active text-light fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Pembelajaran
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Hang Nadim</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Test</a>

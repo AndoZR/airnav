@@ -53,4 +53,8 @@ class berandaController extends Controller
 
         return view('pengguna.detailArtikel', ['artikel' => $dataArtikel]);
     }
+
+    public function pembelajaran() {
+        return view('pengguna.pembelajaran');
+    }
 }

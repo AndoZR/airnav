@@ -67,18 +67,12 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item  ">
-                            <a href="component-accordion.html" class="submenu-link">Airport</a>
-                            
+                            <a href="{{ route('airport.index') }}" class="submenu-link">Airport</a>
+                        </li>                                                           
+                        <li class="submenu-item  ">
+                            <a href="component-accordion.html" class="submenu-link">Test</a>
                         </li>                                                           
                     </ul>
-                </li>
-
-                {{-- Test --}}
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Test</span>
-                    </a>
                 </li>
 
                 {{-- Pengguna --}}

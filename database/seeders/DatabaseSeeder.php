@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             userSeeder::class,
             artikelSeeder::class,
+            airportSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
 
