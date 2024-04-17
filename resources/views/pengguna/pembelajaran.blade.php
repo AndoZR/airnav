@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
     {{-- MASTERHEAD --}}
     <header class="masterhead">
         <div class="container d-flex justify-content-between align-items-center">
-            <h1 class="text-primary fw-bolder" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>HANG NADIM <br> TOWER</strong></h1>
+            <h1 class="text-primary fw-bold" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;">Hang Nadim Tower</h1>
         </div>
     </header>
    
