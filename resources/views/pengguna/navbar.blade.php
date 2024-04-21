@@ -22,15 +22,31 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Link 2 </a></li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Tanjung Pinang Tower </a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Link 3 </a></li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA North Tower </a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Link 4 </a></li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA South Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Rajahaji Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Ranai Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Matak Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Letung Tower </a></li>
                         </ul>
                     </li>
                     <li class="nav-item align-self-center">

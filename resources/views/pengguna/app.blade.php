@@ -24,7 +24,18 @@
 
     {{-- FOOTER --}}
     @include('pengguna.footer')
-
+<!-- Start of ChatBot (www.chatbot.com) code -->
+<script type="text/javascript">
+    window.__be = window._be || {};
+    window.__be.id = "661d435f36d410000754a79a";
+    (function() {
+        var be = document.createElement('script'); be.type = 'text/javascript'; be.async = true;
+        be.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'cdn.chatbot.com/widget/plugin.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(be, s);
+    })();
+</script>
+<noscript>You need to <a href="https://www.chatbot.com/help/chat-widget/enable-javascript-in-your-browser/" rel="noopener nofollow">enable JavaScript</a> in order to use the AI chatbot tool powered by <a href="https://www.chatbot.com/" rel="noopener nofollow" target="_blank">ChatBot</a></noscript>
+<!-- End of ChatBot code -->
 </body>
 <script src="{{ asset('src/jquery/jquery.js') }}"></script>
 <script src="{{ asset('src/bootstrap/js/bootstrap.bundle.js') }}"></script>
