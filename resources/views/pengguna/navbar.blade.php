@@ -15,19 +15,38 @@
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.artikel') }}">Artikel</a>
                     </li>
-                    <li class="nav-item dropdown align-self-center">
-                        <a class="nav-link dropdown-toggle nav-link active text-light fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Pembelajaran
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Hang Nadim</a></li>
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Tanjung Pinang</a></li>
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">TMA North</a></li>
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">TMA South</a></li>
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Rajahaji</a></li>
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Ranai</a></li>
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Matak</a></li>
-                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Letung</a></li>
+                    <li class="nav-item dropdown-center align-self-center">
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Pembelajaran</a>
+                        <ul class="dropdown-menu" style="background-color: #49548C;">
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> Hang Nadim Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Tanjung Pinang Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA North Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA South Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Rajahaji Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Ranai Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Matak Tower </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Letung Tower </a></li>
                         </ul>
                     </li>
                     <li class="nav-item align-self-center">
