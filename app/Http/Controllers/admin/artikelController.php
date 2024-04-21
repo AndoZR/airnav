@@ -19,10 +19,17 @@ class artikelController extends Controller
             
         //     return ResponseFormatter::success($dataArtikel, "Data Artikel Received Successfuly!");
         // }
-
         $postArtikel = artikel::get();
-
         return view('dashboard.artikel',['postArtikel' => $postArtikel]);
+    }
+
+    public function editorArtikel(Request $request) {
+        // if ($request->ajax()) {
+        //     $dataArtikel = artikel::get();
+            
+        //     return ResponseFormatter::success($dataArtikel, "Data Artikel Received Successfuly!");
+        // }
+        return view('dashboard.editorArtikel');
     }
 
     public function storeArtikel(Request $request){

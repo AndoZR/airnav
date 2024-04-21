@@ -7,31 +7,23 @@
     <div class="card">
         <div class="row m-3">
             <div class="col-12 text-end">
-                <a href="{{ route('artikel.editor') }}"><button type="button" class="btn btn-primary">Tambah Artikel</button></a>
+                <a href="{{ route('artikel.editor') }}"><button type="button" class="btn btn-primary">Publish</button></a>
             </div>
         </div>
     </div>
-    @foreach ($postArtikel as $artikel)
-    <div class="card p-3">
-        <div class="row g-0">
-            <div class="col-sm-4 border">
-                <img class="" src="" class="m-2" alt="">
-            </div>
-            <div class="col-sm-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{$artikel->judul}}</h5>
-                    <p class="card-text"> <small class="text-body-secondary">UID : {{$artikel->id}}</small> <br> <small class="text-body-secondary">Pertama Kali di Publish : {{$artikel->created_at}}</small> <br> <small class="text-body-secondary">Terakhir di Update : {{$artikel->updated_at}}</small> </p>
-                    <p class="card-text">{{$artikel->deskripsi}}</p>
-                    <div class="d-grid gap-2 d-sm-block">
-                        <button type="button" class="btn btn-danger">Remove</button>
-                        <button type="button" class="btn btn-warning">Edit</button>
-                    </div>
-                </div>
+</section>
+
+<section class="section">
+    <div class="input-group input-group-lg ">
+        <input type="text" class="form-control text-center" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" placeholder="Judul Artikel">
+    </div>
+    <br>
+    <div class="card bg-white">
+        <div class="row m-3">
+            <div id="editor" class="col-12 text-dark">
             </div>
         </div>
     </div>
-    <hr>
-    @endforeach
 </section>
 
 <!-- <section class="section">
@@ -115,6 +107,9 @@
 
 @push('scripts')
 <script>
+    const quill = new Quill('#editor', {
+        theme: 'snow'
+    });
     // $(document).ready(function () {
     //     $('.modal').on('hidden.bs.modal', function(e) {
     //         $('form').trigger('reset');
