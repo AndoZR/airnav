@@ -89,7 +89,7 @@
 		<div class="mt-5" style="height: 100%; overflow-x: hidden; text-align: center">
 			<div class="csslider infinity" id="slider1">
                 <input type="radio" name="slides" checked="checked" id="slides_1"/>
-                <input type="radio" name="slides" id="slides_2"/>
+                {{-- <input type="radio" name="slides" id="slides_2"/>
                 <input type="radio" name="slides" id="slides_3"/>
                 <input type="radio" name="slides" id="slides_4"/>
                 <input type="radio" name="slides" id="slides_5"/>
@@ -97,20 +97,16 @@
                 <input type="radio" name="slides" id="slides_7"/>
                 <input type="radio" name="slides" id="slides_8"/>
                 <input type="radio" name="slides" id="slides_9"/>
-                <input type="radio" name="slides" id="slides_10"/>
+                <input type="radio" name="slides" id="slides_10"/> --}}
                 <ul>
                     <li>
-                        <iframe width="100%" height="400px" src="https://www.youtube.com/embed/WrRB-8eLfsA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe width="100%" height="400px" src="https://www.youtube.com/embed/tshZFBlVV10?si=svJlepvC510J4Wyz" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </li>
-                    <li>
-
+                    {{-- <li>
                             <iframe width="100%" height="400px" src="https://www.youtube.com/embed/WrRB-8eLfsA?si=fFfeu6SxttwycmXV" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
                     </li>
                     <li>
-
                         <iframe width="100%" height="400px" src="https://www.youtube.com/embed/WrRB-8eLfsA?si=fFfeu6SxttwycmXV" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
                     </li>
                     <li>
                         <iframe width="100%" height="400px" src="https://www.youtube.com/embed/WrRB-8eLfsA?si=fFfeu6SxttwycmXV" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -132,7 +128,7 @@
                     </li>
                     <li>
                         <iframe width="100%" height="400px" src="https://www.youtube.com/embed/saBwsz-YvOk?si=2FkSMAxiV0f1RWFG" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </li>
+                    </li> --}}
                     <li>
                         <p>
                         <video controls preload>
@@ -150,7 +146,7 @@
                 </ul>
                 <div class="arrows">
                     <label for="slides_1"></label>
-                    <label for="slides_2"></label>
+                    {{-- <label for="slides_2"></label>
                     <label for="slides_3"></label>
                     <label for="slides_4"></label>
                     <label for="slides_5"></label>
@@ -158,14 +154,14 @@
                     <label for="slides_7"></label>
                     <label for="slides_8"></label>
                     <label for="slides_9"></label>
-                    <label for="slides_10"></label>
+                    <label for="slides_10"></label> --}}
                     <label class="goto-first" for="slides_1"></label>
                     <label class="goto-last" for="slides_10"></label>
                 </div>
                 <div class="navigation"> 
                     <div>
                         <label for="slides_1"></label>
-                        <label for="slides_2"></label>
+                        {{-- <label for="slides_2"></label>
                         <label for="slides_3"></label>
                         <label for="slides_4"></label>
                         <label for="slides_5"></label>
@@ -173,7 +169,7 @@
                         <label for="slides_7"></label>
                         <label for="slides_8"></label>
                         <label for="slides_9"></label>
-                        <label for="slides_10"></label>
+                        <label for="slides_10"></label> --}}
                     </div>
                 </div>
             </div>

@@ -21,6 +21,13 @@
                         </a>
                         <ul class="dropdown-menu">
                           <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Hang Nadim</a></li>
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Tanjung Pinang</a></li>
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">TMA North</a></li>
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">TMA South</a></li>
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Rajahaji</a></li>
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Ranai</a></li>
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Matak</a></li>
+                          <li><a class="dropdown-item" href="{{ route('beranda.pembelajaran') }}">Letung</a></li>
                         </ul>
                     </li>
                     <li class="nav-item align-self-center">
