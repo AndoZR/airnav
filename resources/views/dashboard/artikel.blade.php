@@ -5,6 +5,37 @@
 @section('content')
 <section class="section">
     <div class="card">
+        <div class="row m-3">
+            <div class="col-12 text-end">
+                <button type="button" class="btn btn-primary">Tambah Artikel</button>
+            </div>
+        </div>
+    </div>
+    @foreach ($postArtikel as $artikel)
+    <div class="card p-3">
+        <div class="row g-0">
+            <div class="col-sm-4 border">
+                <img class="" src="" class="m-2" alt="">
+            </div>
+            <div class="col-sm-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{$artikel->judul}}</h5>
+                    <p class="card-text"> <small class="text-body-secondary">UID : {{$artikel->id}}</small> <br> <small class="text-body-secondary">Pertama Kali di Publish : {{$artikel->created_at}}</small> <br> <small class="text-body-secondary">Terakhir di Update : {{$artikel->updated_at}}</small> </p>
+                    <p class="card-text">{{$artikel->deskripsi}}</p>
+                    <div class="d-grid gap-2 d-sm-block">
+                        <button type="button" class="btn btn-danger">Remove</button>
+                        <button type="button" class="btn btn-warning">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    @endforeach
+</section>
+
+<!-- <section class="section">
+    <div class="card">
         <div class="card-body">
             <div class="table-responsive ">
                 <table id="tableArtikel" class="table table-striped">
@@ -22,10 +53,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Modal Create artikel -->
-<div class="modal fade" id="modal-create-artikel" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
+<!-- <div class="modal fade" id="modal-create-artikel" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -78,209 +109,210 @@
         </form>
       </div>
     </div>
-</div>
+</div> -->
+
 @endsection
 
 @push('scripts')
 <script>
-    $(document).ready(function () {
-        $('.modal').on('hidden.bs.modal', function(e) {
-            $('form').trigger('reset');
-            $('*').removeClass('is-invalid');
-            $('.custom-file-label').html('Pilih file...');
-        });
+    // $(document).ready(function () {
+    //     $('.modal').on('hidden.bs.modal', function(e) {
+    //         $('form').trigger('reset');
+    //         $('*').removeClass('is-invalid');
+    //         $('.custom-file-label').html('Pilih file...');
+    //     });
 
-        var idArtikel = null;
-        let url;
-        let urlArtikel = '{{ route('artikel.index') }}';
+    //     var idArtikel = null;
+    //     let url;
+    //     let urlArtikel = '{{ route('artikel.index') }}';
 
-        let tableArtikel = $('#tableArtikel').DataTable({
-            paging: true,
-            lengthChange: false,
-            searching: true,
-            ordering: true,
-            info: true,
-            autoWidth: true,
-            responsive: true,
-            ajax: {
-                url: urlArtikel,
-                type: "GET"
-            },
-            layout: {
-                topStart: {
-                    buttons: [
-                        {
-                            text: '<i class="fas fa-plus mr-2"></i> Tambah Data',
-                            className: 'btn btn-primary btn-tambah mb-3',
-                            action: function(e, dt, node, config) {
-                                $('#modal-create-artikel').modal('show');
-                            }
-                        }
-                    ]
-                },
-            },
-            columnDefs: [
-                {
-                    targets: 0,
-                    data: null,
-                    className: 'text-center align-middle',
-                    render: function(data, type, row, meta) {
-                        return meta.row + 1;
-                    }
-                },
-                {
-                    targets: 1,
-                    data: 'judul',
-                    className: 'text-center align-middle',
-                    render: function(data, type, row, meta) {
-                        return data;
-                    }
-                },
-                {
-                    targets: 2,
-                    data: 'deskripsi',
-                    className: 'text-center align-middle',
-                    render: function(data, type, row, meta) {
-                        return data;
-                    }
-                },
-                {
-                    targets: 3,
-                    data: null,
-                    className: 'text-center align-middle',
-                    render: function() {
-                        return `<button class="btn btn-warning btn-sm btn-edit" title="Ubah"><i class="fas fa-pencil-alt"></i></button><br>
-                        <button class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>`;
-                    }
-                },
-            ],
-        });
+    //     let tableArtikel = $('#tableArtikel').DataTable({
+    //         paging: true,
+    //         lengthChange: false,
+    //         searching: true,
+    //         ordering: true,
+    //         info: true,
+    //         autoWidth: true,
+    //         responsive: true,
+    //         ajax: {
+    //             url: urlArtikel,
+    //             type: "GET"
+    //         },
+    //         layout: {
+    //             topStart: {
+    //                 buttons: [
+    //                     {
+    //                         text: '<i class="fas fa-plus mr-2"></i> Tambah Data',
+    //                         className: 'btn btn-primary btn-tambah mb-3',
+    //                         action: function(e, dt, node, config) {
+    //                             $('#modal-create-artikel').modal('show');
+    //                         }
+    //                     }
+    //                 ]
+    //             },
+    //         },
+    //         columnDefs: [
+    //             {
+    //                 targets: 0,
+    //                 data: null,
+    //                 className: 'text-center align-middle',
+    //                 render: function(data, type, row, meta) {
+    //                     return meta.row + 1;
+    //                 }
+    //             },
+    //             {
+    //                 targets: 1,
+    //                 data: 'judul',
+    //                 className: 'text-center align-middle',
+    //                 render: function(data, type, row, meta) {
+    //                     return data;
+    //                 }
+    //             },
+    //             {
+    //                 targets: 2,
+    //                 data: 'deskripsi',
+    //                 className: 'text-center align-middle',
+    //                 render: function(data, type, row, meta) {
+    //                     return data;
+    //                 }
+    //             },
+    //             {
+    //                 targets: 3,
+    //                 data: null,
+    //                 className: 'text-center align-middle',
+    //                 render: function() {
+    //                     return `<button class="btn btn-warning btn-sm btn-edit" title="Ubah"><i class="fas fa-pencil-alt"></i></button><br>
+    //                     <button class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>`;
+    //                 }
+    //             },
+    //         ],
+    //     });
 
-        // Submit Form Create artikel
-        $('#form-create-artikel').submit(function(e) {
-            e.preventDefault();
+    //     // Submit Form Create artikel
+    //     $('#form-create-artikel').submit(function(e) {
+    //         e.preventDefault();
 
-            if(idArtikel !== null){
-                url = "{{ route('artikel.update', ['id' => ':id']) }}";
-                url = url.replace(':id', idArtikel)
-            }else{
-                url = "{{ route('artikel.store') }}";
-            }
+    //         if(idArtikel !== null){
+    //             url = "{{ route('artikel.update', ['id' => ':id']) }}";
+    //             url = url.replace(':id', idArtikel)
+    //         }else{
+    //             url = "{{ route('artikel.store') }}";
+    //         }
 
-            var formData = new FormData($("#form-create-artikel")[0]);
+    //         var formData = new FormData($("#form-create-artikel")[0]);
 
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $('*').removeClass('is-invalid');
-                },
-                success: function(response) {
-                    $('#modal-create-artikel').modal('hide');
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil Tersimpan!',
-                        text: response.meta.message,
-                    });
-                    tableArtikel.ajax.reload();
-                    idArtikel = null;
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    switch (xhr.status) {
-                        case 422:
-                        var errors = xhr.responseJSON.meta.message;
-                        var message = '';
-                        $.each(errors, function(key, value) {
-                            message = value;
-                            $('*[name="' + key + '"]').addClass('is-invalid');
-                            $('.invalid-feedback.' + key + '_error').html(value);
-                        });
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal!',
-                            text: message,
-                        })
-                        break;
-                        default:
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal!',
-                            text: 'Terjadi kesalahan!',
-                        })
-                        break;
-                    }
-                }
-            });
-        });
+    //         $.ajax({
+    //             type: "POST",
+    //             url: url,
+    //             data: formData,
+    //             processData: false,
+    //             contentType: false,
+    //             beforeSend: function() {
+    //                 $('*').removeClass('is-invalid');
+    //             },
+    //             success: function(response) {
+    //                 $('#modal-create-artikel').modal('hide');
+    //                 Swal.fire({
+    //                     icon: 'success',
+    //                     title: 'Berhasil Tersimpan!',
+    //                     text: response.meta.message,
+    //                 });
+    //                 tableArtikel.ajax.reload();
+    //                 idArtikel = null;
+    //             },
+    //             error: function(xhr, ajaxOptions, thrownError) {
+    //                 switch (xhr.status) {
+    //                     case 422:
+    //                     var errors = xhr.responseJSON.meta.message;
+    //                     var message = '';
+    //                     $.each(errors, function(key, value) {
+    //                         message = value;
+    //                         $('*[name="' + key + '"]').addClass('is-invalid');
+    //                         $('.invalid-feedback.' + key + '_error').html(value);
+    //                     });
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Gagal!',
+    //                         text: message,
+    //                     })
+    //                     break;
+    //                     default:
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Gagal!',
+    //                         text: 'Terjadi kesalahan!',
+    //                     })
+    //                     break;
+    //                 }
+    //             }
+    //         });
+    //     });
 
-        // Edit Data artikel
-        $('#tableArtikel tbody').on('click', '.btn-edit', function() {
-            var data = tableArtikel.row($(this).parents('tr')).data();
-            idArtikel = data.id;
+    //     // Edit Data artikel
+    //     $('#tableArtikel tbody').on('click', '.btn-edit', function() {
+    //         var data = tableArtikel.row($(this).parents('tr')).data();
+    //         idArtikel = data.id;
 
-            // set form action
-            $('input[name="judul"]').val(data.judul);
-            $('input[name="deskripsi"]').val(data.deskripsi);
+    //         // set form action
+    //         $('input[name="judul"]').val(data.judul);
+    //         $('input[name="deskripsi"]').val(data.deskripsi);
 
-            // show modal
-            $('#modal-create-artikel').modal('show');
-        });
+    //         // show modal
+    //         $('#modal-create-artikel').modal('show');
+    //     });
 
-        // Hapus Data artikel
-        $('#tableArtikel tbody').on('click', '.btn-delete', function() {
-            var data = tableArtikel.row($(this).parents('tr')).data();
-            let urlDestroy = "{{ route('artikel.delete', ['id' => ':id']) }}"
-            urlDestroy = urlDestroy.replace(':id', data.id);
+    //     // Hapus Data artikel
+    //     $('#tableArtikel tbody').on('click', '.btn-delete', function() {
+    //         var data = tableArtikel.row($(this).parents('tr')).data();
+    //         let urlDestroy = "{{ route('artikel.delete', ['id' => ':id']) }}"
+    //         urlDestroy = urlDestroy.replace(':id', data.id);
 
-            Swal.fire({
-                title: 'Apakah anda yakin?',
-                text: "Data yang dihapus tidak dapat dikembalikan!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#dc3545',
-                cancelButtonColor: '#6c757d',
-                confirmButtonText: 'Ya, hapus!',
-                cancelButtonText: 'Batal'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                $.ajax({
-                    type: "GET",
-                    url: urlDestroy,
-                    beforeSend: function() {
-                    },
-                    success: function(data) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil',
-                        text: 'Data berhasil dihapus!',
-                    })
-                    tableArtikel.ajax.reload();
-                    },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                    switch (xhr.status) {
-                        case 500:
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal!',
-                            text: 'Server Error!',
-                        })
-                        break;
-                        default:
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal!',
-                            text: 'Terjadi kesalahan!',
-                        })
-                        break;
-                    }
-                    }
-                });
-                }
-            });
-        });
-    })
+    //         Swal.fire({
+    //             title: 'Apakah anda yakin?',
+    //             text: "Data yang dihapus tidak dapat dikembalikan!",
+    //             icon: 'warning',
+    //             showCancelButton: true,
+    //             confirmButtonColor: '#dc3545',
+    //             cancelButtonColor: '#6c757d',
+    //             confirmButtonText: 'Ya, hapus!',
+    //             cancelButtonText: 'Batal'
+    //         }).then((result) => {
+    //             if (result.isConfirmed) {
+    //             $.ajax({
+    //                 type: "GET",
+    //                 url: urlDestroy,
+    //                 beforeSend: function() {
+    //                 },
+    //                 success: function(data) {
+    //                 Swal.fire({
+    //                     icon: 'success',
+    //                     title: 'Berhasil',
+    //                     text: 'Data berhasil dihapus!',
+    //                 })
+    //                 tableArtikel.ajax.reload();
+    //                 },
+    //                 error: function(xhr, ajaxOptions, thrownError) {
+    //                 switch (xhr.status) {
+    //                     case 500:
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Gagal!',
+    //                         text: 'Server Error!',
+    //                     })
+    //                     break;
+    //                     default:
+    //                     Swal.fire({
+    //                         icon: 'error',
+    //                         title: 'Gagal!',
+    //                         text: 'Terjadi kesalahan!',
+    //                     })
+    //                     break;
+    //                 }
+    //                 }
+    //             });
+    //             }
+    //         });
+    //     });
+    // })
 </script>
 @endpush

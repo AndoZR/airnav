@@ -29,7 +29,7 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
     });
 
     Route::group(['prefix' => 'artikel', 'as' => 'artikel.'], function () {
-        Route::get('/', [artikelController::class, 'index'])->name('index');
+        Route::get('/', [artikelController::class, 'indexArtikel'])->name('index');
         Route::post('/store', [artikelController::class, 'storeArtikel'])->name('store');
         Route::post('/update/{id}', [artikelController::class, 'updateArtikel'])->name('update');
         Route::get('/delete/{id}', [artikelController::class, 'deleteArtikel'])->name('delete');

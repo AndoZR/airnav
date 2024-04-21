@@ -13,14 +13,16 @@ use Illuminate\Support\Facades\Validator;
 
 class artikelController extends Controller
 {
-    public function index(Request $request) {
-        if ($request->ajax()) {
-            $dataArtikel = artikel::get();
+    public function indexArtikel(Request $request) {
+        // if ($request->ajax()) {
+        //     $dataArtikel = artikel::get();
             
-            return ResponseFormatter::success($dataArtikel, "Data Artikel Received Successfuly!");
-        }
+        //     return ResponseFormatter::success($dataArtikel, "Data Artikel Received Successfuly!");
+        // }
 
-        return view('dashboard.artikel');
+        $postArtikel = artikel::get();
+
+        return view('dashboard.artikel',['postArtikel' => $postArtikel]);
     }
 
     public function storeArtikel(Request $request){
