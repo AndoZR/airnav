@@ -24,11 +24,10 @@ class artikelController extends Controller
     }
 
     public function editorArtikel(Request $request) {
-        // if ($request->ajax()) {
-        //     $dataArtikel = artikel::get();
-            
-        //     return ResponseFormatter::success($dataArtikel, "Data Artikel Received Successfuly!");
-        // }
+        return view('dashboard.editorArtikel');
+    }
+
+    public function previewArtikel(Request $request) {
         return view('dashboard.editorArtikel');
     }
 

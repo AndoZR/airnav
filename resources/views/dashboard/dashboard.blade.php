@@ -20,7 +20,8 @@
 
     <link rel="stylesheet" href="{{ asset('src/assets/extensions/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('src/assets/compiled/css/table-datatable.css') }}">
-    <link rel="stylesheet" href="{{ asset('src/quill/quill.snow.css') }}">
+
+    @vite('resources/css/app.css')
 </head>
 
 <body>
@@ -59,7 +60,6 @@
 <script src="{{ asset('src/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('src/assets/compiled/js/app.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="{{ asset('src/quill/quill.js') }}"></script>
 <script src="https://cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.dataTables.js"></script>

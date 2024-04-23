@@ -84,7 +84,7 @@
             var formData = new FormData($("#form-edit")[0]);
             $.ajax({
                 type: "POST",
-                url: '{{ route('adminAkun.edit') }}',
+                url: '<?=route('adminAkun.edit')?>',
                 data: formData,
                 processData: false,
                 contentType: false,

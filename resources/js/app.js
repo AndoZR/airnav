@@ -1,2 +1,3 @@
 import './bootstrap';
-window.Jquery = require('jquery');
+import './quill';
+// window.Jquery = require('jquery');

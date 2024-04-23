@@ -30,21 +30,15 @@
 @endsection
 
 @push('scripts')
+@vite('resources/js/app.js')
 <script>
-    const quill = new Quill('#editor', {
-        theme: 'snow'
-    });
-
     document.getElementById('artikelPublish').addEventListener('click', saveAndPublish, false)
 
     function saveAndPublish() {
+
         editorContent = quill.getContents()
         console.log(document.getElementById('judulArtikel').value)
         console.log(JSON.stringify(editorContent))
-
-
-        const self = this;
-        let text = $("#pesan").val()
 
         $.ajaxSetup({
             headers: {
@@ -53,7 +47,7 @@
         });
 
         $.ajax({
-            url: urlPush,
+            url:'<?=route('artikel.preview')?>',
             type: 'POST',
             data: {
                 pesan: text
