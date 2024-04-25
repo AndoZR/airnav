@@ -32,7 +32,7 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::get('/', [artikelController::class, 'indexArtikel'])->name('index');
         Route::post('/store', [artikelController::class, 'storeArtikel'])->name('store');
         Route::get('/editor', [artikelController::class, 'editorArtikel'])->name('editor');
-        Route::get('/preview', [artikelController::class, 'previewArtikel'])->name('preview');
+        Route::post('/preview', [artikelController::class, 'previewArtikel'])->name('preview');
         // Route::post('/publish', [artikelController::class, 'storeArtikel'])->name('store');
         Route::post('/update/{id}', [artikelController::class, 'updateArtikel'])->name('update');
         Route::get('/delete/{id}', [artikelController::class, 'deleteArtikel'])->name('delete');

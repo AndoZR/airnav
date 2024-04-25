@@ -28,7 +28,10 @@ class artikelController extends Controller
     }
 
     public function previewArtikel(Request $request) {
-        return view('dashboard.editorArtikel');
+        echo('<style>p{}</style>');
+        echo($request->judul);
+        echo($request->html);
+        return;
     }
 
     public function storeArtikel(Request $request){
