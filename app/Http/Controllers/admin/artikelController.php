@@ -20,7 +20,7 @@ class artikelController extends Controller
 
         //     return ResponseFormatter::success($dataArtikel, "Data Artikel Received Successfuly!");
         // }
-        $postArtikel = artikel::get();
+        $postArtikel = Artikel::get();
         return view('dashboard.artikel', ['postArtikel' => $postArtikel]);
     }
 
@@ -42,12 +42,13 @@ class artikelController extends Controller
 
         $artikel = Artikel::create([
             'judul' => $request->judul,
+            'deskripsi' => $request->deksripsi,
             'artikel' => 'artikel/' . $namaFile,
-            'artikel' => 'content/' . $namaFile,
-            'deksripsi' => $request->deksripsi
+            'content' => 'content/' . $namaFile,
+            
         ]);
 
-        return response($artikel);
+        return response($request->deksripsi);
     }
 
     public function storeArtikel(Request $request)
@@ -66,7 +67,7 @@ class artikelController extends Controller
             $file = $request->file('file');
             $storage = Storage::putFileAs('public/artikel', $file, time() . '_' .  $file->getClientOriginalName());
 
-            $artikel = artikel::create([
+            $artikel = Artikel::create([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
                 'file' => time() . '_' . $request->file->getClientOriginalName(),
@@ -116,7 +117,7 @@ class artikelController extends Controller
     public function deleteArtikel(Request $request)
     {
         try {
-            $artikel = artikel::find($request->id);
+            $artikel = Artikel::find($request->id);
             $deteleFile = Storage::delete('public/artikel/' . $artikel->file);
             $artikel->delete();
         } catch (Exception $e) {
