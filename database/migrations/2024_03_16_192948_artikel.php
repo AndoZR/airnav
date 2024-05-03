@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('artikel', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->text('deskripsi');
-            $table->text('file')->nullable();
+            $table->string('judul')->nullable();
+            $table->text('deskripsi')->nullable();
+            $table->text('artikel')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }

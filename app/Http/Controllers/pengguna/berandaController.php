@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\pengguna;
 
 use App\Http\Controllers\Controller;
-use App\Models\artikel;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 
 class berandaController extends Controller
@@ -16,7 +16,7 @@ class berandaController extends Controller
 
     public function slider()
     {
-        $dataArtikel = artikel::take(3)->orderBy('created_at','desc')->get();
+        $dataArtikel = Artikel::take(3)->orderBy('created_at','desc')->get();
 
         $filteredArtikel = [];
         foreach ($dataArtikel as $item) {
@@ -32,7 +32,7 @@ class berandaController extends Controller
     }
 
     public function artikel() {
-        $dataArtikel = artikel::get();
+        $dataArtikel = Artikel::get();
     
         $filteredArtikel = [];
         foreach ($dataArtikel as $item) {
@@ -49,7 +49,7 @@ class berandaController extends Controller
     }
 
     public function detailArtikel($id) {
-        $dataArtikel = artikel::where('id', $id)->first();
+        $dataArtikel = Artikel::where('id', $id)->first();
 
         return view('pengguna.detailArtikel', ['artikel' => $dataArtikel]);
     }

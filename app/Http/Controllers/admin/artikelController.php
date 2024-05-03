@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use Exception;
-use App\Models\artikel;
+use App\Models\Artikel;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Log;
@@ -13,28 +13,46 @@ use Illuminate\Support\Facades\Validator;
 
 class artikelController extends Controller
 {
-    public function indexArtikel(Request $request) {
+    public function indexArtikel(Request $request)
+    {
         // if ($request->ajax()) {
         //     $dataArtikel = artikel::get();
-            
+
         //     return ResponseFormatter::success($dataArtikel, "Data Artikel Received Successfuly!");
         // }
-        $postArtikel = artikel::get();
-        return view('dashboard.artikel',['postArtikel' => $postArtikel]);
+        $postArtikel = Artikel::get();
+        return view('dashboard.artikel', ['postArtikel' => $postArtikel]);
     }
 
-    public function editorArtikel(Request $request) {
+    public function editorArtikel(Request $request)
+    {
         return view('dashboard.editorArtikel');
     }
 
-    public function previewArtikel(Request $request) {
-        echo('<style>p{}</style>');
-        echo($request->judul);
-        echo($request->html);
-        return;
+    public function previewArtikel(Request $request)
+    {
+        return view('pengguna.preview',['judul'=>$request->judul,'artikel'=>$request->html]);
     }
 
-    public function storeArtikel(Request $request){
+    public function publishArtikel(Request $request)
+    {
+        $namaFile = time() . '_' . $request->judul;
+        Storage::disk('public')->put('artikel/' . $namaFile . '.html', $request->html);
+        Storage::disk('public')->put('content/' . $namaFile . '.json', $request->content);
+
+        $artikel = Artikel::create([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deksripsi,
+            'artikel' => 'artikel/' . $namaFile,
+            'content' => 'content/' . $namaFile,
+            
+        ]);
+
+        return response($request->deksripsi);
+    }
+
+    public function storeArtikel(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -42,14 +60,14 @@ class artikelController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return ResponseFormatter::error(null,$validator->errors(),422);
+            return ResponseFormatter::error(null, $validator->errors(), 422);
         };
 
         try {
             $file = $request->file('file');
             $storage = Storage::putFileAs('public/artikel', $file, time() . '_' .  $file->getClientOriginalName());
 
-            $artikel = artikel::create([
+            $artikel = Artikel::create([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
                 'file' => time() . '_' . $request->file->getClientOriginalName(),
@@ -62,7 +80,8 @@ class artikelController extends Controller
         }
     }
 
-    public function updateArtikel(Request $request){
+    public function updateArtikel(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
@@ -70,7 +89,7 @@ class artikelController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return ResponseFormatter::error(null,$validator->errors(),422);
+            return ResponseFormatter::error(null, $validator->errors(), 422);
         };
 
         try {
@@ -80,7 +99,7 @@ class artikelController extends Controller
             $artikel = artikel::find($request->id);
 
             // hapus file sebelum update
-            $deteleFile = Storage::delete('public/artikel/'.$artikel->file);
+            $deteleFile = Storage::delete('public/artikel/' . $artikel->file);
 
             $artikel->update([
                 'judul' => $request->judul,
@@ -94,11 +113,12 @@ class artikelController extends Controller
             return ResponseFormatter::error($e->getMessage(), "Data gagal disimpan. Kesalahan Server", 500);
         }
     }
-    
-    public function deleteArtikel(Request $request){
-        try{
-            $artikel = artikel::find($request->id);
-            $deteleFile = Storage::delete('public/artikel/'.$artikel->file);
+
+    public function deleteArtikel(Request $request)
+    {
+        try {
+            $artikel = Artikel::find($request->id);
+            $deteleFile = Storage::delete('public/artikel/' . $artikel->file);
             $artikel->delete();
         } catch (Exception $e) {
             Log::error($e->getMessage());
