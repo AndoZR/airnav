@@ -70,7 +70,7 @@
                             <a href="{{ route('airport.index') }}" class="submenu-link">Airport</a>
                         </li>                                                           
                         <li class="submenu-item  ">
-                            <a href="component-accordion.html" class="submenu-link">Test</a>
+                            <a href="{{ route('test.index') }}" class="submenu-link">Test</a>
                         </li>                                                           
                     </ul>
                 </li>
