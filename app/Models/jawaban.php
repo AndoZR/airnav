@@ -18,4 +18,9 @@ class jawaban extends Model
     ];
 
     public $timestamps = false;
+
+    public function soal()
+    {
+        return $this->hasMany(soal::class, 'id_soal', 'id');
+    }
 }

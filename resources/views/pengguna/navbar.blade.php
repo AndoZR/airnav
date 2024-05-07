@@ -52,7 +52,7 @@
                     <li class="nav-item dropdown-center align-self-center">
                         <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Test</a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> Hang Nadim Tower </a></li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('test.userIndex') }}"> Hang Nadim Tower </a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

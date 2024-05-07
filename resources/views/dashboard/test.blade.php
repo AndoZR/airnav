@@ -324,12 +324,12 @@
                     switch (xhr.status) {
                         case 422:
                         var errors = xhr.responseJSON.meta.message;
-                        var message = '';
                         Swal.fire({
                             icon: 'error',
                             title: 'Gagal!',
-                            text: message,
+                            text: errors,
                         })
+                        tableTest.ajax.reload();
                         break;
                         default:
                         Swal.fire({

@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\hasilTest;
 use App\Models\jawaban;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
@@ -27,12 +29,17 @@ class testController extends Controller
 
     public function activeTest(Request $request) {
         try{
-            $active = test::find($request->id);
-            $active->update([
-                'status' => $request->status
-            ]);
-
-            return ResponseFormatter::success($active,"Status berhasil diubah!");
+            $soal = soal::where('id_test',$request->id)->first();
+            if($soal == null){
+                return ResponseFormatter::error($soal,"Soal belum dibuat!",422);
+            }else{
+                $active = test::find($request->id);
+                $active->update([
+                    'status' => $request->status
+                ]);
+    
+                return ResponseFormatter::success($active,"Status berhasil diubah!");
+            }
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return ResponseFormatter::success($e->getMessage(),"Data gagal disimpan. Kesalahan Server", 500);
@@ -98,11 +105,12 @@ class testController extends Controller
     }
 
     public function soalIndex($id, Request $request) {
+        $status = test::where('id',$id)->first();
         if($request->ajax()){
             $soal = soal::with('test')->where('id_test', $id)->get();
             return ResponseFormatter::success($soal,"Data Pertanyaan Received Successfuly!");
         }else{
-            return view('dashboard.soal', ['id' => $id]);
+            return view('dashboard.soal', ['id' => $id, 'status' => $status->status]);
         }
     }
 
@@ -183,7 +191,63 @@ class testController extends Controller
     }
 
     // SESI PENGGUNA
+
     public function userIndex() {
-        return view('pengguna.test');
+        $test = test::with('hasilTest')->where('status',1)->get();
+        // dd($test);
+        return view('pengguna.test', ['test'=>$test]);
     }
+
+    public function mulai($id) {
+        $durasi = test::where('id',$id)->value('durasi');
+
+        $cek = hasilTest::where('id_Test', $id)
+        ->where('id_user', Auth::user()->id)
+        ->first();
+
+        if ($cek == null){
+            $hasil = hasilTest::create([
+                'id_test' => $id,
+                'id_user' => Auth::user()->id,
+                'waktu_mulai' => now(),
+            ]);
+
+            $dataTest = soal::with('jawaban')->where('id_test',$id)->get();
+            return view('pengguna.mulai',['dataTest'=>$dataTest, 'idTest'=>$id, 'idHasil'=>$hasil->id, 'durasi'=>$durasi]);
+        } else if (!isset($cek->hasil)){
+            $dataTest = soal::with('jawaban')->where('id_test',$id)->get();
+            return view('pengguna.mulai',['dataTest'=>$dataTest, 'idTest'=>$id, 'idHasil'=>$cek->id, 'durasi'=>$durasi]);
+        } else {
+            $message = 'Anda sudah mengerjakan test!';
+            return redirect()->route('test.userIndex')->with('message', $message);
+        }
+    }
+
+    public function selesai($id, Request $request) {
+        $total = 0;
+        foreach($request->except(['_token','idHasil']) as $key => $item){
+            $total += $item;
+        }
+
+        try{
+            $hasil = hasilTest::where('id',$request->idHasil)->first();
+            $hasil->update([
+                'hasil' => $total*10,
+                'waktu_selesai' => now(),
+
+            ]);
+
+            return ResponseFormatter::success($hasil, "Data hasil Test Berhasil Disimpan!");
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return ResponseFormatter::error($e->getMessage(), "Data gagal disimpan. Kesalahan Server", 500);
+        }
+    }
+
+    // public function duration($id) {
+    //     $test = Test::find($id);
+    //     $waktuMulai = $test->waktuMulai;
+    //     $durasi = $test->durasi;
+    //     return ['waktuMulai' => $waktuMulai, 'durasi' => $durasi];
+    // }
 }

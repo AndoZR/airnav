@@ -108,9 +108,12 @@
             $('form').trigger('reset');
             $('*').removeClass('is-invalid');
             $('.custom-file-label').html('Pilih file...');
+            $('#correct').val('');
             currentInputGroup = 0
         });
 
+        var correctAnswer
+        var status = `{{ $status }}`;
         var html;
         var idTest = `{{ $id }}`;
         var idSoal;
@@ -139,10 +142,6 @@
         $(document).on("click", ".correct", function() {
             $(".correct").removeClass("btn-success").addClass("btn-outline-success");
             $(this).removeClass("btn-outline-success").addClass("btn-success");
-
-            // Simpan nilai jawaban benar ke dalam input tersembunyi
-            var correctAnswer = $(this).closest(".input-group").find("input[name='jawaban[]']").val();
-            $("#correct").val(correctAnswer);
         });
 
         $(document).on("click", ".remove-answer", function() {
@@ -167,6 +166,11 @@
                         {
                             text: '<i class="fas fa-plus mr-2"></i> Tambah Soal',
                             className: 'btn btn-primary btn-tambah mb-3',
+                            enabled: function () {
+                                console.log(data)
+                                // Nonaktifkan tombol jika data.test.status == 1
+                                return !data || !data.test || data.test.status != 1;
+                            },
                             action: function(e, dt, node, config) {
                                 $('#modal-create-soal').modal('show');
                             }
@@ -203,15 +207,28 @@
                     targets: 3,
                     data: null,
                     className: 'text-center align-middle',
-                    render: function(){
-                        return `<button class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>`
+                    render: function(row){
+                        if (status == 0) {
+                            return `<button class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>`
+                        } else {
+                            return `<button disabled class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>`
+                        }
                     }
                 },
             ],
+            initComplete: function() {
+                if (status == 1) {
+                $('.btn-tambah').prop('disabled', true);
+                }
+            }
         });
 
         // Submit Form Create Soal
         $('#form-create-soal').submit(function(e) {
+            // Simpan nilai jawaban benar ke dalam input tersembunyi
+            correctAnswer = $('.btn-success').closest(".input-group").find("input[name='jawaban[]']").val();
+            $("#correct").val(correctAnswer);
+            
             e.preventDefault();
 
             url = "{{ route('test.soal.store', ['id' => ':id']) }}";

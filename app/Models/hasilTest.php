@@ -5,26 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class soal extends Model
+class hasilTest extends Model
 {
     use HasFactory;
 
-    protected $table = 'soal';
+    protected $table = 'hasilTest';
 
     protected $fillable = [
+        'hasil',
+        'waktu_mulai',
+        'waktu_selesai',
+        'id_user',
         'id_test',
-        'pertanyaan',
     ];
 
     public $timestamps = false;
 
     public function test()
     {
-        return $this->belongsTo(test::class,'id_test','id');
-    }
-
-    public function jawaban()
-    {
-        return $this->hasMany(jawaban::class, 'id_soal', 'id');
+        return $this->belongsTo(Test::class, 'id_test', 'id');
     }
 }

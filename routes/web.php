@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\akunController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\admin\testController;
-use App\Http\Controllers\pembelajaranController;
 use App\Http\Controllers\admin\airportController;
 use App\Http\Controllers\admin\artikelController;
 use App\Http\Controllers\admin\penggunaController;
@@ -77,7 +76,11 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         
         Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
         
-        Route::get('/test', [testController::class, 'userIndex'])->name('testIndex');
+    });
+    Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
+        Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
+        Route::get('/mulai/{id}', [testController::class, 'mulai'])->name('mulai');
+        Route::post('/selesai/{id}', [testController::class, 'selesai'])->name('selesai');
     });
 
 

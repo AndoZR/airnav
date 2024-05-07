@@ -24,4 +24,8 @@ class test extends Model
         return $this->hasMany(soal::class, 'id_test', 'id');
     }
 
+    public function hasilTest()
+    {
+        return $this->hasOne(HasilTest::class, 'id_test', 'id');
+    }
 }
