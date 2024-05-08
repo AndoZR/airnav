@@ -40,9 +40,9 @@
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                  <label for="nama">Nama <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="nama" id="nama" placeholder="Isi Nama" autofocus autocomplete="off">
-                  <div class="invalid-feedback nama_error"></div>
+                  <label for="name">Nama <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Isi Nama" autofocus autocomplete="off">
+                  <div class="invalid-feedback name_error"></div>
                 </div>
               </div>
               <div class="col-12">
@@ -75,6 +75,29 @@
       </div>
     </div>
 </div>
+
+<!-- Modal Lihat Berkas -->
+<div class="modal fade" id="modal-berkas" tabindex="-1" role="dialog" aria-labelledby="modalBerkas" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <embed src="" frameborder="0" width="100%" height="500px">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Tutup</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')
@@ -84,10 +107,10 @@
             $('form').trigger('reset');
             $('*').removeClass('is-invalid');
             $('.custom-file-label').html('Pilih file...');
+            idAirport = undefined;
         });
 
         var idAirport;
-        var idAirportDelete;
         let url;
         let urlAirport = '{{ route('airport.index') }}';
 
@@ -138,8 +161,8 @@
                     data: null,
                     className: 'text-center align-middle',
                     render: function(data, type, row, meta) {
-                        return `<button class="btn btn-primary btn-sm btn-edit" title="Ubah"><i class="fas fa-file-alt"></i></button><br>
-                        <button class="btn btn-success btn-sm btn-delete" title="Hapus"><i class="fas fa-file-alt"></i></button>`;
+                        return `<button class="btn btn-primary btn-sm btn-sop" title="SOP"><i class="fas fa-file-alt"></i></button><br>
+                        <button class="btn btn-success btn-sm btn-loca" title="LOCA"><i class="fas fa-file-alt"></i></button>`;
                     }
                 },
                 {
@@ -154,132 +177,146 @@
             ],
         });
 
-        // // Submit Form Create pengguna
-        // $('#form-create-pengguna').submit(function(e) {
-        //     e.preventDefault();
+        // Submit Form Create AIRPORT
+        $('#form-create-airport').submit(function(e) {
+            e.preventDefault();
 
-        //     if(idPengguna !== undefined){
-        //         console.log(idPengguna);
-        //         url = "{{ route('pengguna.update', ['id' => ':id']) }}";
-        //         url = url.replace(':id', idPengguna)
-        //     }else{
-        //         console.log("store");
-        //         url = "{{ route('pengguna.store') }}";
-        //     }
+            if(idAirport !== undefined){
+                url = "{{ route('airport.update', ['id' => ':id']) }}";
+                url = url.replace(':id', idAirport)
+            }else{
+                url = "{{ route('airport.store') }}";
+            }
 
-        //     var formData = new FormData($("#form-create-pengguna")[0]);
+            var formData = new FormData($("#form-create-airport")[0]);
 
-        //     $.ajax({
-        //         type: "POST",
-        //         url: url,
-        //         data: formData,
-        //         processData: false,
-        //         contentType: false,
-        //         beforeSend: function() {
-        //             $('*').removeClass('is-invalid');
-        //         },
-        //         success: function(response) {
-        //             $('#modal-create-pengguna').modal('hide');
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: 'Berhasil Tersimpan!',
-        //                 text: response.meta.message,
-        //             });
-        //             tablePengguna.ajax.reload();
-        //         },
-        //         error: function(xhr, ajaxOptions, thrownError) {
-        //             switch (xhr.status) {
-        //                 case 422:
-        //                 var errors = xhr.responseJSON.meta.message;
-        //                 var message = '';
-        //                 $.each(errors, function(key, value) {
-        //                     message = value;
-        //                     $('*[name="' + key + '"]').addClass('is-invalid');
-        //                     $('.invalid-feedback.' + key + '_error').html(value);
-        //                 });
-        //                 Swal.fire({
-        //                     icon: 'error',
-        //                     title: 'Gagal!',
-        //                     text: message,
-        //                 })
-        //                 break;
-        //                 default:
-        //                 Swal.fire({
-        //                     icon: 'error',
-        //                     title: 'Gagal!',
-        //                     text: 'Terjadi kesalahan!',
-        //                 })
-        //                 break;
-        //             }
-        //         }
-        //     });
-        // });
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: formData,
+                processData: false,
+                contentType: false,
+                beforeSend: function() {
+                    $('*').removeClass('is-invalid');
+                },
+                success: function(response) {
+                    $('#modal-create-airport').modal('hide');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil Tersimpan!',
+                        text: response.meta.message,
+                    });
+                    tableAirport.ajax.reload();
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    switch (xhr.status) {
+                        case 422:
+                        var errors = xhr.responseJSON.meta.message;
+                        var message = '';
+                        $.each(errors, function(key, value) {
+                            message = value;
+                            $('*[name="' + key + '"]').addClass('is-invalid');
+                            $('.invalid-feedback.' + key + '_error').html(value);
+                        });
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: message,
+                        })
+                        break;
+                        default:
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: 'Terjadi kesalahan!',
+                        })
+                        break;
+                    }
+                }
+            });
+        });
 
-        // // Edit Data Pengguna
-        // $('#table-pengguna tbody').on('click', '.btn-edit', function() {
-        //     var data = tablePengguna.row($(this).parents('tr')).data();
-        //     idPengguna = data.id;
+        // Edit Data AIRPORT
+        $('#table-airport tbody').on('click', '.btn-edit', function() {
+            var data = tableAirport.row($(this).parents('tr')).data();
+            idAirport = data.id;
 
-        //     // set form action
-        //     $('input[name="nama"]').val(data.name);
-        //     $('input[name="username"]').val(data.username);
+            // set form action
+            $('input[name="name"]').val(data.name);
+            
 
-        //     // show modal
-        //     $('#modal-create-pengguna').modal('show');
-        // });
+            // show modal
+            $('#modal-create-airport').modal('show');
+        });
 
-        // // Hapus Data Pengguna
-        // $('#table-pengguna tbody').on('click', '.btn-delete', function() {
-        //     var data = tablePengguna.row($(this).parents('tr')).data();
-        //     let urlDestroy = "{{ route('pengguna.delete', ['id' => ':id']) }}"
-        //     urlDestroy = urlDestroy.replace(':id', data.id);
+        // Hapus Data AIRPORT
+        $('#table-airport tbody').on('click', '.btn-delete', function() {
+            var data = tableAirport.row($(this).parents('tr')).data();
+            let urlDestroy = "{{ route('airport.delete', ['id' => ':id']) }}"
+            urlDestroy = urlDestroy.replace(':id', data.id);
 
-        //     Swal.fire({
-        //         title: 'Apakah anda yakin?',
-        //         text: "Data yang dihapus tidak dapat dikembalikan!",
-        //         icon: 'warning',
-        //         showCancelButton: true,
-        //         confirmButtonColor: '#dc3545',
-        //         cancelButtonColor: '#6c757d',
-        //         confirmButtonText: 'Ya, hapus!',
-        //         cancelButtonText: 'Batal'
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //         $.ajax({
-        //             type: "GET",
-        //             url: urlDestroy,
-        //             beforeSend: function() {
-        //             },
-        //             success: function(data) {
-        //             Swal.fire({
-        //                 icon: 'success',
-        //                 title: 'Berhasil',
-        //                 text: 'Data berhasil dihapus!',
-        //             })
-        //             tablePengguna.ajax.reload();
-        //             },
-        //             error: function(xhr, ajaxOptions, thrownError) {
-        //             switch (xhr.status) {
-        //                 case 500:
-        //                 Swal.fire({
-        //                     icon: 'error',
-        //                     title: 'Gagal!',
-        //                     text: 'Server Error!',
-        //                 })
-        //                 break;
-        //                 default:
-        //                 Swal.fire({
-        //                     icon: 'error',
-        //                     title: 'Gagal!',
-        //                     text: 'Terjadi kesalahan!',
-        //                 })
-        //                 break;
-        //             }
-        //             }
-        //         });
-        //         }
-        //     });
-        // });
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                $.ajax({
+                    type: "GET",
+                    url: urlDestroy,
+                    beforeSend: function() {
+                    },
+                    success: function(data) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Berhasil',
+                        text: 'Data berhasil dihapus!',
+                    })
+                    tableAirport.ajax.reload();
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                    switch (xhr.status) {
+                        case 500:
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: 'Server Error!',
+                        })
+                        break;
+                        default:
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gagal!',
+                            text: 'Terjadi kesalahan!',
+                        })
+                        break;
+                    }
+                    }
+                });
+                }
+            });
+        });
+
+        $('#table-airport tbody').on('click', '.btn-loca', function() {
+            var data = tableAirport.row($(this).parents('tr')).data();
+            var file_url = "{{ asset('storage/airport/loca') }}/" + data.LOCA;
+            $('#modal-berkas').find('.modal-title').text($(this).data('name'));
+            $('#modal-berkas').find('embed').attr('src', file_url);
+            $('#modal-berkas').modal('show');
+        });
+
+        $('#table-airport tbody').on('click', '.btn-sop', function() {
+            var data = tableAirport.row($(this).parents('tr')).data();
+            var file_url = "{{ asset('storage/airport/sop') }}/" + data.SOP;
+            $('#modal-berkas').find('.modal-title').text($(this).data('name'));
+            $('#modal-berkas').find('embed').attr('src', file_url);
+            $('#modal-berkas').modal('show');
+        });
     })
 </script>
 

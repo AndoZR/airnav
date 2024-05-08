@@ -9,7 +9,6 @@ use App\Http\Controllers\admin\artikelController;
 use App\Http\Controllers\admin\penggunaController;
 use App\Http\Controllers\admin\dashboardController;
 use App\Http\Controllers\pengguna\berandaController;
-use App\Http\Controllers\pengguna\pembelajaranUserController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -40,6 +39,9 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
 
     Route::group(['prefix' => 'airport', 'as' => 'airport.'], function () {
         Route::get('',[airportController::class, 'index'])->name('index');
+        Route::post('/store',[airportController::class, 'storeAirport'])->name('store');
+        Route::post('/update/{id}',[airportController::class, 'updateAirport'])->name('update');
+        Route::get('/delete/{id}',[airportController::class, 'deleteAirport'])->name('delete');
     });
 
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
@@ -52,7 +54,7 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::group(['prefix' => 'soal', 'as' => 'soal.'], function () {
             Route::get('{id}',[testController::class, 'soalIndex'])->name('soalIndex');
             Route::get('/jawaban/{id}',[testController::class, 'getJawaban'])->name('getJawaban');
-            Route::POST('/store/{id}',[testController::class, 'storeSoal'])->name('store');
+            Route::post('/store/{id}',[testController::class, 'storeSoal'])->name('store');
             Route::post('/update/{id}',[testController::class, 'updateSoal'])->name('update');
             Route::get('/delete/{id}',[testController::class, 'deleteSoal'])->name('delete');
         });

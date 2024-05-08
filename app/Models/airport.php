@@ -12,8 +12,10 @@ class airport extends Model
     protected $table = 'airport';
 
     protected $fillable = [
-        'nama',
+        'name',
         'SOP',
         'LOCA',
     ];
+
+    public $timestamps = false;
 }

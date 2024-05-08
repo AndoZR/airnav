@@ -162,7 +162,6 @@
             e.preventDefault();
 
             if(idPengguna !== undefined){
-                console.log(idPengguna);
                 url = "{{ route('pengguna.update', ['id' => ':id']) }}";
                 url = url.replace(':id', idPengguna)
             }else{

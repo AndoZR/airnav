@@ -28,7 +28,7 @@
                     <p>Pembuatan SOP Air
                         Traffic Services (ATS) edisi ke-2 nomor : 01/SOPATS-1 /OPS/01/2018
                     </p>
-                    <p><a href="https://drive.google.com/drive/folders/1fPzx5ivD7obIpAZpmkQMbQkMqw67groi?usp=sharing" class="btn btn-danger"><i class="fa fa-file-pdf"></i> <b>SOP</b></a></p>
+                    <p><a class="btn btn-danger btn-sop"><i class="fa fa-file-pdf"></i> <b>SOP</b></a></p>
                 </div>
             </div>
         </div>
@@ -137,7 +137,38 @@
 </div>
 <br>
 
-<script>
-
-</script>
+<!-- Modal Lihat Berkas -->
+<div class="modal fade" id="modal-berkas" tabindex="-1" role="dialog" aria-labelledby="modalBerkas" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <embed src="" frameborder="0" width="100%" height="500px">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Tutup</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
+
+@push('scripts')
+    <script>
+        var data = {!! json_encode($airport) !!};
+        $('.btn-sop').on('click', function() {
+            var file_url = "{{ asset('storage/airport/sop') }}/" + data.SOP;
+            $('#modal-berkas').find('.modal-title').text($(this).data('name'));
+            $('#modal-berkas').find('embed').attr('src', file_url);
+            $('#modal-berkas').modal('show');
+        });
+    </script>
+@endpush

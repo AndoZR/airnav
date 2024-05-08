@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\pengguna;
 
 use App\Http\Controllers\Controller;
+use App\Models\airport;
 use App\Models\Artikel;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,7 @@ class berandaController extends Controller
     }
 
     public function pembelajaran() {
-        return view('pengguna.pembelajaran');
+        $airport = airport::where('id',8)->first();
+        return view('pengguna.pembelajaran',['airport'=>$airport]);
     }
 }
