@@ -10,8 +10,8 @@
     </div>
 </header>
 
-<div class="container-fluid">
-    <div class="row align-items-center border m-3">
+<div class="container-fluid border">
+    <div class="row align-items-center m-3">
         <div class="col-12 col-sm-12 col-md-4">
             <div class="text-center">
                 <h3><strong>Artikel Edukasi</strong></h3>
@@ -24,21 +24,27 @@
                     @foreach ($dataArtikel as $item)
                     <div class="">
                         <div class="row justify-content-center">
-                            <div class="col-10 col-sm-10 col-md-8 border p-3">
+                            <div class="col-11 col-sm-11 col-md-8 border p-3">
                                 <h4 class="text-center fw-bold">{{ $item->judul }}</h4>
                                 <div class="des fw-normal text-body-secondary">{{ $item->deskripsi }}</div>
                                 <br>
                                 <a href="{{ route('beranda.detailArtikel',['id'=>$item->id]) }}" class="btn btn-light fw-semibold">Selengkapnya...</a>
-                                <!-- <div class="" style="background-image: linear-gradient(to bottom, #ffffff, transparent 150%), url('{{ Storage::url('artikel/' . $item->file) }}');  background-repeat: no-repeat; background-attachment: scroll; background-position: top; background-size: 300%;"></div> -->
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
-                <div id="carousel-home-nav" class="m-3 text-center">
-                    <button type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-right"></i></button>
+                <div id="carousel-point-nav" class="m-3 text-center">
+                    <input class="form-check-input" type="radio" name="slider" checked>
+                    <input class="form-check-input" type="radio" name="slider">
+                    <input class="form-check-input" type="radio" name="slider">
+                    <!-- @foreach ($dataArtikel as $item) -->
+                    <!-- @endforeach -->
                 </div>
+                <!-- <div id="carousel-home-nav" class="m-3 text-center" >
+                    <button disabled type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button disabled type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-right"></i></button>
+                </div> -->
             </div>
         </div>
     </div>
@@ -102,11 +108,13 @@
     var slider = tns({
         container: "#carousel-home",
         items: 1,
-        // swipeAngle: false,
+        swipeAngle: false,
+        lazyload: true,
         mouseDrag: true,
+        speed: 500,
         center: true,
-        nav: false,
-        controlsContainer: document.getElementById('carousel-home-nav'),
+        navContainer: document.getElementById('carousel-point-nav'),
+        controls: false,
 
         // controls: false,
         // responsive: {

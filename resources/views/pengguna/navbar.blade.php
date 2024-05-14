@@ -87,7 +87,7 @@
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Organisasi Cabang</a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">E-Logbook</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('logbook.index') }}">E-Logbook</a>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Performance Check</a>
