@@ -10,51 +10,47 @@
     </div>
 </header>
 
-<!-- SLIDER -->
-<div class="">
-    <section class="container-fluid">
-        <div id="row">
-            <div class="col-6">
-                <!-- <h3><strong>Artikel Edukasi</strong></h3> -->
+<div class="container-fluid">
+    <div class="row align-items-center border m-3">
+        <div class="col-12 col-sm-12 col-md-4">
+            <div class="text-center">
+                <h3><strong>Artikel Edukasi</strong></h3>
                 <p>Baca berbagai informasi terbaru bandara untuk meningkatkan pemahamanmu</p>
             </div>
-            <div class="col-6">
-                <!-- <h3><strong>Artikel Edukasi</strong></h3> -->
-                <p>Baca berbagai informasi terbaru bandara untuk meningkatkan pemahamanmu</p>
-            </div>
-
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div id="carousel" class="">
+        <div class="col-12 col-sm-12 col-md-8">
+            <div class="">
+                <div id="carousel-home" class="">
                     @foreach ($dataArtikel as $item)
-                    <div class="slide-item">
-                        <div class="slide" style="background-image: linear-gradient(to bottom, #ffffff, transparent 150%), url('{{ Storage::url('artikel/' . $item->file) }}');  background-repeat: no-repeat; background-attachment: scroll; background-position: top; background-size: 300%;">
-                            <h4 class="text-center fw-bold">{{ $item->judul }}</h4>
-                            <div class="des fw-normal text-body-secondary">{{ $item->deskripsi }}</div>
-                            <br>
-                            <a href="{{ route('beranda.detailArtikel',['id'=>$item->id]) }}" class="btn btn-light fw-semibold">Selengkapnya...</a>
+                    <div class="">
+                        <div class="row justify-content-center">
+                            <div class="col-10 col-sm-10 col-md-8 border p-3">
+                                <h4 class="text-center fw-bold">{{ $item->judul }}</h4>
+                                <div class="des fw-normal text-body-secondary">{{ $item->deskripsi }}</div>
+                                <br>
+                                <a href="{{ route('beranda.detailArtikel',['id'=>$item->id]) }}" class="btn btn-light fw-semibold">Selengkapnya...</a>
+                                <!-- <div class="" style="background-image: linear-gradient(to bottom, #ffffff, transparent 150%), url('{{ Storage::url('artikel/' . $item->file) }}');  background-repeat: no-repeat; background-attachment: scroll; background-position: top; background-size: 300%;"></div> -->
+                            </div>
                         </div>
                     </div>
                     @endforeach
                 </div>
-                <div id="owl-nav" class="align-self-center mt-3 slider-button flex-fill">
-                    <button type="button" class="owl-prev btn mx-5 btn-light px-4"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button type="button" class="owl-next btn mx-5 btn-light px-4"><i class="fa-solid fa-arrow-right"></i></button>
+                <div id="carousel-home-nav" class="m-3 text-center">
+                    <button type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
-
-    </section>
+    </div>
 </div>
 
-{{-- BACKGROUND II --}}
+<!-- BACKGROUND II -->
 <header class="background transBg container-fluid">
     <div class="container">
     </div>
 </header>
 
-{{-- VISI MISI --}}
+<!-- VISI MISI -->
 <div class="container">
     <div class="row">
         <div class="col-6 position-relative">
@@ -84,7 +80,7 @@
     </div>
 </div>
 
-{{-- BACKGROUND III --}}
+<!-- BACKGROUND III -->
 <div class="endbackground container-fluid"></div>
 
 <div class="lastbackground">
@@ -100,3 +96,25 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    var slider = tns({
+        container: "#carousel-home",
+        items: 1,
+        // swipeAngle: false,
+        mouseDrag: true,
+        center: true,
+        nav: false,
+        controlsContainer: document.getElementById('carousel-home-nav'),
+
+        // controls: false,
+        // responsive: {
+        //     200: {
+        //         items: 2,
+        //         controls: true,
+        //     },
+        // },
+    });
+</script>
+@endpush
