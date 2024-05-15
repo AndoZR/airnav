@@ -4,8 +4,24 @@
 @section( 'content' )
 {{-- MASTERHEAD --}}
 <header class="">
-<div></div>
+    <br>
 </header>
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col text-end">
+            <button type="button" class="btn btn-primary btn-sm"><b>Input Data Baru</b></button>
+        </div>
+
+    </div>
+
+
+    <hr>
+    <p><strong>Data Rekap</strong><br><small>Rekap ID : 1233456789</small></p>
+</div>
+
 <div class="container">
     <div class="table-responsive-sm">
         <table class="table table-sm table-bordered">
@@ -38,6 +54,61 @@
             </thead>
             <tbody>
                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
