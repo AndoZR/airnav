@@ -59,4 +59,13 @@ class berandaController extends Controller
         $airport = airport::where('id',8)->first();
         return view('pengguna.pembelajaran',['airport'=>$airport]);
     }
+
+    public function elogbook() {
+        return view('pengguna.elogbook');
+    }
+
+    public function elogbookForm() {
+        return view('pengguna.logbookForm');
+    }
+
 }

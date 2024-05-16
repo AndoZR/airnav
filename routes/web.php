@@ -75,6 +75,8 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
         Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
         Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
+        Route::get('/logbook', [berandaController::class, 'elogbook'])->name('elogbook');
+        Route::get('/logbook/form', [berandaController::class, 'elogbookForm'])->name('elogbook.form');
     });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
@@ -83,7 +85,7 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
     });
 
     Route::group(['prefix' => 'logbook', 'as' => 'logbook.'], function () {
-        Route::get('/', [elogbookController::class, 'index'])->name('index');
+       
     });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {
