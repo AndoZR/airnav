@@ -6,12 +6,13 @@
     <div class="border rounded m-3">
         <form class="row g-3 m-3">
             <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
+                <label class="form-label">Nama</label>
+                <input type="text" class="form-control">
             </div>
             <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
+                <label for="inputPassword4" class="form-label">NIK</label>
+                <input type="tel" class="form-control">
+
             </div>
             <div class="col-12">
                 <label for="inputAddress" class="form-label">Address</label>
