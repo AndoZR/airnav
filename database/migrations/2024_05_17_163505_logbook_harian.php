@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('elogbook', function (Blueprint $table) {
+        Schema::create('elogbook_harian', function (Blueprint $table) {
             $table->id('no');
             $table->string('elogbook_uid', 64)->unique();
             $table->string('username');
