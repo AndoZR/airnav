@@ -13,7 +13,7 @@
             <p class="mb-0"><strong>Jean Doe</strong></p>
         </div>
         <div class="col text-end">
-            <button type="button" class="btn btn-primary"><b>Input Data Baru</b></button>
+            <a href="{{route('beranda.elogbook.form')}}"><button type="button" class="btn btn-primary"><b>Input Data Baru</b></button></a>
         </div>
     </div>
     <hr>
