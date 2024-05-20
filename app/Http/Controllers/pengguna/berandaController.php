@@ -59,4 +59,20 @@ class berandaController extends Controller
         $airport = airport::where('id',8)->first();
         return view('pengguna.pembelajaran',['airport'=>$airport]);
     }
+
+    public function HangNadim_ATS() {
+        return view('pengguna.HangNadim_ATS');
+    }
+    public function HangNadim_CNS() {
+        return view('pengguna.HangNadim_CNS');
+    }
+    public function HangNadim_Penunjang() {
+        return view('pengguna.HangNadim_Penunjang');
+    }
+    public function HangNadim_LOCA() {
+        return view('pengguna.HangNadim_LOCA');
+    }
+    public function HangNadim_TeamChecker() {
+        return view('pengguna.HangNadim_TeamChecker');
+    }
 }

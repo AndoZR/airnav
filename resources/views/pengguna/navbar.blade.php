@@ -83,8 +83,55 @@
                             <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Letung Tower </a></li>
                         </ul>
                     </li>
-                    <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Organisasi Cabang</a>
+                    <li class="nav-item dropdown-center align-self-center">
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">Organisasi Cabang</a>
+                        <ul class="dropdown-menu dropend" style="background-color: #49548C;">
+                            <li><a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Cabang Pembantu Batam</a>
+                                <ul class="dropdown-menu dropend" style="background-color: #49548C;">
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_ATS') }}"> Team ATS </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_CNS') }}"> Team CNS </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_Penunjang') }}""> Team Penunjang </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_LOCA') }}""> Ketua Team LOCA </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_TeamChecker') }}"> Team Checker </a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Cabang Tanjung Pinang</a>
+                                <ul class="dropdown-menu dropend" style="background-color: #49548C;">
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Team ATS </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Team CNS </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Team Penunjang </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Ketua Team LOCA </a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Team Checker </a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">E-Logbook</a>

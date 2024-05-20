@@ -1,19 +1,17 @@
 @extends('dashboard.dashboard')
-@section('tab', 'Test')
-@section('title', 'Test')
+@section('tab', 'Posisi')
+@section('title', 'Posisi')
 
 @section('content')
 <section class="section">
     <div class="card">
         <div class="card-body">
             <div class="table-responsive ">
-                <table id="table-test" class="table table-striped">
+                <table id="table-posisi" class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">No.</th>
-                            <th scope="col">Subjek</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Durasi</th>
+                            <th scope="col">Posisi</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -25,34 +23,25 @@
     </div>
 </section>
 
-<!-- Modal Create Test -->
-<div class="modal fade" id="modal-create-test" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
+<!-- Modal Create Posisi -->
+<div class="modal fade" id="modal-create-posisi" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Tambah Ujian</h5>
+          <h5 class="modal-title">Tambah Posisi</h5>
           <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
               <i data-feather="x"></i>
           </button>
         </div>
-        <form id="form-create-test">
+        <form id="form-create-posisi">
           @csrf
           <div class="modal-body">
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                  <label for="subjek">Subjek <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="subjek" id="subjek" placeholder="Isi subjek" autofocus autocomplete="off">
-                  <div class="invalid-feedback subjek_error"></div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                <div class="form-group">
-                  <label for="durasi">Durasi <span class="text-danger">*</span></label>
-                  <input type="time" class="form-control" name="durasi" id="durasi" placeholder="Isi durasi" autofocus autocomplete="off">
-                  <div class="invalid-feedback durasi_error"></div>
+                  <label for="posisi">Posisi <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" name="posisi" id="posisi" placeholder="Isi posisi" autofocus autocomplete="off">
+                  <div class="invalid-feedback posisi_error"></div>
                 </div>
               </div>
             </div>
@@ -82,11 +71,11 @@
             $('.custom-file-label').html('Pilih file...');
         });
 
-        var idTest;
+        var idPosisi;
         let url;
-        let urlTest = '{{ route('test.index') }}';
+        let urlPosisi = '{{ route('organisasi.posisiIndex') }}';
 
-        let tableTest = $('#table-test').DataTable({
+        let tablePosisi = $('#table-posisi').DataTable({
             paging: true,
             lengthChange: false,
             searching: true,
@@ -95,7 +84,7 @@
             autoWidth: true,
             responsive: true,
             ajax: {
-                url: urlTest,
+                url: urlPosisi,
                 type: "GET"
             },
             layout: {
@@ -105,7 +94,7 @@
                             text: '<i class="fas fa-plus mr-2"></i> Tambah Data',
                             className: 'btn btn-primary btn-tambah mb-3',
                             action: function(e, dt, node, config) {
-                                $('#modal-create-test').modal('show');
+                                $('#modal-create-posisi').modal('show');
                             }
                         }
                     ]
@@ -122,7 +111,7 @@
                 },
                 {
                     targets: 1,
-                    data: 'subjek',
+                    data: 'posisi',
                     className: 'text-center align-middle',
                     render: function(data, type, row, meta) {
                         return data;
@@ -132,55 +121,26 @@
                     targets: 2,
                     data: null,
                     className: 'text-center align-middle',
-                    render: function(data, type, row, meta) {
-                        if (row.status == 1){
-                            return `<input disabled type="checkbox" class="form-check-input form-check-primary form-check-glow check-status" checked name="customCheck" id="checkboxGlow1">`;
-                        } else {
-                            return `<input type="checkbox" class="form-check-input form-check-primary form-check-glow check-status" name="customCheck" id="checkboxGlow1">`;
-                        }
-                    }
-                },
-                {
-                    targets: 3,
-                    data: 'durasi',
-                    className: 'text-center align-middle',
-                    render: function(data, type, row, meta) {
-                        return data;
-                    }
-                },
-                {
-                    targets: 4,
-                    data: null,
-                    className: 'text-center align-middle',
-                    render: function(data, type, row, meta) {
-                        url = "{{ route('test.soal.soalIndex',['id' => ':id']) }}"
-                        url = url.replace(':id', row.id)
-                        $button = `<a href="${url}" class="btn btn-primary btn-sm btn-soal" title="Soal"><i class="fas fa-book"></i></a>`;
-                        if (row.status == 1){
-                            $button += `<button disabled class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>
-                            <br><button disabled class="btn btn-warning btn-sm btn-edit" title="Ubah"><i class="fas fa-pencil-alt"></i></button><br>`;
-                        } else {
-                            $button += `<button class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>
-                            <br><button class="btn btn-warning btn-sm btn-edit" title="Ubah"><i class="fas fa-pencil-alt"></i></button><br>`;
-                        }
-                        return $button;
+                    render: function() {
+                        return `<button class="btn btn-warning btn-sm btn-edit" title="Ubah"><i class="fas fa-pencil-alt"></i></button><br>
+                        <button class="btn btn-danger btn-sm btn-delete" title="Hapus"><i class="fas fa-trash-alt"></i></button>`;
                     }
                 },
             ],
         });
 
-        // Submit Form Create test
-        $('#form-create-test').submit(function(e) {
+        // Submit Form Create posisi
+        $('#form-create-posisi').submit(function(e) {
             e.preventDefault();
 
-            if(idTest !== undefined){
-                url = "{{ route('test.update', ['id' => ':id']) }}";
-                url = url.replace(':id', idTest)
+            if(idPosisi !== undefined){
+                url = "{{ route('organisasi.updatePosisi', ['id' => ':id']) }}";
+                url = url.replace(':id', idPosisi)
             }else{
-                url = "{{ route('test.store') }}";
+                url = "{{ route('organisasi.storePosisi') }}";
             }
 
-            var formData = new FormData($("#form-create-test")[0]);
+            var formData = new FormData($("#form-create-posisi")[0]);
 
             $.ajax({
                 type: "POST",
@@ -192,13 +152,13 @@
                     $('*').removeClass('is-invalid');
                 },
                 success: function(response) {
-                    $('#modal-create-test').modal('hide');
+                    $('#modal-create-posisi').modal('hide');
                     Swal.fire({
                         icon: 'success',
                         title: 'Berhasil Tersimpan!',
                         text: response.meta.message,
                     });
-                    tableTest.ajax.reload();
+                    tablePosisi.ajax.reload();
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     switch (xhr.status) {
@@ -228,23 +188,22 @@
             });
         });
 
-        // Edit Data test
-        $('#table-test tbody').on('click', '.btn-edit', function() {
-            var data = tableTest.row($(this).parents('tr')).data();
-            idTest = data.id;
+        // Edit Data Posisi
+        $('#table-posisi tbody').on('click', '.btn-edit', function() {
+            var data = tablePosisi.row($(this).parents('tr')).data();
+            idPosisi = data.id;
 
             // set form action
-            $('input[name="subjek"]').val(data.subjek);
-            $('input[name="durasi"]').val(data.durasi);
+            $('input[name="posisi"]').val(data.posisi);
 
             // show modal
-            $('#modal-create-test').modal('show');
+            $('#modal-create-posisi').modal('show');
         });
 
-        // Hapus Data test
-        $('#table-test tbody').on('click', '.btn-delete', function() {
-            var data = tableTest.row($(this).parents('tr')).data();
-            let urlDestroy = "{{ route('test.delete', ['id' => ':id']) }}"
+        // Hapus Data Posisi
+        $('#table-posisi tbody').on('click', '.btn-delete', function() {
+            var data = tablePosisi.row($(this).parents('tr')).data();
+            let urlDestroy = "{{ route('organisasi.deletePosisi', ['id' => ':id']) }}"
             urlDestroy = urlDestroy.replace(':id', data.id);
 
             Swal.fire({
@@ -269,7 +228,7 @@
                         title: 'Berhasil',
                         text: 'Data berhasil dihapus!',
                     })
-                    tableTest.ajax.reload();
+                    tablePosisi.ajax.reload();
                     },
                     error: function(xhr, ajaxOptions, thrownError) {
                     switch (xhr.status) {
@@ -294,53 +253,6 @@
             });
         });
 
-        // Active test
-        $('#table-test tbody').on('click', '.check-status', function() {
-            var csrfToken = $('meta[name="csrf-token"]').attr('content');
-            var data = tableTest.row($(this).parents('tr')).data();
-            idTest = data.id;
-
-            url = "{{ route('test.active', ['id' => ':id']) }}";
-            url = url.replace(':id', idTest)
-
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: {
-                    _token: csrfToken, // Menggunakan _token sebagai kunci untuk token CSRF
-                    id: idTest,
-                    status: 1,
-                },
-                success: function(response) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Berhasil Tersimpan!',
-                        text: response.meta.message,
-                    });
-                    tableTest.ajax.reload();
-                },
-                error: function(xhr, ajaxOptions, thrownError) {
-                    switch (xhr.status) {
-                        case 422:
-                        var errors = xhr.responseJSON.meta.message;
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal!',
-                            text: errors,
-                        })
-                        tableTest.ajax.reload();
-                        break;
-                        default:
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Gagal!',
-                            text: 'Terjadi kesalahan!',
-                        })
-                        break;
-                    }
-                }
-            });
-        });
     })
 </script>
 @endpush

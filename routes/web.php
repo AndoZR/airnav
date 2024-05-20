@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\airportController;
 use App\Http\Controllers\admin\artikelController;
 use App\Http\Controllers\admin\penggunaController;
 use App\Http\Controllers\admin\dashboardController;
+use App\Http\Controllers\admin\organisasiController;
 use App\Http\Controllers\pengguna\berandaController;
 
 // Route::get('/', function () {
@@ -67,7 +68,23 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::get('/delete/{id}', [penggunaController::class, 'deletePengguna'])->name('delete');
     });
 
+    Route::group(['prefix' => 'organisasi', 'as' => 'organisasi.'], function () {
+        Route::get('/', [organisasiController::class, 'airport'])->name('airport');
+        Route::get('/divisi/{id}', [organisasiController::class, 'divisi'])->name('divisi');
+        Route::post('/divisi/store', [organisasiController::class, 'storeDivisi'])->name('divisi.store');
+        Route::post('/divisi/update/{id}', [organisasiController::class, 'updateDivisi'])->name('divisi.update');
+        Route::get('/divisi/delete/{id}', [organisasiController::class, 'deleteDivisi'])->name('divisi.delete');
+        
+        Route::get('/karyawan', [organisasiController::class, 'karyawan'])->name('karyawan');
+        Route::post('/karyawan/store', [organisasiController::class, 'storekaryawan'])->name('karyawan.store');
+        Route::post('/karyawan/update/{id}', [organisasiController::class, 'updatekaryawan'])->name('karyawan.update');
+        Route::get('/karyawan/delete/{id}', [organisasiController::class, 'deletekaryawan'])->name('karyawan.delete');
 
+        Route::get('/posisi', [organisasiController::class, 'posisiIndex'])->name('posisiIndex');
+        Route::post('/posisi/store', [organisasiController::class, 'storePosisi'])->name('storePosisi');
+        Route::post('/posisi/update/{id}', [organisasiController::class, 'updatePosisi'])->name('updatePosisi');
+        Route::get('posisi/delete/{id}', [organisasiController::class, 'deletePosisi'])->name('deletePosisi');
+    });
 });
 
 Route::group(['middleware' => 'cekStatus:2'], function () {
@@ -78,6 +95,11 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         
         Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
         
+        Route::get('/HangNadim_ATS', [berandaController::class, 'HangNadim_ATS'])->name('HangNadim_ATS');
+        Route::get('/HangNadim_CNS', [berandaController::class, 'HangNadim_CNS'])->name('HangNadim_CNS');
+        Route::get('/HangNadim_Penunjang', [berandaController::class, 'HangNadim_Penunjang'])->name('HangNadim_Penunjang');
+        Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
+        Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
     });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');

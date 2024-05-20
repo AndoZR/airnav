@@ -75,6 +75,25 @@
                     </ul>
                 </li>
 
+                {{-- Organisasi --}}
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Organisasi</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item  ">
+                            <a href="{{ route('organisasi.airport') }}" class="submenu-link">Organisasi</a>
+                        </li>                                                           
+                        <li class="submenu-item  ">
+                            <a href="{{ route('organisasi.karyawan') }}" class="submenu-link">Karyawan</a>
+                        </li>                                                           
+                        <li class="submenu-item  ">
+                            <a href="{{ route('organisasi.posisiIndex') }}" class="submenu-link">Posisi</a>
+                        </li>
+                    </ul>
+                </li>
+
                 {{-- Pengguna --}}
                 <li class="sidebar-item">
                     <a href="{{ route('pengguna.index') }}" class='sidebar-link'>
