@@ -14,7 +14,7 @@
                 </div>
                 <div class="m-3">
                     <label for="inputPassword4" class="form-label"><strong>NIK</strong></label>
-                    <input type="tel" class="form-control">
+                    <input type="number" class="form-control">
                 </div>
             </div>
             <div class="border rounded col-12">
@@ -92,6 +92,48 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="m-3">
+                    <label for="inputAddress2" class="form-label"><strong>Position(Day)</strong></label>
+                    <div class="row">
+                        <div class="col-1 ms-3">
+                            CTR
+                        </div>
+                        <div class="col-3">
+                            <input type="number" class="form-control" placeholder="Hours">
+                        </div>
+                        :
+                        <div class="col-3">
+                            <input type="number" class="form-control" placeholder="Minute">
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row">
+                        <div class="col-1 ms-3">
+                            ASS
+                        </div>
+                        <div class="col-3">
+                            <input type="number" class="form-control" placeholder="Hours">
+                        </div>
+                        :
+                        <div class="col-3">
+                            <input type="number" class="form-control" placeholder="Minute">
+                        </div>
+                    </div>
+                    <p></p>
+                    <div class="row">
+                        <div class="col-1 ms-3">
+                            REST
+                        </div>
+                        <div class="col-3">
+                            <input type="number" class="form-control" placeholder="Hours">
+                        </div>
+                        :
+                        <div class="col-3">
+                            <input type="number" class="form-control" placeholder="Minute">
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>

@@ -79,14 +79,76 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-            @foreach (range(1,31) as $i)
+                @foreach (range(1,31) as $i)
                 <tr>
-                    <td>{{$i}}</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td>{{$i}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>
+    <div class="border">
+        <div class="m-3">
+            <label for="inputAddress2" class="form-label ms-3"><strong>Total Hour Position (Monthly)</strong></label>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-1 ms-3">
+                    CTR
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Hours" readonly>
+                </div>
+                :
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Minute" readonly>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-1 ms-3">
+                    ASS
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Hours" readonly>
+                </div>
+                :
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Minute" readonly>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-1 ms-3">
+                    REST
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Hours" readonly>
+                </div>
+                :
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Minute" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 </div>
 @endsection
 
