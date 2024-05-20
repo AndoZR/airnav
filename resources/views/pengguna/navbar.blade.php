@@ -15,8 +15,8 @@
                     <li class="nav-item align-self-center">
                         <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.artikel') }}">Artikel</a>
                     </li>
-                    <li class="nav-item dropdown-center align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Pembelajaran</a>
+                    <li class="nav-item dropdown align-self-center">
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pembelajaran</a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
                             <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> Hang Nadim Tower </a></li>
                             <li>
@@ -49,8 +49,8 @@
                             <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Letung Tower </a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown-center align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Test</a>
+                    <li class="nav-item dropdown align-self-center">
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Test</a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
                             <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('test.userIndex') }}"> Hang Nadim Tower </a></li>
                             <li>
@@ -83,11 +83,12 @@
                             <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Letung Tower </a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown-center align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Organisasi Cabang</a>
-                        <ul class="dropdown-menu dropend" style="background-color: #49548C;">
-                            <li><a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">Cabang Pembantu Batam</a>
-                                <ul class="dropdown-menu dropend" style="background-color: #49548C;">
+                    <li class="nav-item dropdown align-self-center">
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Organisasi Cabang</a>
+                        <ul class="dropdown-menu" style="background-color: #49548C;">
+                            <li class="nav-item dropend align-self-center">
+                                <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cabang Pembantu Batam</a>
+                                <ul class="dropdown-menu" style="background-color: #49548C;">
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_ATS') }}"> Team ATS </a></li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -110,8 +111,9 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Cabang Tanjung Pinang</a>
-                                <ul class="dropdown-menu dropend" style="background-color: #49548C;">
+                            <li class="nav-item dropend align-self-center">
+                                <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cabang Tanjung Pinang</a>
+                                <ul class="dropdown-menu" style="background-color: #49548C;">
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Team ATS </a></li>
                                     <li>
                                         <hr class="dropdown-divider">
