@@ -1,6 +1,6 @@
 <div class="position-relative bottom-0" style="background-color: #49548C">
-    <div class="container" >
-        <nav class="navbar navbar-expand-lg" >
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="{{ route('beranda.index') }}">
                 <img src="{{ asset('src/img/logoAirNav.png') }}" alt="Airnav Assist" height="40">
             </a>
@@ -10,13 +10,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.index') }}">Home</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.index') }}"> <small>Home</small></a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.artikel') }}">Artikel</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('beranda.artikel') }}"><small>Artikel</small></a>
                     </li>
                     <li class="nav-item dropdown align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pembelajaran</a>
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><small>Pembelajaran</small></a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
                             <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> Hang Nadim Tower </a></li>
                             <li>
@@ -50,7 +50,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Test</a>
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><small>Test</small></a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
                             <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('test.userIndex') }}"> Hang Nadim Tower </a></li>
                             <li>
@@ -84,7 +84,7 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Organisasi Cabang</a>
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><small>Organisasi Cabang</small></a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
                             <li class="nav-item dropend align-self-center">
                                 <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cabang Pembantu Batam</a>
@@ -99,11 +99,11 @@
                                     </li>
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_Penunjang') }}""> Team Penunjang </a></li>
                                     <li>
-                                        <hr class="dropdown-divider">
+                                        <hr class=" dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_LOCA') }}""> Ketua Team LOCA </a></li>
                                     <li>
-                                        <hr class="dropdown-divider">
+                                        <hr class=" dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_TeamChecker') }}"> Team Checker </a></li>
                                 </ul>
@@ -136,24 +136,20 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Logbook</a>
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><small>E-Logbook</small></a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
-                            <li class="nav-item dropend align-self-center">
-                                <a class="nav-link text-light fw-semibold" href="{{ route('beranda.elogbook') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cabang Pembantu Batam</a>
-                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}"> Cabang Pembantu Batam </a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li class="nav-item dropend align-self-center">
-                                <a class="nav-link text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cabang Tanjung Pinang</a>
-                            </li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}"> Cabang Pembantu Pinang </a></li>
                         </ul>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#">Performance Check</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="#"><small>Performance Check</small></a>
                     </li>
                     <li class="nav-item align-self-center">
-                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('akun.index') }}">Akun</a>
+                        <a class="nav-link active text-light fw-semibold" aria-current="page" href="{{ route('akun.index') }}"><small>Akun</small></a>
                     </li>
                     <li class="nav-item align-self-center">
                         @if (Auth::guard('web')->check())

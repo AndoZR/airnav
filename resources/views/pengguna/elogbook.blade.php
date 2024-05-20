@@ -10,7 +10,7 @@
     <div class="row align-items-center">
         <div class="col">
             <small><b>Nama</b></small>
-            <p class="mb-0"><strong>Jean Doe</strong></p>
+            <p class="mb-0"><strong>Adiyatma Yudha</strong></p>
         </div>
         <div class="col text-end">
             <a href="{{route('beranda.elogbook.form')}}"><button type="button" class="btn btn-primary"><b>Input Data Baru</b></button></a>
@@ -25,20 +25,19 @@
             <form class="row align-items-end">
                 <div class="col">
                     <label class="form-label"><small><strong>Tahun</strong></small></label>
-                    <select class="form-select form-select-sm" aria-label="Default select example">
-                        <option selected>Tahun</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    <input class="form-control form-control-sm" type="number" name="" id="" value="2024">
                 </div>
                 <div class="col">
                     <label class="form-label"><small><strong>Bulan</strong></small></label>
                     <select class="form-select form-select-sm" aria-label="Default select example">
-                        <option selected>Bulan</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Januari</option>
+                        <option value="2">Februari</option>
+                        <option value="3">Maret</option>
+                        <option value="3">April</option>
+                        <option value="3" selected>Mei</option>
+                        <option value="3">Juni</option>
+                        <option value="3">Juli</option>
+                        <option value="3">Agustus</option>
                     </select>
                 </div>
                 <div class="col-auto">
@@ -52,7 +51,7 @@
 <div class="container">
     <div class="table-responsive-md">
         <table class="table table-sm table-bordered">
-            <thead class="text-center table-secondary">
+            <thead class="text-center table-secondary align-middle">
                 <tr class="">
                     <th scope="col" rowspan="2"> <small>Date</small></th>
                     <th scope="col" colspan="3"><small>Morning</small></th>
@@ -79,9 +78,10 @@
                     <th scope="col"><small>ACC SURV</small></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
+                @foreach (range(1,31) as $i)
                 <tr>
-                    <td></td>
+                    <td>{{$i}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -99,47 +99,56 @@
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
+    <div class="border">
+        <div class="m-3">
+            <label for="inputAddress2" class="form-label ms-3"><strong>Total Hour Position (Monthly)</strong></label>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-1 ms-3">
+                    CTR
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Hours" readonly>
+                </div>
+                :
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Minute" readonly>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-1 ms-3">
+                    ASS
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Hours" readonly>
+                </div>
+                :
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Minute" readonly>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-1 ms-3">
+                    REST
+                </div>
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Hours" readonly>
+                </div>
+                :
+                <div class="col-3">
+                    <input type="number" class="form-control" placeholder="Minute" readonly>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 </div>
 @endsection
 

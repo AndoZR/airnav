@@ -23,49 +23,6 @@
 
 /* END NESTED NAVBAR CUSTOMIZE */
 
-
-/*
-#display-slider{
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    color:#49548C;
-    width: 50%;
-    margin-left: 2vw;
-    padding-left: 2vw;
-    border-left: #49548c88 solid;
-}
-.slider-wrapper{
-    overflow-x: hidden;
-    overflow-y: hidden;
-    border-left: #49548c6b solid;
-}
-.owl-prev,.owl-next{
-    background-color: rgb(226, 226, 226)
-    
-}
-.slide {
-    margin-bottom: 1rem;
-    margin-top: 2rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding: 1rem;
-    width: 400px;
-    height: 70%;
-    box-shadow: 0px 0px 10px rgba(17, 17, 17, 0.23);
-    border-radius: 1rem;
-}
-
-@keyframes animate {
-    from{
-        transform: translate(0);
-    }
-
-    to{
-        transform: translate(-23rem,0);
-    }
-} */
-
 /* MASTERHEAD */
 header.masterhead {
     padding-top: 12rem;
@@ -458,22 +415,6 @@ font-family: 'Lato';
     -webkit-transition: .5s .9s;
     transition: .5s .9s;
 }
-/*#videos */
-/*___________________________________ LAYOUT ___________________________________ */
-video { 
-    width:710px; 
-    height:400px;  
-    background:transparent url('') no-repeat 0 0; 
-    -webkit-background-size:cover; 
-    -moz-background-size:cover; 
-    -o-background-size:cover; 
-    background-size:cover; 
-}
-p {
-    margin-left:3em;
-}
-
-
 
 /* ------------- oraganisasi --------------------- */
 

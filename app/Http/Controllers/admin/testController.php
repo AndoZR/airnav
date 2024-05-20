@@ -48,7 +48,7 @@ class testController extends Controller
 
     public function storeTest(Request $request) {
         $validator = Validator::make($request->all(), [
-            'subjek' => 'required|string|max:255',
+            'subjek' => 'required|string',
             'durasi' => 'required',
         ]);
 
@@ -72,7 +72,7 @@ class testController extends Controller
 
     public function updateTest(Request $request){
         $validator = Validator::make($request->all(), [
-            'subjek' => 'required|string|max:255',
+            'subjek' => 'required|string',
             'durasi' => 'required',
         ]);
 
@@ -123,8 +123,8 @@ class testController extends Controller
 
     public function storeSoal(Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'pertanyaan' => 'required|string|max:255',
-            'jawaban' => 'required|max:255',
+            'pertanyaan' => 'required|string',
+            'jawaban' => 'required',
             'correct' => 'required',
         ],[
             'correct.required' => 'Opsi yang benar belum dipilih!'
