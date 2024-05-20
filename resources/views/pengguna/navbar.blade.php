@@ -84,9 +84,9 @@
                         </ul>
                     </li>
                     <li class="nav-item dropdown-center align-self-center">
-                        <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">Organisasi Cabang</a>
+                        <a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Organisasi Cabang</a>
                         <ul class="dropdown-menu dropend" style="background-color: #49548C;">
-                            <li><a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">Cabang Pembantu Batam</a>
+                            <li><a class="nav-link text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">Cabang Pembantu Batam</a>
                                 <ul class="dropdown-menu dropend" style="background-color: #49548C;">
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_ATS') }}"> Team ATS </a></li>
                                     <li>

@@ -1,5 +1,5 @@
 @extends('pengguna.app')
-@section('tab', 'HangNadim_CNS')
+@section('tab', 'HangNadim_Penunjang')
 
 @section('content')
 <div class="container d-flex justify-content-center">
@@ -28,16 +28,7 @@
                                     <a href="javascript:void(0);">
                                         <div class="member-view-box">
                                             <div class="tree">
-                                                <p><span>Bp. Palaingot Naibaho</span><br><span>Koordinator Tim CNS</span></p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <div class="member-view-box">
-                                            <div class="tree">
-                                                <p><span>Bp. Azuar</span><br><span>Koordinator Tim CNS</span></p><br>
+                                                <p><span>Bp. M. Aqil Muhaemin</span><br><span>Koordinator Tim Penunjang</span></p>
                                             </div>
                                         </div>
                                     </a>
@@ -46,7 +37,7 @@
                                             <a href="javascript:void(0);">
                                                 <div class="member-view-box">
                                                     <div class="tree">
-                                                        <p><span>Bp. Akhmad Kholid Syah</span><br><span>TIM SOP CNS</span></p><br>
+                                                        <p><span>Bp. Krisman Siahaan</span><br><span>Teknisi Penunjang</span></p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -55,7 +46,7 @@
                                                     <a href="javascript:void(0);">
                                                         <div class="member-view-box">
                                                             <div class="tree">
-                                                                <p><span>Ibu Nanik Setyaning D</span><br><span>TIM SOP CNS</span></p><br>
+                                                                <p><span>Bp. Ragiel Herlan</span><br><span>Teknisi Penunjang</span></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -66,7 +57,7 @@
                                             <a href="javascript:void(0);">
                                                 <div class="member-view-box">
                                                     <div class="tree">
-                                                        <p><span>Bp. Bayu Satrio</span><br><span>TIM SOP CNS</span></p>
+                                                        <p><span>Bp. Deliaryo Y.P.</span><br><span>Teknisi Penunjang</span></p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -75,7 +66,7 @@
                                                     <a href="javascript:void(0);">
                                                         <div class="member-view-box">
                                                             <div class="tree">
-                                                                <p><span>Bp. Tomi Saragih</span><br><span>TIM SOP CNS</span></p><br>
+                                                                <p><span>Bp. M. Fahmi Alfian</span><br><span>Teknisi Penunjang</span></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -86,7 +77,7 @@
                                             <a href="javascript:void(0);">
                                                 <div class="member-view-box">
                                                     <div class="tree">
-                                                        <p><span>Ibu Helda Tryana M.N.</span><br><span>TIM SOP CNS</span></p>
+                                                        <p><span>Ibu Maria F. Sembirin</span><br><span>Teknisi Penunjang</span></p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -95,7 +86,7 @@
                                                     <a href="javascript:void(0);">
                                                         <div class="member-view-box">
                                                             <div class="tree">
-                                                                <p><span>Bp. Ahimsyah Bima S.</span><br><span>TIM SOP CNS</span></p><br>
+                                                                <p><span>Bp. Abdi Boy Sinaga</span><br><span>Teknisi Penunjang</span></p>
                                                             </div>
                                                         </div>
                                                     </a>
@@ -106,7 +97,7 @@
                                             <a href="javascript:void(0);">
                                                 <div class="member-view-box">
                                                     <div class="tree">
-                                                        <p><span>Bp. Yosep Napitupulu</span><br><span>TIM SOP CNS</span></p>
+                                                        <p><span>Bp. Wendi L. Segala</span><br><span>Teknisi Penunjang</span></p>
                                                     </div>
                                                 </div>
                                             </a>
@@ -115,21 +106,12 @@
                                                     <a href="javascript:void(0);">
                                                         <div class="member-view-box">
                                                             <div class="tree">
-                                                                <p><span>Bp. Rahmat Kafri</span><br><span>TIM SOP CNS</span></p><br>
+                                                                <p><span>Ibu Sri Reski Siagian</span><br><span>Teknisi Penunjang</span></p>
                                                             </div>
                                                         </div>
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">
-                                                <div class="member-view-box">
-                                                    <div class="tree">
-                                                        <p><span>Ibu Lyempita Simarmata</span><br><span>TIM SOP CNS</span></p>
-                                                    </div>
-                                                </div>
-                                            </a>
                                         </li>
                                     </ul>
                                 </li>

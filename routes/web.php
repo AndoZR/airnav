@@ -8,11 +8,8 @@ use App\Http\Controllers\admin\airportController;
 use App\Http\Controllers\admin\artikelController;
 use App\Http\Controllers\admin\penggunaController;
 use App\Http\Controllers\admin\dashboardController;
-<<<<<<< HEAD
 use App\Http\Controllers\admin\organisasiController;
-=======
 use App\Http\Controllers\admin\elogbookController;
->>>>>>> 64ffb996bb752d5e7f5f8ad8abf817122fd5b370
 use App\Http\Controllers\pengguna\berandaController;
 
 // Route::get('/', function () {
@@ -71,7 +68,6 @@ Route::group(['middleware' => 'cekStatus:1'], function () {
         Route::post('/update/{id}', [penggunaController::class, 'updatePengguna'])->name('update');
         Route::get('/delete/{id}', [penggunaController::class, 'deletePengguna'])->name('delete');
     });
-<<<<<<< HEAD
 
     Route::group(['prefix' => 'organisasi', 'as' => 'organisasi.'], function () {
         Route::get('/', [organisasiController::class, 'airport'])->name('airport');
@@ -90,8 +86,6 @@ Route::group(['middleware' => 'cekStatus:1'], function () {
         Route::post('/posisi/update/{id}', [organisasiController::class, 'updatePosisi'])->name('updatePosisi');
         Route::get('posisi/delete/{id}', [organisasiController::class, 'deletePosisi'])->name('deletePosisi');
     });
-=======
->>>>>>> 64ffb996bb752d5e7f5f8ad8abf817122fd5b370
 });
 
 Route::group(['middleware' => 'cekStatus:2'], function () {
@@ -100,17 +94,15 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
         Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
         Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
-<<<<<<< HEAD
         
         Route::get('/HangNadim_ATS', [berandaController::class, 'HangNadim_ATS'])->name('HangNadim_ATS');
         Route::get('/HangNadim_CNS', [berandaController::class, 'HangNadim_CNS'])->name('HangNadim_CNS');
         Route::get('/HangNadim_Penunjang', [berandaController::class, 'HangNadim_Penunjang'])->name('HangNadim_Penunjang');
         Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
-=======
+        
         Route::get('/logbook', [berandaController::class, 'elogbook'])->name('elogbook');
         Route::get('/logbook/form', [berandaController::class, 'elogbookForm'])->name('elogbook.form');
->>>>>>> 64ffb996bb752d5e7f5f8ad8abf817122fd5b370
     });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');

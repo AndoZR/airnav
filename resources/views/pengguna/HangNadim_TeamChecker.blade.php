@@ -5,7 +5,7 @@
 <div class="container d-flex justify-content-center">
     <div class="body genealogy-body genealogy-scroll">
         <div class="genealogy-tree">
-            <ul>
+            <ul class="active">
                 <li>
                     <a href="javascript:void(0);">
                         <div class="member-view-box">
@@ -14,7 +14,7 @@
                             </div>
                         </div>
                     </a>
-                    <ul>
+                    <ul class="active">
                         <li>
                             <a href="javascript:void(0);">
                                 <div class="member-view-box">
@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <ul >
+                            <ul class="active">
                                 <li>
                                     <a href="javascript:void(0);">
                                         <div class="member-view-box">
