@@ -20,7 +20,7 @@
                 <div class="col-sm-6">
                     <img class="img-fluid" src="{{ asset('src/img/sopimg.png') }}" alt="SOP">
                 </div>
-                <div class="col-sm-6 text-primary">
+                <div class="col-sm-6">
                     <p>Standar Prosedur Operasi (SOP) Air Traffic Services (ATS) ini merupakan bagian dari
                         Manual Operasi Kantor Cabang Pembantu Batam dalam bentuk dokumen yang terpisah.
                         Penyusunan SOP ini berdasarkan Manual Airnav Indonesia - Petunjuk
