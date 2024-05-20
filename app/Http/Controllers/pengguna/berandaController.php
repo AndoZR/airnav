@@ -75,4 +75,13 @@ class berandaController extends Controller
     public function HangNadim_TeamChecker() {
         return view('pengguna.HangNadim_TeamChecker');
     }
+
+    public function elogbook() {
+        return view('pengguna.elogbook');
+    }
+
+    public function elogbookForm() {
+        return view('pengguna.logbookForm');
+    }
+
 }

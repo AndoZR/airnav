@@ -8,7 +8,11 @@ use App\Http\Controllers\admin\airportController;
 use App\Http\Controllers\admin\artikelController;
 use App\Http\Controllers\admin\penggunaController;
 use App\Http\Controllers\admin\dashboardController;
+<<<<<<< HEAD
 use App\Http\Controllers\admin\organisasiController;
+=======
+use App\Http\Controllers\admin\elogbookController;
+>>>>>>> 64ffb996bb752d5e7f5f8ad8abf817122fd5b370
 use App\Http\Controllers\pengguna\berandaController;
 
 // Route::get('/', function () {
@@ -20,12 +24,12 @@ Route::post('/signin', [loginController::class, 'signIn'])->name('signInPost');
 Route::get('logout', [loginController::class, 'logout'])->name('logout');
 
 
-Route::group(['middleware' => 'cekStatus:1'], function() {
+Route::group(['middleware' => 'cekStatus:1'], function () {
     Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => 'adminAkun', 'as' => 'adminAkun.'], function () {
-        Route::get('/',[dashboardController::class, 'akun'])->name('index');
-        Route::post('/edit',[dashboardController::class, 'edit'])->name('edit');
+        Route::get('/', [dashboardController::class, 'akun'])->name('index');
+        Route::post('/edit', [dashboardController::class, 'edit'])->name('edit');
     });
 
     Route::group(['prefix' => 'artikel', 'as' => 'artikel.'], function () {
@@ -39,25 +43,25 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
     });
 
     Route::group(['prefix' => 'airport', 'as' => 'airport.'], function () {
-        Route::get('',[airportController::class, 'index'])->name('index');
-        Route::post('/store',[airportController::class, 'storeAirport'])->name('store');
-        Route::post('/update/{id}',[airportController::class, 'updateAirport'])->name('update');
-        Route::get('/delete/{id}',[airportController::class, 'deleteAirport'])->name('delete');
+        Route::get('', [airportController::class, 'index'])->name('index');
+        Route::post('/store', [airportController::class, 'storeAirport'])->name('store');
+        Route::post('/update/{id}', [airportController::class, 'updateAirport'])->name('update');
+        Route::get('/delete/{id}', [airportController::class, 'deleteAirport'])->name('delete');
     });
 
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
-        Route::get('',[testController::class, 'index'])->name('index');
-        Route::post('/store',[testController::class, 'storeTest'])->name('store');
-        Route::post('/update/{id}',[testController::class, 'updateTest'])->name('update');
-        Route::get('/delete/{id}',[testController::class, 'deleteTest'])->name('delete');
-        Route::post('/active/{id}',[testController::class, 'activeTest'])->name('active');
+        Route::get('', [testController::class, 'index'])->name('index');
+        Route::post('/store', [testController::class, 'storeTest'])->name('store');
+        Route::post('/update/{id}', [testController::class, 'updateTest'])->name('update');
+        Route::get('/delete/{id}', [testController::class, 'deleteTest'])->name('delete');
+        Route::post('/active/{id}', [testController::class, 'activeTest'])->name('active');
 
         Route::group(['prefix' => 'soal', 'as' => 'soal.'], function () {
-            Route::get('{id}',[testController::class, 'soalIndex'])->name('soalIndex');
-            Route::get('/jawaban/{id}',[testController::class, 'getJawaban'])->name('getJawaban');
-            Route::post('/store/{id}',[testController::class, 'storeSoal'])->name('store');
-            Route::post('/update/{id}',[testController::class, 'updateSoal'])->name('update');
-            Route::get('/delete/{id}',[testController::class, 'deleteSoal'])->name('delete');
+            Route::get('{id}', [testController::class, 'soalIndex'])->name('soalIndex');
+            Route::get('/jawaban/{id}', [testController::class, 'getJawaban'])->name('getJawaban');
+            Route::post('/store/{id}', [testController::class, 'storeSoal'])->name('store');
+            Route::post('/update/{id}', [testController::class, 'updateSoal'])->name('update');
+            Route::get('/delete/{id}', [testController::class, 'deleteSoal'])->name('delete');
         });
     });
 
@@ -67,6 +71,7 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::post('/update/{id}', [penggunaController::class, 'updatePengguna'])->name('update');
         Route::get('/delete/{id}', [penggunaController::class, 'deletePengguna'])->name('delete');
     });
+<<<<<<< HEAD
 
     Route::group(['prefix' => 'organisasi', 'as' => 'organisasi.'], function () {
         Route::get('/', [organisasiController::class, 'airport'])->name('airport');
@@ -85,6 +90,8 @@ Route::group(['middleware' => 'cekStatus:1'], function() {
         Route::post('/posisi/update/{id}', [organisasiController::class, 'updatePosisi'])->name('updatePosisi');
         Route::get('posisi/delete/{id}', [organisasiController::class, 'deletePosisi'])->name('deletePosisi');
     });
+=======
+>>>>>>> 64ffb996bb752d5e7f5f8ad8abf817122fd5b370
 });
 
 Route::group(['middleware' => 'cekStatus:2'], function () {
@@ -92,14 +99,18 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
         Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
-        
         Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
+<<<<<<< HEAD
         
         Route::get('/HangNadim_ATS', [berandaController::class, 'HangNadim_ATS'])->name('HangNadim_ATS');
         Route::get('/HangNadim_CNS', [berandaController::class, 'HangNadim_CNS'])->name('HangNadim_CNS');
         Route::get('/HangNadim_Penunjang', [berandaController::class, 'HangNadim_Penunjang'])->name('HangNadim_Penunjang');
         Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
+=======
+        Route::get('/logbook', [berandaController::class, 'elogbook'])->name('elogbook');
+        Route::get('/logbook/form', [berandaController::class, 'elogbookForm'])->name('elogbook.form');
+>>>>>>> 64ffb996bb752d5e7f5f8ad8abf817122fd5b370
     });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
@@ -107,9 +118,12 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::post('/selesai/{id}', [testController::class, 'selesai'])->name('selesai');
     });
 
+    Route::group(['prefix' => 'logbook', 'as' => 'logbook.'], function () {
+       
+    });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {
         Route::get('/', [akunController::class, 'index'])->name('index');
-        Route::post('/edit',[akunController::class, 'edit'])->name('edit');
+        Route::post('/edit', [akunController::class, 'edit'])->name('edit');
     });
 });
