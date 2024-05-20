@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\airport;
 use App\Models\Artikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class berandaController extends Controller
 {
@@ -33,6 +34,7 @@ class berandaController extends Controller
     }
 
     public function artikel() {
+        
         $dataArtikel = Artikel::get();
     
         $filteredArtikel = [];
@@ -51,8 +53,10 @@ class berandaController extends Controller
 
     public function detailArtikel($id) {
         $dataArtikel = Artikel::where('id', $id)->first();
+        
+        $content = Storage::disk('public')->get($dataArtikel->artikel.".html");
 
-        return view('pengguna.detailArtikel', ['artikel' => $dataArtikel]);
+        return view('pengguna.detailArtikel', ['artikel' => $dataArtikel,'content'=>$content]);
     }
 
     public function pembelajaran() {

@@ -8,8 +8,10 @@
     </div>
     <div class="card-body">
         <img style="width: 100%; max-height: 20rem; object-fit: cover;" src="{{ asset('src/img/sld3.png') }}" class="my-2 img-fluid rounded" alt="Gambar">
-        <div style="display: flex;">
-            <p>{{ $artikel->deskripsi }}</p>
+        <div>
+            <?php
+            print($content)
+            ?>
         </div>
     </div>
     <div class="text-center mt-3"> <!-- Tambahkan class text-center dan mt-3 untuk margin top -->
