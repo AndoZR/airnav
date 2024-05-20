@@ -45,55 +45,55 @@
         <i class="fa fa-exclamation-circle"></i> Daftar LOCA yang dapat diakses user!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="row g-2">
+    <div class="row g-2 loca">
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1IzzDy2qEQ1OVAb2wkNslBMVH1Wuaq8sX?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/1.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a href="#" class="btn-loca" data-loca="airlines&gh.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/1.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1kvgXXamGeh-zUS2vDFHwx41RBEFtyGSP?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/2.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="flybest.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/2.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1NwnTd7b0cPvRb34XSsuihA5W41xd4Wr_?usp=sharing"><img class="img-fluid" src="{{ asset("src/img/loca/3.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="basarnas.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/3.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1Xp1rKXEK9kl9N6il48Oipl2jiwk2zSj0?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/4.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="teknikairnav.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/4.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1MP_kohRCEuEZKoPWM0ltw6r5KfHHqgeB?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/5.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="piamedan.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/5.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1HxcT6gCpk6JOZ-gib82F510Zm74Xw33W?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/6.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="lanud.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/6.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/14oGKAVVUi9sRSYBzthARc8WkZ8nHHTMi?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/7.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="tanjungpinang.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/7.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1jCzKkynLT4kcyOo5hyhxJ6Ddcn0pPhzU?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/8.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="meteo.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/8.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1PkdNxkmadyg3gfI9DeeLzvEC8h0Q-D7M?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/9.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="amhs.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/9.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-3">
             <div class="">
-                <a href="https://drive.google.com/drive/folders/1mfU2nzscIWIa4FFPq93X1kPYQjzXLkoX?usp=drive_link"><img class="img-fluid" src="{{ asset("src/img/loca/10.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                <a class="btn-loca" href="#" data-loca="ptbib.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/10.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
         </div>
 
@@ -143,9 +143,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
-                <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
-                    <i data-feather="x"></i>
-                </button>
             </div>
             <div class="modal-body text-center">
                 <embed src="" frameborder="0" width="100%" height="500px">
@@ -170,5 +167,35 @@
             $('#modal-berkas').find('embed').attr('src', file_url);
             $('#modal-berkas').modal('show');
         });
+
+        $(document).ready(function() {
+            $('.btn-loca').on('click', function(event) {
+                event.preventDefault(); // Mencegah aksi default link
+                var fileName = $(this).data('loca'); // Ambil nilai data-loca
+                console.log(fileName);
+                var fileUrl = "{{ asset('storage/airport/loca') }}/" + fileName; // Buat URL file
+
+                // Update konten modal
+                $('#modal-berkas').find('.modal-title').text($(this).data('name'));
+                $('#modal-berkas').find('embed').attr('src', fileUrl);
+                $('#modal-berkas').modal('show');
+            });
+        });
+
+        // $('.btn-loca').on('click', function() {
+        //     // Mengambil semua elemen <a> dengan class "btn-loca"
+        //     var links = document.querySelectorAll('.btn-loca');
+        //     var dataLoca
+                    
+        //     // Mengambil nilai "data-loca" dari elemen yang diklik
+        //     dataLoca = links.getAttribute('data-loca');
+            
+        //     console.log(dataLoca);
+            
+        //     var file_url = "{{ asset('storage/airport/loca') }}/" + dataLoca;
+        //     $('#modal-berkas').find('.modal-title').text($(this).data('name'));
+        //     $('#modal-berkas').find('embed').attr('src', file_url);
+        //     $('#modal-berkas').modal('show');
+        // });
     </script>
 @endpush
