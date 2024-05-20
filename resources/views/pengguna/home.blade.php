@@ -5,26 +5,26 @@
 {{-- MASTERHEAD --}}
 <header class="masterhead">
     <div class="container d-flex justify-content-between align-items-center">
-        <h1 class="headline fw-bold" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;">Hi! Selamat Datang di <br> Airnav Assist</h1>
+        <h1 class="headline fw-bolder" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"> <strong>Hi! Selamat Datang di <br> Airnav Assist</strong></h1>
         <img src="{{asset('src/img/airplane_pic.png')}}" alt="airplane" width="400">
     </div>
 </header>
 
-<div class="container-fluid border">
+<div class="container">
     <div class="row align-items-center m-3">
         <div class="col-12 col-sm-12 col-md-4">
             <div class="text-center">
-                <h3><strong>Artikel Edukasi</strong></h3>
+                <h3 class="fw-bold headline"><strong>Artikel Edukasi</strong></h3>
                 <p>Baca berbagai informasi terbaru bandara untuk meningkatkan pemahamanmu</p>
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-8">
-            <div class="">
+            <div class="border-start border-end">
                 <div id="carousel-home" class="">
                     @foreach ($dataArtikel as $item)
                     <div class="">
                         <div class="row justify-content-center">
-                            <div class="col-11 col-sm-11 col-md-8 border p-3">
+                            <div class="col-11 col-sm-11 col-md-10 border p-3">
                                 <h4 class="text-center fw-bold">{{ $item->judul }}</h4>
                                 <div class="des fw-normal text-body-secondary">{{ $item->deskripsi }}</div>
                                 <br>
@@ -34,17 +34,15 @@
                     </div>
                     @endforeach
                 </div>
-                <div id="carousel-point-nav" class="m-3 text-center">
+                <!-- <div id="carousel-point-nav" class="m-3 text-center">
                     <input class="form-check-input" type="radio" name="slider" checked>
                     <input class="form-check-input" type="radio" name="slider">
                     <input class="form-check-input" type="radio" name="slider">
-                    <!-- @foreach ($dataArtikel as $item) -->
-                    <!-- @endforeach -->
-                </div>
-                <!-- <div id="carousel-home-nav" class="m-3 text-center" >
-                    <button disabled type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-left"></i></button>
-                    <button disabled type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-right"></i></button>
                 </div> -->
+                <div id="carousel-home-nav" class="m-3 text-center">
+                    <button type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button type="button" class="btn btn-dark px-3 mx-3"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
         </div>
     </div>
@@ -108,21 +106,19 @@
     var slider = tns({
         container: "#carousel-home",
         items: 1,
+        responsive: {
+            500: {
+                items: 2
+            },
+        },
         swipeAngle: false,
         lazyload: true,
         mouseDrag: true,
         speed: 500,
         center: true,
-        navContainer: document.getElementById('carousel-point-nav'),
-        controls: false,
-
-        // controls: false,
-        // responsive: {
-        //     200: {
-        //         items: 2,
-        //         controls: true,
-        //     },
-        // },
+        controlsContainer: document.getElementById('carousel-home-nav'),
+        nav: false,
+        controls: true,
     });
 </script>
 @endpush

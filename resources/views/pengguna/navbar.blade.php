@@ -1,6 +1,6 @@
 <div class="position-relative bottom-0" style="background-color: #49548C">
-    <div class="container" >
-        <nav class="navbar navbar-expand-lg" >
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
             <a class="navbar-brand" href="{{ route('beranda.index') }}">
                 <img src="{{ asset('src/img/logoAirNav.png') }}" alt="Airnav Assist" height="40">
             </a>
@@ -99,11 +99,11 @@
                                     </li>
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_Penunjang') }}""> Team Penunjang </a></li>
                                     <li>
-                                        <hr class="dropdown-divider">
+                                        <hr class=" dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_LOCA') }}""> Ketua Team LOCA </a></li>
                                     <li>
-                                        <hr class="dropdown-divider">
+                                        <hr class=" dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.HangNadim_TeamChecker') }}"> Team Checker </a></li>
                                 </ul>
@@ -135,6 +135,7 @@
                             </li>
                         </ul>
                     </li>
+<<<<<<< HEAD
                     <li class="nav-item dropdown align-self-center">
                         <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">E-Logbook</a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
@@ -146,6 +147,17 @@
                             </li>
                             <li class="nav-item dropend align-self-center">
                                 <a class="nav-link text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cabang Tanjung Pinang</a>
+=======
+                    <li class="nav-item dropdown-center align-self-center">
+                        <a class="nav-link active text-light fw-semibold dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">E-Logbook</a>
+                        <ul class="dropdown-menu" style="background-color: #49548C;">
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}"> Cabang Pembantu Batam </a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}"> Cabang Pembantu Pinang </a>
+>>>>>>> 4d083e9 (update navbar, home, elogbook & pembelajaran)
                             </li>
                         </ul>
                     </li>

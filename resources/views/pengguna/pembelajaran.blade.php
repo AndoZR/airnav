@@ -5,7 +5,7 @@
 {{-- MASTERHEAD --}}
 <header class="masterheadBelajar">
     <div class="container d-flex justify-content-between align-items-center">
-        <h1 class="text-primary fw-bolder" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>HANG NADIM <br> TOWER</strong></h1>
+        <h1 class="headline fw-bolder" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>HANG NADIM <br> TOWER</strong></h1>
     </div>
 </header>
 
@@ -14,7 +14,7 @@
     <section class="mt-5 mb-5">
         <div class="justify-content-center">
             <div class="col-sm-12">
-                <h1 class="text-center text-primary"><strong>Standard Operating Procedure</strong></h1>
+                <h1 class="text-center headline"><strong>Standard Operating Procedure</strong></h1>
             </div>
             <div class="row mt-5">
                 <div class="col-sm-6">
@@ -39,7 +39,7 @@
 
 <div class="container text-center">
     <div class="mt-5 mb-5">
-        <h1 class="text-primary fw-bolder text-center" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>LOCA</strong></h1>
+        <h1 class="headline fw-bolder text-center" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>LOCA</strong></h1>
     </div>
     <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
         <i class="fa fa-exclamation-circle"></i> Daftar LOCA yang dapat diakses user!
@@ -102,7 +102,7 @@
 {{-- BACKGROUND III --}}
 <div class="endbackground container"></div>
 <div class="container mb-5 ">
-    <h1 class="text-primary fw-bolder text-center" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>REVIEW</strong></h1>
+    <h1 class="headline fw-bolder text-center" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>REVIEW</strong></h1>
     <div id="carouselExampleCaptions" class="carousel slide w-100">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
