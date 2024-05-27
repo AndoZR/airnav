@@ -16,10 +16,12 @@ use App\Http\Controllers\pengguna\berandaController;
 //     return view('welcome');
 // });
 
-Route::get('/', [loginController::class, 'index'])->name('signIn');
-Route::post('/signin', [loginController::class, 'signIn'])->name('signInPost');
-Route::get('logout', [loginController::class, 'logout'])->name('logout');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [loginController::class, 'index'])->name('signIn');
+    Route::post('/signin', [loginController::class, 'signIn'])->name('signInPost');
+});
 
+Route::get('logout', [loginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'cekStatus:1'], function () {
     Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
@@ -75,7 +77,7 @@ Route::group(['middleware' => 'cekStatus:1'], function () {
         Route::post('/divisi/store', [organisasiController::class, 'storeDivisi'])->name('divisi.store');
         Route::post('/divisi/update/{id}', [organisasiController::class, 'updateDivisi'])->name('divisi.update');
         Route::get('/divisi/delete/{id}', [organisasiController::class, 'deleteDivisi'])->name('divisi.delete');
-        
+
         Route::get('/karyawan', [organisasiController::class, 'karyawan'])->name('karyawan');
         Route::post('/karyawan/store', [organisasiController::class, 'storekaryawan'])->name('karyawan.store');
         Route::post('/karyawan/update/{id}', [organisasiController::class, 'updatekaryawan'])->name('karyawan.update');
@@ -94,13 +96,13 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
         Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
         Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
-        
+
         Route::get('/HangNadim_ATS', [berandaController::class, 'HangNadim_ATS'])->name('HangNadim_ATS');
         Route::get('/HangNadim_CNS', [berandaController::class, 'HangNadim_CNS'])->name('HangNadim_CNS');
         Route::get('/HangNadim_Penunjang', [berandaController::class, 'HangNadim_Penunjang'])->name('HangNadim_Penunjang');
         Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
-        
+
         Route::get('/logbook', [berandaController::class, 'elogbook'])->name('elogbook');
         Route::get('/logbook/form', [berandaController::class, 'elogbookForm'])->name('elogbook.form');
     });
@@ -111,7 +113,6 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
     });
 
     Route::group(['prefix' => 'logbook', 'as' => 'logbook.'], function () {
-       
     });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {

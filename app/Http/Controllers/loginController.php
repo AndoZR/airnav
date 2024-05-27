@@ -14,11 +14,16 @@ class loginController extends Controller
     public function signIn(Request $request) {
         if(strpos($request->username, 'admin') !== false){
             if(Auth::attempt($request->only('username', 'password'))) {
-                return redirect('main');
+                session()->regenerate(destroy:true);
+                
+                // return redirect('main');
             }
         } else {
             if(Auth::attempt($request->only('username', 'password'))) {
-                return redirect('beranda');
+                var_dump($request->user());
+                session()->regenerate(destroy:true);
+                
+                // return redirect('beranda');
             }
         }
         return redirect('/')->with('message', 'Username Atau Password Salah!');

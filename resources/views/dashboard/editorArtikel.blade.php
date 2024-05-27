@@ -61,9 +61,19 @@
 
 @push('scripts')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-@vite('resources/js/app.js')
 <script>
-     document.getElementById('editorLink').addEventListener('click', () => {
+    const options = {
+        debug: "info",
+        modules: {
+            toolbar: true,
+        },
+        placeholder: "Compose an epic...",
+        theme: "snow",
+    };
+    editor = new Quill("#editor", options);
+</script>
+<script>
+    document.getElementById('editorLink').addEventListener('click', () => {
         if (!(document.getElementById("deksripsiArtikel").hidden)) {
             menuDeactivate()
             document.getElementById('editorLink').classList.toggle('active')
@@ -130,13 +140,14 @@
             type: 'POST',
             data: {
                 content: JSON.stringify(editorContent),
-                html:editorHTML,
-                judul:judulArtikel,
-                deksripsi:deksripsiArtikel
+                html: editorHTML,
+                judul: judulArtikel,
+                deksripsi: deksripsiArtikel
             },
 
             success: function(response) {
-                console.log(response)
+                alert("Artikel Berhasil Publish");
+                document.getElementById("artikelPublish").setAttribute('disabled','true')
                 // if (response != 0) {
                 //     // self.pollData(urlPoll);
                 // } else {
@@ -146,7 +157,7 @@
             },
 
             error: function(response) {
-                console.log(response);
+                alert("Artikel Gagal Publish");
             }
         })
     }
