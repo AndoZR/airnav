@@ -6,14 +6,20 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
+use App\Http\Controllers\authorizationController;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class dashboardController extends Controller
+class dashboardController extends authorizationController
 {
+    public function __construct() {
+
+    }
     public function index() {
+        $inst = new authorizationController('showMain',110);
+        $access = $inst->checkAccess();
+        var_dump($access);
         return view('dashboard.main');
     }
 
