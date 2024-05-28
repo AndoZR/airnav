@@ -17,10 +17,11 @@ use App\Http\Controllers\pengguna\berandaController;
 // });
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/', [loginController::class, 'index'])->name('signIn');
     Route::post('/signin', [loginController::class, 'signIn'])->name('signInPost');
+    Route::get('/', [loginController::class, 'index'])->name('signIn');
 });
 
+Route::match(['get','post'],'auth',[loginController::class,'auth'])->name('authentication');
 Route::get('logout', [loginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'cekStatus:1'], function () {
