@@ -138,11 +138,11 @@
                     <li class="nav-item dropdown align-self-center">
                         <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><small>E-Logbook</small></a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}"> Cabang Pembantu Batam </a></li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('logbook.rekap') }}"> Cabang Pembantu Batam </a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.elogbook') }}"> Cabang Pembantu Pinang </a></li>
+                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('logbook.rekap') }}"> Cabang Tanjung Pinang </a></li>
                         </ul>
                     </li>
                     <li class="nav-item align-self-center">

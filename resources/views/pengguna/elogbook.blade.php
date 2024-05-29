@@ -13,7 +13,7 @@
             <p class="mb-0"><strong>Adiyatma Yudha</strong></p>
         </div>
         <div class="col text-end">
-            <a href="{{route('beranda.elogbook.form')}}"><button type="button" class="btn btn-primary"><b>Input Data Baru</b></button></a>
+            <a href="{{route('logbook.form')}}"><button type="button" class="btn btn-primary"><b>Input Data Baru</b></button></a>
         </div>
     </div>
     <hr>

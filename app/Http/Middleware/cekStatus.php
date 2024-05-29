@@ -18,6 +18,10 @@ class cekStatus
         if($request->user() && in_array($request->user()->status,$status)){
             return $next($request);
         }
-        return redirect('/')->with('message', 'Anda tidak memiliki akses!');
+        elseif($request->user() && !(in_array($request->user()->status,$status)))
+        {
+            return back();
+        }
+        // return redirect('/')->with('message', 'Anda tidak memiliki akses!');
     }
 }

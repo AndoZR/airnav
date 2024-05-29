@@ -45,7 +45,6 @@ class artikelController extends Controller
             'deskripsi' => $request->deksripsi,
             'artikel' => 'artikel/' . $namaFile,
             'content' => 'content/' . $namaFile,
-            
         ]);
 
         return response($request->deksripsi);

@@ -12,5 +12,9 @@ class elogbookController extends Controller
         return view('pengguna.elogbook');
     }
 
+    public function insertLogbook() {
+        
+    }
+
 }
 

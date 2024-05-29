@@ -21,7 +21,7 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/', [loginController::class, 'index'])->name('signIn');
 });
 
-Route::match(['get','post'],'auth',[loginController::class,'auth'])->name('authentication');
+Route::match(['get', 'post'], 'auth', [loginController::class, 'auth'])->name('authentication');
 Route::get('logout', [loginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => 'cekStatus:1'], function () {
@@ -103,9 +103,11 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::get('/HangNadim_Penunjang', [berandaController::class, 'HangNadim_Penunjang'])->name('HangNadim_Penunjang');
         Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
-
-        Route::get('/logbook', [berandaController::class, 'elogbook'])->name('elogbook');
-        Route::get('/logbook/form', [berandaController::class, 'elogbookForm'])->name('elogbook.form');
+    });
+    Route::group(['prefix' => 'logbook', 'as' => 'logbook.'], function () {
+        Route::get('/', [berandaController::class, 'elogbook'])->name('rekap');
+        Route::get('/form', [berandaController::class, 'elogbookForm'])->name('form');
+        Route::post('/form', [berandaController::class, 'insertLogbook'])->name('formPost');
     });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
