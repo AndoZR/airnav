@@ -54,14 +54,13 @@ class elogbookController extends Controller
             DB::statement("INSERT INTO `elogbook`(`no`) VALUES (null)");
 
             // Mengambil LAST_INSERT_ID
-            $result = DB::select("SELECT LAST_INSERT_ID() as logbook");
-            $logbook = $result[0]->logbook;
+            DB::statement("SET @logbook = (SELECT LAST_INSERT_ID())");
 
             // Menjalankan query UPDATE
-            DB::statement("UPDATE `elogbook` SET `uid`= RPAD(CONCAT($logbook, CURDATE() + 0), 12, 0) WHERE `no` = ?", [$logbook]);
+            DB::statement("UPDATE `elogbook` SET `uid`= RPAD(CONCAT(@logbook, CURDATE() + 0), 12, 0) WHERE `no` = @logbook");
 
             // Menjalankan query SELECT untuk mendapatkan uid
-            $result = DB::select("SELECT `uid` FROM `elogbook` WHERE `no` = ?", [$logbook]);
+            $result = DB::select("SELECT `uid` FROM `elogbook` WHERE `no` = @logbook");
             // Mengembalikan hasil query SELECT
             return $result[0]->uid;
         });
