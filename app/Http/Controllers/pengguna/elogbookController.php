@@ -58,7 +58,7 @@ class elogbookController extends Controller
             $logbook = $result[0]->logbook;
 
             // Menjalankan query UPDATE
-            DB::statement("UPDATE `elogbook` SET `uid`= RPAD(CONCAT($logbook, CURDATE() + 1), 12, 0) WHERE `no` = ?", [$logbook]);
+            DB::statement("UPDATE `elogbook` SET `uid`= RPAD(CONCAT($logbook, CURDATE() + 0), 12, 0) WHERE `no` = ?", [$logbook]);
 
             // Menjalankan query SELECT untuk mendapatkan uid
             $result = DB::select("SELECT `uid` FROM `elogbook` WHERE `no` = ?", [$logbook]);
