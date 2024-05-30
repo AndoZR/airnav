@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ElogbookHarian extends Model{
+class elogbookHarian extends Model{
     use HasFactory;
     protected $table = 'elogbook_harian';
     protected $primaryKey = 'no';
@@ -13,7 +13,9 @@ class ElogbookHarian extends Model{
         'elogbook_uid',
         'username',
         'user_id',
-        'tanggal',
+        'day',
+        'month',
+        'year',
         'morning_ctr',
         'morning_ass',
         'morning_rest',

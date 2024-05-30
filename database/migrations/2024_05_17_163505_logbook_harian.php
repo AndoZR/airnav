@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('elogbook_harian', function (Blueprint $table) {
             $table->id('no');
             $table->string('elogbook_uid', 64)->unique();
-            $table->string('username');
-            $table->string('user_id');
-            $table->date('tanggal');
+            $table->string('username')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('day')->nullable();
+            $table->string('month')->nullable();
+            $table->string('year')->nullable();
             $table->time('morning_ctr')->nullable();
             $table->time('morning_ass')->nullable();
             $table->time('morning_rest')->nullable();

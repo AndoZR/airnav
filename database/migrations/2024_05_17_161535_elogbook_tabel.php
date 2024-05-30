@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('elogbook', function (Blueprint $table) {
             $table->id('no');
             $table->string('uid', 64)->unique();
-            $table->string('username');
-            $table->string('user_id');
-            $table->date('bulan');
-            $table->date('tahun');
+            $table->string('username')->nullable();
+            $table->string('user_id')->nullable();
+            $table->string('month')->nullable();
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }
