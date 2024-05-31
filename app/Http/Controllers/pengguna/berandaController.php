@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\airport;
 use App\Models\Artikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class berandaController extends Controller
@@ -81,7 +82,18 @@ class berandaController extends Controller
     }
 
     public function elogbook() {
-        return view('pengguna.elogbook');
+
+        $bulan = "05";
+        $tahun = "2024";
+        $username = "05";
+        $user = DB::table("elogbook")->select('uid')->where([
+            ['month', '=', $bulan],
+            ['year', '=', $tahun],
+            ['username','=',$username],
+        ])->first();
+        
+        $dataset = DB::table('elogbook_harian')->where('elogbook_uid','=',$user->uid)->get();
+        return view('pengguna.elogbook',['elogbook'=>$dataset,'elogbookID'=>$user->uid,'bulan'=>$bulan,'tahun'=>$tahun]);
     }
 
     public function elogbookForm() {

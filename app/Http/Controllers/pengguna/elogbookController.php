@@ -29,6 +29,10 @@ class elogbookController extends Controller
         }
     }
 
+    public function getLogbook(Request $request){
+        
+    }
+
     public function insertLogbook(Request $request)
     {
         $namaUser = $request->get('namaUser');
