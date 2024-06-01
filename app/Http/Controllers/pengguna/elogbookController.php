@@ -21,7 +21,7 @@ class elogbookController extends Controller
         $user = DB::table("elogbook")->select('uid')->where([
             ['month', '=', $bulan],
             ['year', '=', $tahun],
-        ])->first();
+        ])->get();
         if (is_null($user)) {
             $this->createLogbook();
         } else {
@@ -29,8 +29,36 @@ class elogbookController extends Controller
         }
     }
 
-    public function getLogbook(Request $request){
-        
+    public function getRekapTahunan(Request $request)
+    {
+        $uid_user = $request->get('uniq_id');
+        $tahun = $request->get('year');
+        $dataset = DB::table("elogbook")->select(['uid','month','year','created_at'])->where([
+            ['user_id', '=', $uid_user],
+            ['year', '=', $tahun],
+        ])->get();
+        return response($dataset);
+    }
+
+    public function elogbook()
+    {
+
+        $bulan = "05";
+        $tahun = "2024";
+        $username = "05";
+        // $user = DB::table("elogbook")->select('uid')->where([
+        //     ['month', '=', $bulan],
+        //     ['year', '=', $tahun],
+        //     ['username','=',$username],
+        // ])->first();
+
+        // $dataset = DB::table('elogbook')->where('username', '=', $username)->get();
+        $dataset = [];
+        return view('pengguna.elogbook', ['elogbook' => $dataset, 'elogbookID' => '0', 'bulan' => '0', 'tahun' => '0']);
+    }
+
+    public function getLogbook(Request $request)
+    {
     }
 
     public function insertLogbook(Request $request)
