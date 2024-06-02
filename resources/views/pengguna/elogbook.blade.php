@@ -2,18 +2,51 @@
 @section('tab', 'Airnav Assist | Pembelajaran')
 
 @section( 'content' )
+<meta name="csrf-token" content="<?php echo (csrf_token()) ?>">
 <br>
 <header class="container">
     <ul id="artikelMenu" class="nav nav-tabs">
         <li class="nav-item">
-            <a id="rekapBulan" class="nav-link active" href="#">Rekap Bulan</a>
+            <a id="rekapBulan" class="nav-link active" href="#">Rekap Tahunan</a>
         </li>
         <li class="nav-item">
-            <a id="elogHarian" class="nav-link" href="#">Elogbook Harian</a>
+            <a id="elogHarian" class="nav-link" href="#">Rekap Bulanan</a>
         </li>
     </ul>
 </header>
 <br>
+<div id="rekapBulanDashboard">
+    <div class="container">
+        <p><strong>Data Rekap Tahunan</strong><br><small>User ID</small></p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">No</th>
+                    <th scope="col">Kode</th>
+                    <th scope="col">Bulan</th>
+                    <th scope="col">Tahun</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Mengetahui</th>
+                    <th scope="col">Rincian</th>
+                </tr>
+            </thead>
+            <tbody id="rekapBulanBaris">
+
+                <tr class="text-center">
+                    <th scope="row">1</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Berjalan</td>
+                    <td>M.Robby Purba</td>
+                    <td><Button>Tampilkan</Button></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
 <div id="elogbookHarian" hidden>
     <div class="container">
         <div class="row align-items-center">
@@ -116,29 +149,30 @@
                         <th scope="" class="col-1"><small>ACC SURV</small></th>
                     </tr>
                 </thead>
-                <tbody class="text-center">
+
+                {{-- <tbody class="text-center">
                     @foreach ($elogbook as $logbookRow)
                     <tr>
 
                         <td><small>{{$logbookRow->day.$logbookRow->month.$logbookRow->year}}</small></td>
-                        <td><small>{{$logbookRow->morning_ctr}}</small></td>
-                        <td><small>{{$logbookRow->morning_ass}}</small></td>
-                        <td><small>{{$logbookRow->morning_rest}}</small></td>
-                        <td><small>{{$logbookRow->afternoon_ctr}}</small></td>
-                        <td><small>{{$logbookRow->afternoon_ass}}</small></td>
-                        <td><small>{{$logbookRow->afternoon_rest}}</small></td>
-                        <td><small>{{$logbookRow->night_ctr}}</small></td>
-                        <td><small>{{$logbookRow->night_ass}}</small></td>
-                        <td><small>{{$logbookRow->night_rest}}</small></td>
-                        <td><small>{{$logbookRow->unit_adc}}</small></td>
-                        <td><small>{{$logbookRow->unit_app}}</small></td>
-                        <td><small>{{$logbookRow->unit_app_surv}}</small></td>
-                        <td><small>{{$logbookRow->unit_adc_app}}</small></td>
-                        <td><small>{{$logbookRow->unit_acc}}</small></td>
-                        <td><small>{{$logbookRow->unit_acc_surv}}</small></td>
-                        <td>Delete Edit</td>
-                    </tr>
-                    @endforeach
+                <td><small>{{$logbookRow->morning_ctr}}</small></td>
+                <td><small>{{$logbookRow->morning_ass}}</small></td>
+                <td><small>{{$logbookRow->morning_rest}}</small></td>
+                <td><small>{{$logbookRow->afternoon_ctr}}</small></td>
+                <td><small>{{$logbookRow->afternoon_ass}}</small></td>
+                <td><small>{{$logbookRow->afternoon_rest}}</small></td>
+                <td><small>{{$logbookRow->night_ctr}}</small></td>
+                <td><small>{{$logbookRow->night_ass}}</small></td>
+                <td><small>{{$logbookRow->night_rest}}</small></td>
+                <td><small>{{$logbookRow->unit_adc}}</small></td>
+                <td><small>{{$logbookRow->unit_app}}</small></td>
+                <td><small>{{$logbookRow->unit_app_surv}}</small></td>
+                <td><small>{{$logbookRow->unit_adc_app}}</small></td>
+                <td><small>{{$logbookRow->unit_acc}}</small></td>
+                <td><small>{{$logbookRow->unit_acc_surv}}</small></td>
+                <td>Delete Edit</td>
+                </tr>
+                @endforeach --}}
                 </tbody>
             </table>
         </div>
@@ -194,32 +228,22 @@
 
 @push('scripts')
 <script>
+    document.getElementById('elogHarian').addEventListener('click', () => {
+        if (document.getElementById("elogbookHarian").hidden) {
+            menuDeactivate()
+            document.getElementById('elogHarian').classList.toggle('active')
+            document.getElementById("rekapBulanDashboard").hidden = true;
+            document.getElementById("elogbookHarian").hidden = false;
+        } else {}
+    })
+
     document.getElementById('rekapBulan').addEventListener('click', () => {
-        if (!(document.getElementById("elogbookHarian").hidden)) {
+        if (document.getElementById("rekapBulanDashboard").hidden) {
             menuDeactivate()
             document.getElementById('rekapBulan').classList.toggle('active')
             document.getElementById("elogbookHarian").hidden = true;
-            // document.getElementById("editorArtikel").hidden = false;
-        } else {
-            menuDeactivate()
-            document.getElementById('elogHarian').classList.toggle('active')
-            document.getElementById("elogbookHarian").hidden = true;
-            // document.getElementById("editorArtikel").hidden = false;
-        }
-    })
-
-    document.getElementById('elogHarian').addEventListener('click', () => {
-        if (!(document.getElementById("elogbookHarian").hidden)) {
-            menuDeactivate()
-            document.getElementById('elogHarian').classList.toggle('active')
-            document.getElementById("elogbookHarian").hidden = false;
-            // document.getElementById("editorArtikel").hidden = true;
-        } else {
-            menuDeactivate()
-            document.getElementById('elogHarian').classList.toggle('active')
-            document.getElementById("elogbookHarian").hidden = false;
-            // document.getElementById("editorArtikel").hidden = true;
-        }
+            document.getElementById("rekapBulanDashboard").hidden = false;
+        } else {}
     })
 
     function menuDeactivate() {
@@ -228,5 +252,59 @@
             nav.classList.remove('active')
         }
     }
+</script>
+<script>
+    function getRekapTahunan(callback) {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: '<?= route('logbook.tahunan') ?>',
+            type: 'POST',
+            data: {
+                uniq_id: '050',
+                year: '2024'
+            },
+            success: function(response) {
+                callback({
+                    responses: response,
+                    statusCode: 200,
+                    message: "request complete"
+                })
+            },
+            error: function(response) {
+                callback({
+                    responses: response,
+                    statusCode: 400,
+                    message: "request complete"
+                })
+            },
+            complete: function() {
+
+            }
+        });
+    }
+
+    function parseDataset(dataset = [{}]) {
+        for (i in dataset.responses) {
+            console.log(dataset.responses[i])
+            // dataParse = data.responses
+            // for (row in dataParse) {
+            //     console.log(row);
+            // }
+        }
+    }
+</script>
+<script>
+    $(document).ready(function() {
+        getRekapTahunan(function(callback) {
+            parseDataset(callback)
+        })
+        // console.log(tests);
+        // alert(dataset)
+        // console.log(dataset.response[0])
+        // parseDataset(dataset.response)
+
+    })
 </script>
 @endpush

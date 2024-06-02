@@ -81,21 +81,6 @@ class berandaController extends Controller
         return view('pengguna.HangNadim_TeamChecker');
     }
 
-    public function elogbook() {
-
-        $bulan = "05";
-        $tahun = "2024";
-        $username = "05";
-        $user = DB::table("elogbook")->select('uid')->where([
-            ['month', '=', $bulan],
-            ['year', '=', $tahun],
-            ['username','=',$username],
-        ])->first();
-        
-        $dataset = DB::table('elogbook_harian')->where('elogbook_uid','=',$user->uid)->get();
-        return view('pengguna.elogbook',['elogbook'=>$dataset,'elogbookID'=>$user->uid,'bulan'=>$bulan,'tahun'=>$tahun]);
-    }
-
     public function elogbookForm() {
         return view('pengguna.logbookForm');
     }

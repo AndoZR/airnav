@@ -105,7 +105,8 @@ Route::group(['middleware' => 'cekStatus:4'], function () {
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
     });
     Route::group(['prefix' => 'elogbook', 'as' => 'logbook.'], function () {
-        Route::get('/', [berandaController::class, 'elogbook'])->name('rekap');
+        Route::get('/', [elogbookController::class, 'elogbook'])->name('rekap');
+        Route::post('/rekap', [elogbookController::class, 'getRekapTahunan'])->name('tahunan');
         Route::get('/form', [berandaController::class, 'elogbookForm'])->name('form');
         Route::post('/form', [elogbookController::class, 'insertLogbook'])->name('formPost');
     });
