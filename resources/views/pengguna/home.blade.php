@@ -11,7 +11,7 @@
 </header>
 
 <div class="container-fluid">
-    <div class="row align-items-center m-3">
+    <div class="row align-items-center m-1">
         <div class="col-12 col-sm-12 col-md-4">
             <div class="text-center">
                 <h3 class="headline fw-bold"><strong>Artikel Edukasi</strong></h3>

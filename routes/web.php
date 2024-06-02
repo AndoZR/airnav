@@ -91,7 +91,7 @@ Route::group(['middleware' => 'cekStatus:1'], function () {
     });
 });
 
-Route::group(['middleware' => 'cekStatus:2'], function () {
+Route::group(['middleware' => 'cekStatus:4'], function () {
     Route::group(['prefix' => 'beranda', 'as' => 'beranda.'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');

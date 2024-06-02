@@ -172,7 +172,7 @@
             $('.btn-loca').on('click', function(event) {
                 event.preventDefault(); // Mencegah aksi default link
                 var fileName = $(this).data('loca'); // Ambil nilai data-loca
-                console.log(fileName);
+
                 var fileUrl = "{{ asset('storage/airport/loca') }}/" + fileName; // Buat URL file
 
                 // Update konten modal
@@ -181,21 +181,5 @@
                 $('#modal-berkas').modal('show');
             });
         });
-
-        // $('.btn-loca').on('click', function() {
-        //     // Mengambil semua elemen <a> dengan class "btn-loca"
-        //     var links = document.querySelectorAll('.btn-loca');
-        //     var dataLoca
-                    
-        //     // Mengambil nilai "data-loca" dari elemen yang diklik
-        //     dataLoca = links.getAttribute('data-loca');
-            
-        //     console.log(dataLoca);
-            
-        //     var file_url = "{{ asset('storage/airport/loca') }}/" + dataLoca;
-        //     $('#modal-berkas').find('.modal-title').text($(this).data('name'));
-        //     $('#modal-berkas').find('embed').attr('src', file_url);
-        //     $('#modal-berkas').modal('show');
-        // });
     </script>
 @endpush
