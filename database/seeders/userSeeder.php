@@ -49,7 +49,7 @@ class userSeeder extends Seeder
             ],
         ]);
 
-        for($i = 0; $i <= 10; $i++) {
+        for($i = 0; $i <= 5; $i++) {
             DB::table('users')->insert([
                 [
                     'name' => 'user'.$i,

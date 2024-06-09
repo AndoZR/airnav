@@ -22,9 +22,9 @@ class cekStatus
         {
             return back();
         }
-        // return redirect('/')->with('message', 'Anda tidak memiliki akses!');
+        return redirect('/')->with('message', 'Anda tidak memiliki akses!');
 
         // handle agar balik ke halaman login
-        return redirect()->route('signIn');
+        // return redirect()->route('signIn');
     }
 }

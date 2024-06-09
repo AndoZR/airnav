@@ -24,22 +24,14 @@ Route::middleware(['guest'])->group(function () {
 Route::match(['get', 'post'], 'auth', [loginController::class, 'auth'])->name('authentication');
 Route::get('logout', [loginController::class, 'logout'])->name('logout');
 
-Route::group(['middleware' => 'cekStatus:1'], function () {
-    Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
+Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
 
+// admin pembelajaran dan test
+Route::group(['middleware' => 'cekStatus:1'], function () {
+    
     Route::group(['prefix' => 'adminAkun', 'as' => 'adminAkun.'], function () {
         Route::get('/', [dashboardController::class, 'akun'])->name('index');
         Route::post('/edit', [dashboardController::class, 'edit'])->name('edit');
-    });
-
-    Route::group(['prefix' => 'artikel', 'as' => 'artikel.'], function () {
-        Route::get('/', [artikelController::class, 'indexArtikel'])->name('index');
-        Route::post('/store', [artikelController::class, 'storeArtikel'])->name('store');
-        Route::get('/editor', [artikelController::class, 'editorArtikel'])->name('editor');
-        Route::post('/preview', [artikelController::class, 'previewArtikel'])->name('preview');
-        Route::post('/publish', [artikelController::class, 'publishArtikel'])->name('publish');
-        Route::post('/update/{id}', [artikelController::class, 'updateArtikel'])->name('update');
-        Route::get('/delete/{id}', [artikelController::class, 'deleteArtikel'])->name('delete');
     });
 
     Route::group(['prefix' => 'airport', 'as' => 'airport.'], function () {
@@ -64,6 +56,11 @@ Route::group(['middleware' => 'cekStatus:1'], function () {
             Route::get('/delete/{id}', [testController::class, 'deleteSoal'])->name('delete');
         });
     });
+});
+
+// admin artikel dan elogbook
+Route::group(['middleware' => 'cekStatus:2'], function () {
+    // Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => 'pengguna', 'as' => 'pengguna.'], function () {
         Route::get('/', [penggunaController::class, 'index'])->name('index');
@@ -89,8 +86,36 @@ Route::group(['middleware' => 'cekStatus:1'], function () {
         Route::post('/posisi/update/{id}', [organisasiController::class, 'updatePosisi'])->name('updatePosisi');
         Route::get('posisi/delete/{id}', [organisasiController::class, 'deletePosisi'])->name('deletePosisi');
     });
+
+    Route::group(['prefix' => 'adminAkun', 'as' => 'adminAkun.'], function () {
+        Route::get('/', [dashboardController::class, 'akun'])->name('index');
+        Route::post('/edit', [dashboardController::class, 'edit'])->name('edit');
+    });
+
+    Route::group(['prefix' => 'artikel', 'as' => 'artikel.'], function () {
+        Route::get('/', [artikelController::class, 'indexArtikel'])->name('index');
+        Route::post('/store', [artikelController::class, 'storeArtikel'])->name('store');
+        Route::get('/editor', [artikelController::class, 'editorArtikel'])->name('editor');
+        Route::post('/preview', [artikelController::class, 'previewArtikel'])->name('preview');
+        Route::post('/publish', [artikelController::class, 'publishArtikel'])->name('publish');
+        Route::post('/update/{id}', [artikelController::class, 'updateArtikel'])->name('update');
+        Route::get('/delete/{id}', [artikelController::class, 'deleteArtikel'])->name('delete');
+    });
+
+    Route::group(['prefix' => 'elogbook', 'as' => 'logbook.'], function () {
+        Route::get('/', [elogbookController::class, 'elogbook'])->name('rekap');
+        Route::post('/rekap', [elogbookController::class, 'getRekapTahunan'])->name('tahunan');
+        Route::get('/form', [berandaController::class, 'elogbookForm'])->name('form');
+        Route::post('/form', [elogbookController::class, 'insertLogbook'])->name('formPost');
+    });
 });
 
+// artiek performance
+Route::group(['middleware' => 'cekStatus:3'], function () {
+    // Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
+});
+
+// Pengguna
 Route::group(['middleware' => 'cekStatus:4'], function () {
     Route::group(['prefix' => 'beranda', 'as' => 'beranda.'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
@@ -104,17 +129,13 @@ Route::group(['middleware' => 'cekStatus:4'], function () {
         Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
     });
-    Route::group(['prefix' => 'elogbook', 'as' => 'logbook.'], function () {
-        Route::get('/', [elogbookController::class, 'elogbook'])->name('rekap');
-        Route::post('/rekap', [elogbookController::class, 'getRekapTahunan'])->name('tahunan');
-        Route::get('/form', [berandaController::class, 'elogbookForm'])->name('form');
-        Route::post('/form', [elogbookController::class, 'insertLogbook'])->name('formPost');
-    });
+
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
         Route::get('/mulai/{id}', [testController::class, 'mulai'])->name('mulai');
         Route::post('/selesai/{id}', [testController::class, 'selesai'])->name('selesai');
     });
+
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {
         Route::get('/', [akunController::class, 'index'])->name('index');
         Route::post('/edit', [akunController::class, 'edit'])->name('edit');

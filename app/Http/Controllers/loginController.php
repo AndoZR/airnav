@@ -38,12 +38,11 @@ class loginController extends Controller
     
     public function auth(Request $request)
     {
-        if(in_array($request->user()->status,[1])){
+        if(in_array($request->user()->status,[1,2,3])){
             return redirect('main');
         }
-        if(in_array($request->user()->status,[2])){
+        if(in_array($request->user()->status,[4])){
             return redirect('beranda');
         }
-        
     }
 }

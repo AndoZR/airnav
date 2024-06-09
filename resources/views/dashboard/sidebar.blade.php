@@ -51,28 +51,13 @@
                     </a>
                 </li>
 
+                @if(Auth::check() && Auth::user()->status == '2')
                 {{-- Artikel --}}
                 <li class="sidebar-item">
                     <a href="{{ route('artikel.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Artikel</span>
                     </a>
-                </li>
-
-                {{-- Pembelajaran --}}
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
-                        <span>Pembelajaran</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item  ">
-                            <a href="{{ route('airport.index') }}" class="submenu-link">Airport</a>
-                        </li>                                                           
-                        <li class="submenu-item  ">
-                            <a href="{{ route('test.index') }}" class="submenu-link">Test</a>
-                        </li>                                                           
-                    </ul>
                 </li>
 
                 {{-- Organisasi --}}
@@ -101,6 +86,25 @@
                         <span>Pengguna</span>
                     </a>
                 </li>
+                @endif
+
+                @if(Auth::check() && Auth::user()->status == '1')
+                {{-- Pembelajaran --}}
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Pembelajaran</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item  ">
+                            <a href="{{ route('airport.index') }}" class="submenu-link">Airport</a>
+                        </li>                                                           
+                        <li class="submenu-item  ">
+                            <a href="{{ route('test.index') }}" class="submenu-link">Test</a>
+                        </li>                                                           
+                    </ul>
+                </li>
+                @endif
 
                 {{-- AKUN --}}
                 <li class="sidebar-item  has-sub">
