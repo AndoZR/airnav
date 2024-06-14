@@ -23,7 +23,7 @@
             <thead>
                 <tr class="text-center">
                     <th scope="col">No</th>
-                    <th scope="col">Kode</th>
+                    <th scope="col">Rekap ID</th>
                     <th scope="col">Bulan</th>
                     <th scope="col">Tahun</th>
                     <th scope="col">Status</th>
@@ -32,17 +32,6 @@
                 </tr>
             </thead>
             <tbody id="rekapBulanBaris">
-
-                <tr class="text-center">
-                    <th scope="row">1</th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Berjalan</td>
-                    <td>M.Robby Purba</td>
-                    <td><Button>Tampilkan</Button></td>
-                </tr>
-
             </tbody>
         </table>
     </div>
@@ -254,7 +243,8 @@
     }
 </script>
 <script>
-    function getRekapTahunan(callback) {
+    function getRekapTahunan(callback, date = new Date) {
+        let yearLocal = date.getFullYear()
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -263,7 +253,7 @@
             type: 'POST',
             data: {
                 uniq_id: '050',
-                year: '2024'
+                year: yearLocal
             },
             success: function(response) {
                 callback({
@@ -285,25 +275,38 @@
         });
     }
 
-    function parseDataset(dataset = [{}]) {
-        for (i in dataset.responses) {
-            console.log(dataset.responses[i])
-            // dataParse = data.responses
-            // for (row in dataParse) {
-            //     console.log(row);
-            // }
-        }
+    function tableRowCreate(dataset) {
+        let tableBody = document.getElementById("rekapBulanBaris")
+        let tableRow = document.createElement('tr')
+        let cellHead = document.createElement('th')
+        let cellRow1 = document.createElement('td')
+        let cellRow2 = document.createElement('td')
+        let cellRow3 = document.createElement('td')
+        let cellRow4 = document.createElement('td')
+        let cellRow5 = document.createElement('td')
+        let cellRow6 = document.createElement('td')
+        let expandButton = document.createElement('button')
+        cellHead.setAttribute('scope', 'row')
+        cellHead.append('1')
+        expandButton.append('Tampilkan')
+        expandButton.classList.add('elogBulanExpand')
+        expandButton.addEventListener('click', () => {alert("Test")})
+        cellRow1.append(dataset.uid)
+        cellRow2.append(dataset.month)
+        cellRow3.append(dataset.year)
+        cellRow6.append(expandButton)
+        tableRow.classList.add(['text-center'])
+        tableRow.append(cellHead, cellRow1, cellRow2, cellRow3, cellRow4, cellRow5, cellRow6)
+        tableBody.insertAdjacentElement('afterbegin', tableRow)
     }
 </script>
 <script>
     $(document).ready(function() {
         getRekapTahunan(function(callback) {
-            parseDataset(callback)
+            for (i in callback.responses) {
+                tableRowCreate(callback.responses[i])
+            }
         })
-        // console.log(tests);
-        // alert(dataset)
-        // console.log(dataset.response[0])
-        // parseDataset(dataset.response)
 
     })
 </script>
