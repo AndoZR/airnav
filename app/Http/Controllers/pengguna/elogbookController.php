@@ -40,6 +40,13 @@ class elogbookController extends Controller
         return response($dataset);
     }
 
+    public function getRekapBulanan(Request $request)
+    {
+        $elogbook_id = $request->get('elogbook_id');
+        $dataset = DB::table("elogbook_harian")->select(["*"])->where('elogbook_uid','=',$elogbook_id)->get();
+        return response($dataset);
+    }
+
     public function elogbook()
     {
 

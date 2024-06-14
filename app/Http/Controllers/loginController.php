@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class loginController extends Controller
 {
@@ -14,6 +15,7 @@ class loginController extends Controller
 
     public function signIn(Request $request)
     {
+        
         if(strpos($request->username, 'admin') !== false){
             if(Auth::attempt($request->only('username', 'password'))) {
                 session()->regenerate(destroy:true);
@@ -22,7 +24,11 @@ class loginController extends Controller
             }
         } else {
             if(Auth::attempt($request->only('username', 'password'))) {
-                session()->regenerate(destroy:true);            
+                session()->regenerate(destroy:true);    
+                $query = DB::table('users')->select('id','name')->where('username','=',$request->input('username'))->first();
+               
+                $request->session()->put('user_id', $query->id);
+                $request->session()->put('name', $query->name);
                 return redirect('beranda');
             }
         }
