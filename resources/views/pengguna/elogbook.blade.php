@@ -44,7 +44,11 @@
                 <p class="mb-0"><strong>{{session()->get('name')}}</strong></p>
             </div>
             <div class="col text-end">
-                <a href="{{route('logbook.form')}}"><button type="button" class="btn btn-primary"><b>Input Data Baru</b></button></a>
+                <form method="POST" action="{{route('logbook.form')}}">
+                    @csrf
+                    <input id="logbook_input_id" type="hidden" name="logbook_id">
+                    <button id="new_daily_input" type="submit" class="btn btn-primary"><b>Input Data Baru</b></button>
+                </form>
             </div>
         </div>
         <hr>
@@ -77,55 +81,33 @@
                 <thead class="text-center table-secondary align-middle">
                     <tr class="">
                         <th scope="col" class="col" rowspan="2"> <small>Date</small></th>
-                        <th scope="col" class="col-1" colspan="3"><small>Morning</small></th>
-                        <th scope="col" class="col-1" colspan="3"><small>Afternoon</small></th>
-                        <th scope="col" class="col-1" colspan="3"><small>Night</small></th>
-                        <th scope="col" class="col-6" colspan="6"><small>Unit</small></th>
-                        <th scope="col" class="col-2" rowspan="2"><small>Option</small></th>
+                        <th scope="col" class="col-2" colspan="3"><small>Morning</small></th>
+                        <th scope="col" class="col-2" colspan="3"><small>Afternoon</small></th>
+                        <th scope="col" class="col-2" colspan="3"><small>Night</small></th>
+                        <th scope="col" class="col-5" colspan="6"><small>Unit</small></th>
+                        <th scope="col" class="col-1" rowspan="2"><small>Option</small></th>
                     </tr>
                     <tr class="">
-                        <th scope=""><small>CTR</small></th>
-                        <th scope=""><small>ASS</small></th>
-                        <th scope=""><small>REST</small></th>
-                        <th scope=""><small>CTR</small></th>
-                        <th scope=""><small>ASS</small></th>
-                        <th scope=""><small>REST</small></th>
-                        <th scope=""><small>CTR</small></th>
-                        <th scope=""><small>ASS</small></th>
-                        <th scope=""><small>REST</small></th>
-                        <th scope="" class="col-1"><small>ADC</small></th>
-                        <th scope="" class="col-1"><small>APP</small></th>
-                        <th scope="" class="col-1"><small>APP SURV</small></th>
-                        <th scope="" class="col-1"><small>COMB ADC/APP</small></th>
-                        <th scope="" class="col-1"><small>ACC</small></th>
-                        <th scope="" class="col-1"><small>ACC SURV</small></th>
+
+                        <th scope="col" class=""><small>CTR</small></th>
+                        <th scope="col" class=""><small>ASS</small></th>
+                        <th scope="col" class=""><small>REST</small></th>
+                        <th scope="col" class=""><small>CTR</small></th>
+                        <th scope="col" class=""><small>ASS</small></th>
+                        <th scope="col" class=""><small>REST</small></th>
+                        <th scope="col" class=""><small>CTR</small></th>
+                        <th scope="col" class=""><small>ASS</small></th>
+                        <th scope="col" class=""><small>REST</small></th>
+                        <th scope="col" class=""><small>ADC</small></th>
+                        <th scope="col" class=""><small>APP</small></th>
+                        <th scope="col" class=""><small class="text-break word-warp">APP SURV</small></th>
+                        <th scope="col" class=""><small class="text-break word-warp">COMB ADC/APP</small></th>
+                        <th scope="col" class=""><small>ACC</small></th>
+                        <th scope="col" class=""><small class="text-break word-warp">ACC SURV</small></th>
                     </tr>
                 </thead>
 
                 <tbody id="body_daily_logbook" class="text-center">
-
-                    {{-- @foreach ($elogbook as $logbookRow)
-                    <tr>
-
-                        <td><small>{{$logbookRow->day.$logbookRow->month.$logbookRow->year}}</small></td>
-                    <td><small>{{$logbookRow->morning_ctr}}</small></td>
-                    <td><small>{{$logbookRow->morning_ass}}</small></td>
-                    <td><small>{{$logbookRow->morning_rest}}</small></td>
-                    <td><small>{{$logbookRow->afternoon_ctr}}</small></td>
-                    <td><small>{{$logbookRow->afternoon_ass}}</small></td>
-                    <td><small>{{$logbookRow->afternoon_rest}}</small></td>
-                    <td><small>{{$logbookRow->night_ctr}}</small></td>
-                    <td><small>{{$logbookRow->night_ass}}</small></td>
-                    <td><small>{{$logbookRow->night_rest}}</small></td>
-                    <td><small>{{$logbookRow->unit_adc}}</small></td>
-                    <td><small>{{$logbookRow->unit_app}}</small></td>
-                    <td><small>{{$logbookRow->unit_app_surv}}</small></td>
-                    <td><small>{{$logbookRow->unit_adc_app}}</small></td>
-                    <td><small>{{$logbookRow->unit_acc}}</small></td>
-                    <td><small>{{$logbookRow->unit_acc_surv}}</small></td>
-                    <td>Delete Edit</td>
-                    </tr>
-                    @endforeach --}}
                 </tbody>
             </table>
         </div>
@@ -258,7 +240,13 @@
             let daily_body_table = document.getElementById("body_daily_logbook")
             let uid = dataset.uid
             daily_body_table.innerHTML = null
+            document.getElementById('rekap_bulan_id').textContent = uid
+            document.getElementById('logbook_input_id').value = uid
+            document.getElementById('rekap_bulan_tahun').value = dataset.year
+            document.getElementById('rekap_bulan_bulan').value = dataset.month
+
             tableDailyLogbook(function(callbackfunction) {
+
                 for (row in callbackfunction.responses) {
                     delete callbackfunction.responses[row].no
                     delete callbackfunction.responses[row].elogbook_uid
@@ -303,18 +291,26 @@
                     cellHead.append(dataset[i])
                     tableRow.append(cellHead)
                 }
+
             } else {
 
                 if (dataset[i] == null) {
                     let cellRow = document.createElement('td')
+                    let smallWrap = document.createElement('small')
+                    cellRow.append(smallWrap)
                     tableRow.append(cellRow)
                 } else {
                     let cellRow = document.createElement('td')
-                    cellRow.append(dataset[i])
+                    let smallWrap = document.createElement('small')
+                    smallWrap.append(dataset[i])
+                    cellRow.append(smallWrap)
                     tableRow.append(cellRow)
                 }
             }
         }
+        let lastRow = document.createElement('td')
+        lastRow.classList.add('col')
+        tableRow.append(lastRow)
         tableBody.insertAdjacentElement('afterbegin', tableRow)
     }
 
@@ -348,6 +344,13 @@
             }
         });
     }
+
+    function formDailyLogbook(id, dataset) {
+        document.getElementById('rekap_bulan_id').textContent = id
+        document.getElementById('logbook_input_id').value = id
+        document.getElementById('rekap_bulan_tahun').value = dataset[dataset.length - 1].year
+        document.getElementById('rekap_bulan_bulan').value = dataset[dataset.length - 1].month
+    }
 </script>
 <script>
     $(document).ready(function() {
@@ -356,9 +359,7 @@
                 tableRowCreate(callback.responses[i])
             }
             let recentRekap = callback.responses[callback.responses.length - 1].uid
-            document.getElementById('rekap_bulan_id').textContent = recentRekap
-            document.getElementById('rekap_bulan_tahun').value = callback.responses[callback.responses.length - 1].year
-            document.getElementById('rekap_bulan_bulan').value = callback.responses[callback.responses.length - 1].month
+            formDailyLogbook(recentRekap, callback.responses)
             tableDailyLogbook(function(callbackfunction) {
                 for (row in callbackfunction.responses) {
                     delete callbackfunction.responses[row].no
