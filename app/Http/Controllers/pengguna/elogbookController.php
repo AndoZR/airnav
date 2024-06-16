@@ -34,8 +34,8 @@ class elogbookController extends Controller
         $uid_user = $request->get('uniq_id');
         $tahun = $request->get('year');
         $dataset = DB::table("elogbook")->select(['uid','month','year','created_at'])->where([
-            ['user_id', '=', $uid_user],
-            ['year', '=', $tahun],
+            ['user_id', '=', $uid_user]
+            // ['year', '=', $tahun],
         ])->get();
         return response($dataset);
     }

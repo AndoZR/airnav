@@ -29,7 +29,7 @@
         <table class="table">
             <thead>
                 <tr class="text-center">
-                    <th scope="col">No</th>
+                    <!-- <th scope="col">No</th> -->
                     <th scope="col">Rekap ID</th>
                     <th scope="col">Bulan</th>
                     <th scope="col">Tahun</th>
@@ -231,7 +231,7 @@
     function tableRowCreate(dataset) {
         let tableBody = document.getElementById("rekapBulanBaris")
         let tableRow = document.createElement('tr')
-        let cellHead = document.createElement('th')
+        // let cellHead = document.createElement('th')
         let cellRow1 = document.createElement('td')
         let cellRow2 = document.createElement('td')
         let cellRow3 = document.createElement('td')
@@ -239,8 +239,8 @@
         let cellRow5 = document.createElement('td')
         let cellRow6 = document.createElement('td')
         let expandButton = document.createElement('button')
-        cellHead.setAttribute('scope', 'row')
-        cellHead.append('1')
+        // cellHead.setAttribute('scope', 'row')
+        // cellHead.append('-')
         expandButton.append('Tampilkan')
         expandButton.classList.add('elogBulanExpand')
         expandButton.addEventListener('click', () => {
@@ -279,7 +279,7 @@
         cellRow3.append(dataset.year)
         cellRow6.append(expandButton)
         tableRow.classList.add(['text-center'])
-        tableRow.append(cellHead, cellRow1, cellRow2, cellRow3, cellRow4, cellRow5, cellRow6)
+        tableRow.append(cellRow1, cellRow2, cellRow3, cellRow4, cellRow5, cellRow6)
         tableBody.insertAdjacentElement('afterbegin', tableRow)
     }
 
