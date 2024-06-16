@@ -71,7 +71,8 @@ class elogbookController extends Controller
     public function insertLogbook(Request $request)
     {
         $namaUser = $request->get('namaUser');
-        $nomorNIK = $request->get('NomorNik');
+        $logbookID = $request->get('logbook_id');
+        // $nomorNIK = $request->get('NomorNik');
         $tanggal =  $request->get('tanggal');
         $bulan = $request->get('bulan');
         $tahun = $request->get('tahun');
@@ -83,6 +84,8 @@ class elogbookController extends Controller
         $assMinute = $request->get('assMinute');
         $restHour = $request->get('restHour');
         $restMinute = $request->get('restMinute');
+        echo($assHour);
+        echo($assMinute);
         return;
     }
 

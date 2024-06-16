@@ -19,15 +19,28 @@ return new class extends Migration
             $table->string('day')->nullable();
             $table->string('month')->nullable();
             $table->string('year')->nullable();
-            $table->time('morning_ctr')->nullable();
-            $table->time('morning_ass')->nullable();
-            $table->time('morning_rest')->nullable();
-            $table->time('afternoon_ctr')->nullable();
-            $table->time('afternoon_ass')->nullable();
-            $table->time('afternoon_rest')->nullable();
-            $table->time('night_ctr')->nullable();
-            $table->time('night_ass')->nullable();
-            $table->time('night_rest')->nullable();
+
+            $table->string('morning_ctr_hour')->nullable();
+            $table->string('morning_ctr_minute')->nullable();
+            $table->string('morning_ass_hour')->nullable();
+            $table->string('morning_ass_minute')->nullable();
+            $table->string('morning_rest_hour')->nullable();
+            $table->string('morning_rest_minute')->nullable();
+
+            $table->string('afternoon_ctr_hour')->nullable();
+            $table->string('afternoon_ctr_minute')->nullable();
+            $table->string('afternoon_ass_hour')->nullable();
+            $table->string('afternoon_ass_minute')->nullable();
+            $table->string('afternoon_rest_hour')->nullable();
+            $table->string('afternoon_rest_minute')->nullable();
+            
+            $table->string('night_ctr_hour')->nullable();
+            $table->string('night_ctr_minute')->nullable();
+            $table->string('night_ass_hour')->nullable();
+            $table->string('night_ass_minute')->nullable();
+            $table->string('night_rest_hour')->nullable();
+            $table->string('night_rest_minute')->nullable();
+            
             $table->boolean('unit_adc')->nullable();
             $table->boolean('unit_app')->nullable();
             $table->boolean('unit_app_surv')->nullable();

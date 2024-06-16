@@ -17,7 +17,14 @@
 <br>
 <div id="rekapBulanDashboard">
     <div class="container">
-        <p><strong>Data Rekap Tahunan</strong><br><small>User ID : {{session()->get('user_id')}}</small><br><small>Nama : {{session()->get('name')}}</small></p>
+        <div class="row align-items-center">
+            <div class="col">
+                <p><strong>Data Rekap Tahunan</strong><br><small>Nama : {{session()->get('name')}}</small></p>
+            </div>
+            <div class="col text-end">
+                <a href="#"><button id="" type="button" class="btn btn-success"><b>Logbook Baru</b></button></a>
+            </div>
+        </div>
         <hr>
         <table class="table">
             <thead>
@@ -47,7 +54,7 @@
                 <form method="POST" action="{{route('logbook.form')}}">
                     @csrf
                     <input id="logbook_input_id" type="hidden" name="logbook_id">
-                    <button id="new_daily_input" type="submit" class="btn btn-primary"><b>Input Data Baru</b></button>
+                    <button id="new_daily_input" type="submit" class="btn btn-primary"><b>Data Baru</b></button>
                 </form>
             </div>
         </div>

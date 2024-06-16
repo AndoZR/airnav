@@ -12,18 +12,22 @@
                 <div class="border rounded bg-light-subtle m-3 flex-grow-1">
                     <div class="m-3">
                         <label class="form-label"><small><strong>Nama Lengkap</strong></small></label>
-                        <input type="text" class="form-control form-control-sm" name="namaUser">
+                        <input type="text" class="form-control form-control-sm" name="namaUser" value="{{session('name')}}">
                     </div>
                     <div class="m-3">
                         <label class="form-label"><small><strong>NIK</strong></small></label>
-                        <input type="number" class="form-control form-control-sm" name="NomorNik">
+                        <input type="text" class="form-control form-control-sm" name="NomorNik" value="****************" disabled>
+                    </div>
+                    <div class="m-3">
+                        <label class="form-label"><small><strong>Logbook ID</strong></small></label>
+                        <input type="number" class="form-control form-control-sm" name="logbookID" value="{{$logbook_id}}" disabled>
                     </div>
                 </div>
 
                 <div class="border rounded bg-light-subtle m-3 flex-grow-1">
                     <div class="m-3">
                         <label class="form-label"><small><strong>Tanggal</strong></small></label>
-                        <input type="number" class="form-control form-control-sm" max="31" min="1" name="tanggal">
+                        <input type="number" class="form-control form-control-sm" max="31" min="1" name="tanggal" value="{{date('d')}}">
                         <span>
                             <p></p>
                         </span>
@@ -129,11 +133,11 @@
                                 <label class="form-label"><small><strong>CTR</strong></small></label>
                             </div>
                             <div class="col-3">
-                                <input type="number" class="form-control form-control-sm" placeholder="Hours" name="ctrHour">
+                                <input type="number" class="form-control form-control-sm" placeholder="Hours" name="ctrHour" max="24" min="0">
                             </div>
                             :
                             <div class="col-3">
-                                <input type="number" class="form-control form-control-sm" placeholder="Minute" name="ctrMinute">
+                                <input type="number" class="form-control form-control-sm" placeholder="Minute" name="ctrMinute" max="59" min="0">
                             </div>
                         </div>
                         <p></p>
@@ -142,11 +146,11 @@
                                 <label class="form-label"><small><strong>ASS</strong></small></label>
                             </div>
                             <div class="col-3">
-                                <input type="number" class="form-control form-control-sm" placeholder="Hours" name="assHour">
+                                <input type="number" class="form-control form-control-sm" placeholder="Hours" name="assHour" max="24" min="0">
                             </div>
                             :
                             <div class="col-3">
-                                <input type="number" class="form-control form-control-sm" placeholder="Minute" name="assMinute">
+                                <input type="number" class="form-control form-control-sm" placeholder="Minute" name="assMinute" max="59" min="0">
                             </div>
                         </div>
                         <p></p>
@@ -155,11 +159,11 @@
                                 <label class="form-label"><small><strong>REST</strong></small></label>
                             </div>
                             <div class="col-3">
-                                <input type="number" class="form-control form-control-sm" placeholder="Hours" name="restHour">
+                                <input type="number" class="form-control form-control-sm" placeholder="Hours" name="restHour" max="24" min="0">
                             </div>
                             :
                             <div class="col-3">
-                                <input type="number" class="form-control form-control-sm" placeholder="Minute" name="restMinute">
+                                <input type="number" class="form-control form-control-sm" placeholder="Minute" name="restMinute" max="59" min="0">
                             </div>
                         </div>
                     </div>
