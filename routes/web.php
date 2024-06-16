@@ -110,6 +110,8 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::post('/rekap/bulan', [elogbookController::class, 'getRekapBulanan'])->name('bulanan');
         Route::post('/form', [berandaController::class, 'elogbookForm'])->name('form');
         Route::post('/insert', [elogbookController::class, 'insertLogbook'])->name('formPost');
+        Route::get('/logbook', [elogbookController::class, 'formLogbook'])->name('formLogbook');
+        Route::post('/logbook', [elogbookController::class, 'createLogbook'])->name('createLogbook');
     });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');

@@ -1,5 +1,5 @@
 @extends('pengguna.app')
-@section('tab', 'Airnav Assist | Pembelajaran')
+@section('tab', 'Airnav Assist | Logbook')
 
 @section( 'content' )
 <div class="container">

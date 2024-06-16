@@ -23,7 +23,7 @@ class elogbookController extends Controller
             ['year', '=', $tahun],
         ])->get();
         if (is_null($user)) {
-            $this->createLogbook();
+            // $this->createLogbook();
         } else {
             $this->logbookUID = $user;
         }
@@ -89,11 +89,20 @@ class elogbookController extends Controller
         return;
     }
 
-    public function createLogbook()
+    public function formLogbook(){
+        return view('pengguna.logbookFormYear');
+    }
+
+    public function createLogbook(Request $request)
     {
-        $transaction = DB::transaction(function () {
+        $nama = $request->input('nama_user');
+        $user_id = $request->input('user_id');
+        $tahun = $request->input('tahun');
+        $bulan = $request->input('bulan');
+
+        $transaction = DB::transaction(function () use ($nama,$user_id,$tahun,$bulan) {
             // Menjalankan query INSERT
-            DB::statement("INSERT INTO `elogbook`(`no`) VALUES (null)");
+            DB::statement(sprintf("INSERT INTO `elogbook`(`no`,`nama`,`user_id`,`month`,`year`) VALUES (null,'%s','%s','%s','%s')",$nama,$user_id,$bulan,$tahun));
 
             // Mengambil LAST_INSERT_ID
             DB::statement("SET @logbook = (SELECT LAST_INSERT_ID())");
@@ -106,6 +115,6 @@ class elogbookController extends Controller
             // Mengembalikan hasil query SELECT
             return $result[0]->uid;
         });
-        return $transaction;
+        return redirect()->route('logbook.rekap');
     }
 }

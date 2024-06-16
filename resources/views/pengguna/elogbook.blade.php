@@ -1,5 +1,5 @@
 @extends('pengguna.app')
-@section('tab', 'Airnav Assist | Pembelajaran')
+@section('tab', 'Airnav Assist | Logbook')
 
 @section( 'content' )
 <meta name="csrf-token" content="<?php echo (csrf_token()) ?>">
@@ -22,7 +22,7 @@
                 <p><strong>Data Rekap Tahunan</strong><br><small>Nama : {{session()->get('name')}}</small></p>
             </div>
             <div class="col text-end">
-                <a href="#"><button id="" type="button" class="btn btn-success"><b>Logbook Baru</b></button></a>
+                <a href="{{route('logbook.createLogbook')}}"><button id="" type="button" class="btn btn-success"><b>Logbook Baru</b></button></a>
             </div>
         </div>
         <hr>
