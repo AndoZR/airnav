@@ -20,7 +20,7 @@
                     </div>
                     <div class="m-3">
                         <label class="form-label"><small><strong>Logbook ID</strong></small></label>
-                        <input type="number" class="form-control form-control-sm" name="logbookID" value="{{$logbook_id}}" disabled>
+                        <input type="number" class="form-control form-control-sm" name="logbookID" value="{{$logbook_id}}" readonly>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@
                             </div>
                             <div class="col-3">
                                 <div class="">
-                                    <input class="form-check-input" type="radio" name="unit" value="combine_adc_app">
+                                    <input class="form-check-input" type="radio" name="unit" value="comb_adc_app">
                                     <label class="form-check-label ms-2">
                                         <small> COMBINE ADC/APP</small>
                                     </label>

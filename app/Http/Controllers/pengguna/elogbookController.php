@@ -33,7 +33,7 @@ class elogbookController extends Controller
     {
         $uid_user = $request->get('uniq_id');
         $tahun = $request->get('year');
-        $dataset = DB::table("elogbook")->select(['uid','month','year','created_at'])->where([
+        $dataset = DB::table("elogbook")->select(['uid', 'month', 'year', 'created_at'])->where([
             ['user_id', '=', $uid_user]
             // ['year', '=', $tahun],
         ])->get();
@@ -43,7 +43,7 @@ class elogbookController extends Controller
     public function getRekapBulanan(Request $request)
     {
         $elogbook_id = $request->get('elogbook_id');
-        $dataset = DB::table("elogbook_harian")->select(["*"])->where('elogbook_uid','=',$elogbook_id)->get();
+        $dataset = DB::table("elogbook_harian")->select(['day','unit','morning_ctr_hour','morning_ctr_minute','morning_ass_hour','morning_ass_minute','morning_rest_hour','morning_rest_minute','afternoon_ctr_hour','afternoon_ctr_minute','afternoon_ass_hour','afternoon_ass_minute','afternoon_rest_hour','afternoon_rest_minute','night_ctr_hour','night_ctr_minute','night_ass_hour','night_ass_minute','night_rest_hour','night_rest_minute'])->where('elogbook_uid', '=', $elogbook_id)->get();
         return response($dataset);
     }
 
@@ -71,8 +71,7 @@ class elogbookController extends Controller
     public function insertLogbook(Request $request)
     {
         $namaUser = $request->get('namaUser');
-        $logbookID = $request->get('logbook_id');
-        // $nomorNIK = $request->get('NomorNik');
+        $logbookID = $request->get('logbookID');
         $tanggal =  $request->get('tanggal');
         $bulan = $request->get('bulan');
         $tahun = $request->get('tahun');
@@ -84,12 +83,64 @@ class elogbookController extends Controller
         $assMinute = $request->get('assMinute');
         $restHour = $request->get('restHour');
         $restMinute = $request->get('restMinute');
-        echo($assHour);
-        echo($assMinute);
+        
+        if ($duty == 'morning') {
+            DB::table('elogbook_harian')->insert([
+                'no' => 0,
+                'elogbook_uid' => $logbookID,
+                'username' => $namaUser,
+                'day' => $tanggal,
+                'month' => $bulan,
+                'year' => $tahun,
+                'morning_ctr_hour' => $ctrHour,
+                'morning_ctr_minute' => $ctrMinute,
+                'morning_ass_hour' => $assHour ,
+                'morning_ass_minute' => $assMinute,
+                'morning_rest_hour' => $restHour,
+                'morning_rest_minute' => $restMinute,
+                'unit' => $unit
+            ]);
+        }
+        elseif($duty == 'afternoon') {
+            DB::table('elogbook_harian')->insert([
+                'no' => 0,
+                'elogbook_uid' => $logbookID,
+                'username' => $namaUser,
+                'day' => $tanggal,
+                'month' => $bulan,
+                'year' => $tahun,
+                'afternoon_ctr_hour' => $ctrHour,
+                'afternoon_ctr_minute' => $ctrMinute,
+                'afternoon_ass_hour' => $assHour ,
+                'afternoon_ass_minute' => $assMinute,
+                'afternoon_rest_hour' => $restHour,
+                'afternoon_rest_minute' => $restMinute,
+                'unit' => $unit
+            ]);
+        }
+        elseif($duty == 'night') {
+            DB::table('elogbook_harian')->insert([
+                'no' => 0,
+                'elogbook_uid' => $logbookID,
+                'username' => $namaUser,
+                'day' => $tanggal,
+                'month' => $bulan,
+                'year' => $tahun,
+                'night_ctr_hour' => $ctrHour,
+                'night_ctr_minute' => $ctrMinute,
+                'night_ass_hour' => $assHour ,
+                'night_ass_minute' => $assMinute,
+                'night_rest_hour' => $restHour,
+                'night_rest_minute' => $restMinute,
+                'unit' => $unit
+            ]);
+        }
+
         return;
     }
 
-    public function formLogbook(){
+    public function formLogbook()
+    {
         return view('pengguna.logbookFormYear');
     }
 
@@ -100,9 +151,9 @@ class elogbookController extends Controller
         $tahun = $request->input('tahun');
         $bulan = $request->input('bulan');
 
-        $transaction = DB::transaction(function () use ($nama,$user_id,$tahun,$bulan) {
+        $transaction = DB::transaction(function () use ($nama, $user_id, $tahun, $bulan) {
             // Menjalankan query INSERT
-            DB::statement(sprintf("INSERT INTO `elogbook`(`no`,`nama`,`user_id`,`month`,`year`) VALUES (null,'%s','%s','%s','%s')",$nama,$user_id,$bulan,$tahun));
+            DB::statement(sprintf("INSERT INTO `elogbook`(`no`,`nama`,`user_id`,`month`,`year`) VALUES (null,'%s','%s','%s','%s')", $nama, $user_id, $bulan, $tahun));
 
             // Mengambil LAST_INSERT_ID
             DB::statement("SET @logbook = (SELECT LAST_INSERT_ID())");

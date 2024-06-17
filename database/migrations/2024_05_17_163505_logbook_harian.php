@@ -41,12 +41,7 @@ return new class extends Migration
             $table->string('night_rest_hour')->nullable();
             $table->string('night_rest_minute')->nullable();
             
-            $table->boolean('unit_adc')->nullable();
-            $table->boolean('unit_app')->nullable();
-            $table->boolean('unit_app_surv')->nullable();
-            $table->boolean('unit_adc_app')->nullable();
-            $table->boolean('unit_acc')->nullable();
-            $table->boolean('unit_acc_surv')->nullable();
+            $table->enum('unit',['adc','app','app_surv','comb_adc_app','acc','acc_surv']);
             $table->timestamps();
         });
     }

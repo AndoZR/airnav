@@ -369,14 +369,7 @@
             formDailyLogbook(recentRekap, callback.responses)
             tableDailyLogbook(function(callbackfunction) {
                 for (row in callbackfunction.responses) {
-                    delete callbackfunction.responses[row].no
-                    delete callbackfunction.responses[row].elogbook_uid
-                    delete callbackfunction.responses[row].username
-                    delete callbackfunction.responses[row].user_id
-                    delete callbackfunction.responses[row].month
-                    delete callbackfunction.responses[row].year
-                    delete callbackfunction.responses[row].created_at
-                    delete callbackfunction.responses[row].updated_at
+                    
                     tableRowDailyLogbook(callbackfunction.responses[row])
                 }
             }, recentRekap)
