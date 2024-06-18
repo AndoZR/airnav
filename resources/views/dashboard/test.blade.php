@@ -134,9 +134,9 @@
                     className: 'text-center align-middle',
                     render: function(data, type, row, meta) {
                         if (row.status == 1){
-                            return `<input disabled type="checkbox" class="form-check-input form-check-primary form-check-glow check-status" checked name="customCheck" id="checkboxGlow1">`;
+                            return `<input type="checkbox" status-data='0' class="form-check-input form-check-primary form-check-glow check-status" checked name="customCheck" id="checkboxGlow1">`;
                         } else {
-                            return `<input type="checkbox" class="form-check-input form-check-primary form-check-glow check-status" name="customCheck" id="checkboxGlow1">`;
+                            return `<input type="checkbox" status-data='1' class="form-check-input form-check-primary form-check-glow check-status" name="customCheck" id="checkboxGlow1">`;
                         }
                     }
                 },
@@ -300,6 +300,8 @@
             var data = tableTest.row($(this).parents('tr')).data();
             idTest = data.id;
 
+            var status = $(this).attr('status-data');
+
             url = "{{ route('test.active', ['id' => ':id']) }}";
             url = url.replace(':id', idTest)
 
@@ -309,7 +311,7 @@
                 data: {
                     _token: csrfToken, // Menggunakan _token sebagai kunci untuk token CSRF
                     id: idTest,
-                    status: 1,
+                    status: status,
                 },
                 success: function(response) {
                     Swal.fire({

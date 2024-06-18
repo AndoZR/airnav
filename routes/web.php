@@ -58,7 +58,7 @@ Route::group(['middleware' => 'cekStatus:1'], function () {
     });
 });
 
-// admin artikel dan elogbook
+// admin artikel
 Route::group(['middleware' => 'cekStatus:2'], function () {
     // Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
 
@@ -101,7 +101,10 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
         Route::post('/update/{id}', [artikelController::class, 'updateArtikel'])->name('update');
         Route::get('/delete/{id}', [artikelController::class, 'deleteArtikel'])->name('delete');
     });
+});
 
+// artiek elogbook
+Route::group(['middleware' => 'cekStatus:3'], function () {
     Route::group(['prefix' => 'elogbook', 'as' => 'logbook.'], function () {
         Route::get('/', [elogbookController::class, 'elogbook'])->name('rekap');
         Route::post('/rekap', [elogbookController::class, 'getRekapTahunan'])->name('tahunan');
