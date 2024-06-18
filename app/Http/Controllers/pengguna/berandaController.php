@@ -81,8 +81,9 @@ class berandaController extends Controller
         return view('pengguna.HangNadim_TeamChecker');
     }
 
-    public function elogbookForm() {
-        return view('pengguna.logbookForm');
+    public function elogbookForm(Request $request) {
+        $logbook_id = $request->input('logbook_id');
+        return view('pengguna.logbookForm',['logbook_id' => $logbook_id]);
     }
 
 }

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('elogbook', function (Blueprint $table) {
             $table->id('no');
             $table->string('uid', 64)->unique()->nullable();
-            $table->string('username')->nullable();
+            $table->string('nama')->nullable();
             $table->string('user_id')->nullable();
             $table->string('month')->nullable();
             $table->string('year')->nullable();

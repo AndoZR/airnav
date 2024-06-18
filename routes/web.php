@@ -132,7 +132,15 @@ Route::group(['middleware' => 'cekStatus:4'], function () {
         Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
     });
-
+    Route::group(['prefix' => 'elogbook', 'as' => 'logbook.'], function () {
+        Route::get('/', [elogbookController::class, 'elogbook'])->name('rekap');
+        Route::post('/rekap/tahun', [elogbookController::class, 'getRekapTahunan'])->name('tahunan');
+        Route::post('/rekap/bulan', [elogbookController::class, 'getRekapBulanan'])->name('bulanan');
+        Route::post('/form', [berandaController::class, 'elogbookForm'])->name('form');
+        Route::post('/insert', [elogbookController::class, 'insertLogbook'])->name('formPost');
+        Route::get('/logbook', [elogbookController::class, 'formLogbook'])->name('formLogbook');
+        Route::post('/logbook', [elogbookController::class, 'createLogbook'])->name('createLogbook');
+    });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
         Route::get('/mulai/{id}', [testController::class, 'mulai'])->name('mulai');
