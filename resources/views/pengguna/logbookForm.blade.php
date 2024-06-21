@@ -32,25 +32,26 @@
                             <p></p>
                         </span>
                         <label class="form-label"><small><strong>Bulan</strong></small></label>
-                        <select class="form-select form-select-sm" aria-label="Default select example" name="bulan">
-                            <option value="01" <?php if(date('m') == '01'){print('selected');} ?> >Januari</option>
-                            <option value="02" <?php if(date('m') == '02'){print('selected');} ?> >Februari</option>
-                            <option value="03" <?php if(date('m') == '03'){print('selected');} ?> >Maret</option>
-                            <option value="04" <?php if(date('m') == '04'){print('selected');} ?> >April</option>
-                            <option value="05" <?php if(date('m') == '05'){print('selected');} ?>>Mei</option>
-                            <option value="06" <?php if(date('m') == '06'){print('selected');} ?> >Juni</option>
-                            <option value="07" <?php if(date('m') == '07'){echo('selected');} ?> >Juli</option>
-                            <option value="08" <?php if(date('m') == '08'){echo('selected');} ?> >Agustus</option>
-                            <option value="09" <?php if(date('m') == '09'){echo('selected');} ?> >September</option>
-                            <option value="10" <?php if(date('m') == '10'){echo('selected');} ?> >Oktober</option>
-                            <option value="11" <?php if(date('m') == '11'){echo('selected');} ?> >November</option>
-                            <option value="12" <?php if(date('m') == '12'){echo('selected');} ?> >Desember</option>
+                        <input type="hidden" name="bulan" value="{{$logbook_bulan}}" readonly>
+                        <select class="form-select form-select-sm" aria-label="Default select example" name="" disabled>
+                            <option value="01" <?php if($logbook_bulan == '01'){print('selected');} ?> >Januari</option>
+                            <option value="02" <?php if($logbook_bulan == '02'){print('selected');} ?> >Februari</option>
+                            <option value="03" <?php if($logbook_bulan == '03'){print('selected');} ?> >Maret</option>
+                            <option value="04" <?php if($logbook_bulan == '04'){print('selected');} ?> >April</option>
+                            <option value="05" <?php if($logbook_bulan == '05'){print('selected');} ?>>Mei</option>
+                            <option value="06" <?php if($logbook_bulan == '06'){print('selected');} ?> >Juni</option>
+                            <option value="07" <?php if($logbook_bulan == '07'){echo('selected');} ?> >Juli</option>
+                            <option value="08" <?php if($logbook_bulan == '08'){echo('selected');} ?> >Agustus</option>
+                            <option value="09" <?php if($logbook_bulan == '09'){echo('selected');} ?> >September</option>
+                            <option value="10" <?php if($logbook_bulan == '10'){echo('selected');} ?> >Oktober</option>
+                            <option value="11" <?php if($logbook_bulan == '11'){echo('selected');} ?> >November</option>
+                            <option value="12" <?php if($logbook_bulan == '12'){echo('selected');} ?> >Desember</option>
                         </select>
                         <span>
                             <p></p>
                         </span>
                         <label class="form-label"><small><strong>Tahun</strong></small></label>
-                        <input type="number" class="form-control form-control-sm" value="{{date('Y')}}" name="tahun" max="{{date('Y')}}" min="1945">
+                        <input type="number" class="form-control form-control-sm" value="{{$logbook_tahun}}" name="tahun" max="{{$logbook_tahun}}" min="1945" readonly>
                     </div>
                 </div>
             </div>

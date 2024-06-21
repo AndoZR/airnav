@@ -49,23 +49,14 @@ class elogbookController extends Controller
 
     public function elogbook()
     {
-
-        $bulan = "05";
-        $tahun = "2024";
-        $username = "05";
-        // $user = DB::table("elogbook")->select('uid')->where([
-        //     ['month', '=', $bulan],
-        //     ['year', '=', $tahun],
-        //     ['username','=',$username],
-        // ])->first();
-
-        // $dataset = DB::table('elogbook')->where('username', '=', $username)->get();
-        $dataset = [];
-        return view('pengguna.elogbook', ['elogbook' => $dataset, 'elogbookID' => '0', 'bulan' => '0', 'tahun' => '0']);
+        return view('pengguna.elogbook');
     }
 
-    public function getLogbook(Request $request)
-    {
+    public function elogbookForm(Request $request) {
+        $logbook_id = $request->input('logbook_id');
+        $logbook_bulan = $request->input('bulan');
+        $logbook_tahun = $request->input('tahun');
+        return view('pengguna.logbookForm',['logbook_id' => $logbook_id,'logbook_bulan' => $logbook_bulan,'logbook_tahun' => $logbook_tahun]);
     }
 
     public function insertLogbook(Request $request)
@@ -136,7 +127,7 @@ class elogbookController extends Controller
             ]);
         }
 
-        return;
+        return redirect()->route('logbook.rekap');
     }
 
     public function formLogbook()

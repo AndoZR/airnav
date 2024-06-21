@@ -54,6 +54,8 @@
                 <form method="POST" action="{{route('logbook.form')}}">
                     @csrf
                     <input id="logbook_input_id" type="hidden" name="logbook_id">
+                    <input id="logbook_input_month" type="hidden" name="bulan">
+                    <input id="logbook_input_year" type="hidden" name="tahun">
                     <button id="new_daily_input" type="submit" class="btn btn-primary"><b>Data Baru</b></button>
                 </form>
             </div>
@@ -88,10 +90,10 @@
                 <thead class="text-center table-secondary align-middle">
                     <tr class="">
                         <th scope="col" class="col" rowspan="2"> <small>Date</small></th>
-                        <th scope="col" class="col-2" colspan="3"><small>Morning</small></th>
-                        <th scope="col" class="col-2" colspan="3"><small>Afternoon</small></th>
-                        <th scope="col" class="col-2" colspan="3"><small>Night</small></th>
-                        <th scope="col" class="col-5" colspan="6"><small>Unit</small></th>
+                        <th scope="col" class="col-3" colspan="3"><small>Morning</small></th>
+                        <th scope="col" class="col-3" colspan="3"><small>Afternoon</small></th>
+                        <th scope="col" class="col-3" colspan="3"><small>Night</small></th>
+                        <th scope="col" class="col-1" rowspan="2"><small>Unit</small></th>
                         <th scope="col" class="col-1" rowspan="2"><small>Option</small></th>
                     </tr>
                     <tr class="">
@@ -105,12 +107,6 @@
                         <th scope="col" class=""><small>CTR</small></th>
                         <th scope="col" class=""><small>ASS</small></th>
                         <th scope="col" class=""><small>REST</small></th>
-                        <th scope="col" class=""><small>ADC</small></th>
-                        <th scope="col" class=""><small>APP</small></th>
-                        <th scope="col" class=""><small class="text-break word-warp">APP SURV</small></th>
-                        <th scope="col" class=""><small class="text-break word-warp">COMB ADC/APP</small></th>
-                        <th scope="col" class=""><small>ACC</small></th>
-                        <th scope="col" class=""><small class="text-break word-warp">ACC SURV</small></th>
                     </tr>
                 </thead>
 
@@ -231,7 +227,6 @@
     function tableRowCreate(dataset) {
         let tableBody = document.getElementById("rekapBulanBaris")
         let tableRow = document.createElement('tr')
-        // let cellHead = document.createElement('th')
         let cellRow1 = document.createElement('td')
         let cellRow2 = document.createElement('td')
         let cellRow3 = document.createElement('td')
@@ -239,8 +234,6 @@
         let cellRow5 = document.createElement('td')
         let cellRow6 = document.createElement('td')
         let expandButton = document.createElement('button')
-        // cellHead.setAttribute('scope', 'row')
-        // cellHead.append('-')
         expandButton.append('Tampilkan')
         expandButton.classList.add('elogBulanExpand')
         expandButton.addEventListener('click', () => {
@@ -255,15 +248,19 @@
             tableDailyLogbook(function(callbackfunction) {
 
                 for (row in callbackfunction.responses) {
-                    delete callbackfunction.responses[row].no
-                    delete callbackfunction.responses[row].elogbook_uid
-                    delete callbackfunction.responses[row].username
-                    delete callbackfunction.responses[row].user_id
-                    delete callbackfunction.responses[row].month
-                    delete callbackfunction.responses[row].year
-                    delete callbackfunction.responses[row].created_at
-                    delete callbackfunction.responses[row].updated_at
-                    tableRowDailyLogbook(callbackfunction.responses[row])
+                    let daily_dataset = callbackfunction.responses
+                    daily_dataset.sort(function(a, b) {
+                        let x = parseInt(a.day);
+                        let y = parseInt(b.day);
+                        if (x < y) {
+                            return -1;
+                        }
+                        if (x > y) {
+                            return 1;
+                        }
+                        return 0;
+                    });
+                    tableRowDailyLogbook(daily_dataset[row])
                 }
             }, uid)
 
@@ -286,39 +283,34 @@
     function tableRowDailyLogbook(dataset) {
         let tableBody = document.getElementById("body_daily_logbook")
         let tableRow = document.createElement('tr')
+        let morning_ctr = String(dataset.morning_ctr_hour || "").concat(":", String(dataset.morning_ctr_minute || ""))
+        let morning_ass = String(dataset.morning_ass_hour || "").concat(":", String(dataset.morning_ass_minute || ""))
+        let morning_rest = String(dataset.morning_rest_hour || "").concat(":", String(dataset.morning_rest_minute || ""))
+        let afternoon_ctr = String(dataset.afternoon_ctr_hour || "").concat(":", String(dataset.afternoon_ctr_minute || ""))
+        let afternoon_ass = String(dataset.afternoon_ass_hour || "").concat(":", String(dataset.afternoon_ass_minute || ""))
+        let afternoon_rest = String(dataset.afternoon_rest_hour || "").concat(":", String(dataset.afternoon_rest_minute || ""))
+        let night_ctr = String(dataset.night_ctr_hour || "").concat(":", String(dataset.night_ctr_minute || ""))
+        let night_ass = String(dataset.night_ass_hour || "").concat(":", String(dataset.night_ass_minute || ""))
+        let night_rest = String(dataset.night_rest_hour || "").concat(":", String(dataset.night_rest_minute || ""))
+        let cell_day = document.createElement('th')
+        cell_day.append(dataset.day)
+        tableRow.append(cell_day)
 
-        for (i in dataset) {
-            if (i == "day") {
-                if (dataset[i] == null) {
-                    let cellHead = document.createElement('th')
-                    tableRow.append(cellHead)
-                    break
-                } else {
-                    let cellHead = document.createElement('th')
-                    cellHead.append(dataset[i])
-                    tableRow.append(cellHead)
-                }
+        let sorting_cell = [morning_ctr, morning_ass, morning_rest, afternoon_ctr, afternoon_ass, afternoon_rest, night_ctr, night_ass, night_rest, String(dataset.unit).toUpperCase()]
 
+        for (cell in sorting_cell) {
+            if (sorting_cell[cell] == ':') {
+                let cellData = document.createElement('td')
+                cellData.append("")
+                tableRow.append(cellData)
             } else {
-
-                if (dataset[i] == null) {
-                    let cellRow = document.createElement('td')
-                    let smallWrap = document.createElement('small')
-                    cellRow.append(smallWrap)
-                    tableRow.append(cellRow)
-                } else {
-                    let cellRow = document.createElement('td')
-                    let smallWrap = document.createElement('small')
-                    smallWrap.append(dataset[i])
-                    cellRow.append(smallWrap)
-                    tableRow.append(cellRow)
-                }
+                let cellData = document.createElement('td')
+                cellData.append(sorting_cell[cell])
+                tableRow.append(cellData)
             }
         }
-        let lastRow = document.createElement('td')
-        lastRow.classList.add('col')
-        tableRow.append(lastRow)
         tableBody.insertAdjacentElement('afterbegin', tableRow)
+
     }
 
     function tableDailyLogbook(callback, rekap_id) {
@@ -355,6 +347,8 @@
     function formDailyLogbook(id, dataset) {
         document.getElementById('rekap_bulan_id').textContent = id
         document.getElementById('logbook_input_id').value = id
+        document.getElementById('logbook_input_month').value = dataset[dataset.length - 1].month
+        document.getElementById('logbook_input_year').value = dataset[dataset.length - 1].year
         document.getElementById('rekap_bulan_tahun').value = dataset[dataset.length - 1].year
         document.getElementById('rekap_bulan_bulan').value = dataset[dataset.length - 1].month
     }
@@ -368,9 +362,20 @@
             let recentRekap = callback.responses[callback.responses.length - 1].uid
             formDailyLogbook(recentRekap, callback.responses)
             tableDailyLogbook(function(callbackfunction) {
-                for (row in callbackfunction.responses) {
-                    
-                    tableRowDailyLogbook(callbackfunction.responses[row])
+                let daily_dataset = callbackfunction.responses
+                daily_dataset.sort(function(a, b) {
+                    let x = parseInt(a.day);
+                    let y = parseInt(b.day);
+                    if (x < y) {
+                        return -1;
+                    }
+                    if (x > y) {
+                        return 1;
+                    }
+                    return 0;
+                });
+                for (row in daily_dataset) {
+                    tableRowDailyLogbook(daily_dataset[row])
                 }
             }, recentRekap)
         })
