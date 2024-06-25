@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('hasilTest', function (Blueprint $table) {
             $table->id();
             $table->integer('hasil')->nullable();
+            $table->text('jawaban')->nullable();
             $table->timestamp('waktu_mulai')->nullable();
             $table->timestamp('waktu_selesai')->nullable();
             $table->unsignedBigInteger('id_test');

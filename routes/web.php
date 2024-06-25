@@ -103,9 +103,9 @@ Route::group(['middleware' => 'cekStatus:2'], function () {
     });
 });
 
-// artiek elogbook
+// admin elogbook
 Route::group(['middleware' => 'cekStatus:3'], function () {
-    Route::group(['prefix' => 'elogbook', 'as' => 'logbook.'], function () {
+    Route::group(['prefix' => 'admin.elogbook', 'as' => 'admin.elogbook.'], function () {
         Route::get('/', [elogbookController::class, 'elogbook'])->name('rekap');
         Route::post('/rekap', [elogbookController::class, 'getRekapTahunan'])->name('tahunan');
         Route::get('/form', [berandaController::class, 'elogbookForm'])->name('form');
@@ -145,6 +145,7 @@ Route::group(['middleware' => 'cekStatus:4'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
         Route::get('/mulai/{id}', [testController::class, 'mulai'])->name('mulai');
         Route::post('/selesai/{id}', [testController::class, 'selesai'])->name('selesai');
+        Route::get('/lihatJawaban/{id}', [testController::class, 'lihatJawaban'])->name('lihatJawaban');
     });
 
     Route::group(['prefix' => 'akun', 'as' => 'akun.'], function () {

@@ -188,6 +188,7 @@ class testController extends Controller
         }
     }
 
+
     // SESI PENGGUNA
 
     public function userIndex() {
@@ -222,8 +223,10 @@ class testController extends Controller
     }
 
     public function selesai($id, Request $request) {
+        $jawabanDipilih = json_decode($request->input('jawabanDipilih'), true);
+
         $total = 0;
-        foreach($request->except(['_token','idHasil']) as $key => $item){
+        foreach($request->except(['_token','idHasil','jawabanDipilih']) as $key => $item){
             $total += $item;
         }
 
@@ -232,7 +235,7 @@ class testController extends Controller
             $hasil->update([
                 'hasil' => $total*10,
                 'waktu_selesai' => now(),
-
+                'jawaban' => $jawabanDipilih
             ]);
 
             return ResponseFormatter::success($hasil, "Data hasil Test Berhasil Disimpan!");
@@ -240,6 +243,13 @@ class testController extends Controller
             Log::error($e->getMessage());
             return ResponseFormatter::error($e->getMessage(), "Data gagal disimpan. Kesalahan Server", 500);
         }
+    }
+
+    public function lihatJawaban($id) {
+        $dataSoal = soal::with('jawaban')->where('id_test',$id)->get();
+        $hasil = hasilTest::where('id_test',$id)->value('jawaban');
+        $jawabanArray = json_decode($hasil, true);
+        return view('pengguna.lihatJawaban',['dataSoal'=>$dataSoal, 'idTest'=>$id, 'jawabanDipilih'=>$jawabanArray]);
     }
 
     // public function duration($id) {

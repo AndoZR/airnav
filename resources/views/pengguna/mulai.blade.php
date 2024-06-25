@@ -43,6 +43,9 @@
         var formData = new FormData($("#form-test")[0]);
         formData.append('idHasil', idHasil);
 
+        // Konversi array jawabanDipilih ke JSON string sebelum menambahkannya ke formData
+        formData.append('jawabanDipilih', JSON.stringify(jawabanDipilih));
+
         $.ajax({
             type: "POST",
             url: url,
@@ -131,7 +134,6 @@
         }
     }, 1000); // Update setiap detik
 
-
     document.addEventListener('DOMContentLoaded', function() {
         var radios = document.querySelectorAll('input[type="radio"]');
         radios.forEach(function(radio) {
@@ -141,15 +143,15 @@
         });
     });
 
+    var jawabanDipilih = [];
     document.addEventListener('DOMContentLoaded', function() {
     var radios = document.querySelectorAll('input[type="radio"]');
     radios.forEach(function(radio) {
         var storedValue = localStorage.getItem(radio.name);
-        // console.log(radio);
-        // console.log(storedValue);
-        // console.log(radio.id);
+
         if (storedValue === radio.id) {
             radio.checked = true;
+            jawabanDipilih.push(storedValue); // Menggunakan push untuk menambahkan nilai ke array
         }
     });
 });

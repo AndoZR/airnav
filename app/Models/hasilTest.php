@@ -13,6 +13,7 @@ class hasilTest extends Model
 
     protected $fillable = [
         'hasil',
+        'jawaban',
         'waktu_mulai',
         'waktu_selesai',
         'id_user',

@@ -26,6 +26,7 @@
                     @else
                     <a class="btn btn-success disabled placeholder col-3" aria-disabled="true">Hasil: {{ $item->hasilTest->hasil }}</a>
                     @endif
+                    <a href="{{ route('test.lihatJawaban',['id' => $item->id]) }}" class="btn btn-primary col-3">Lihat Jawaban</a>
                 </div>
             </div>
         </div>
