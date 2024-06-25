@@ -12,8 +12,6 @@ use App\Http\Controllers\Controller;
 use App\Models\hasilTest;
 use App\Models\jawaban;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
 
 class testController extends Controller

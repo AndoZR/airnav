@@ -14,7 +14,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="card-title">Deskripsi</h5>
+                    <h6 class="card-title">Deskripsi</h6>
                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores perspiciatis quas expedita cum illum animi? Numquam ipsa, possimus aliquid molestias minima temporibus veniam delectus, nostrum deserunt fuga ex officiis modi?</p>
                 </div>
                 <div class="col-sm-6 mt-auto me-auto">
