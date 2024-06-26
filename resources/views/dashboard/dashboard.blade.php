@@ -14,6 +14,7 @@
     @stack('css')
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css">
+    @vite(['resources/css/app.css'])
 
     <link rel="stylesheet" href="{{ asset('src/assets/compiled/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('src/assets/compiled/css/app-dark.css') }}">
@@ -22,7 +23,7 @@
 
     <link rel="stylesheet" href="{{ asset('src/assets/extensions/simple-datatables/style.css') }}">
     <link rel="stylesheet" href="{{ asset('src/assets/compiled/css/table-datatable.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    
 </head>
 
 <body>
@@ -57,6 +58,7 @@
             </footer>
         </div>
     </div>
+    @vite(['resources/js/app.js'])
 <script src="{{ asset('src/assets/static/js/components/dark.js') }}"></script>
 <script src="{{ asset('src/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('src/assets/compiled/js/app.js') }}"></script>
@@ -65,7 +67,6 @@
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/dataTables.buttons.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.0/js/buttons.dataTables.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
 {{-- <script src="{{ asset('src/assets/extensions/simple-datatables/umd/simple-datatables.js') }}"></script>
 <script src="{{ asset('src/assets/static/js/pages/simple-datatables.js') }}"></script> --}}

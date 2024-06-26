@@ -61,7 +61,7 @@
 
 @push('scripts')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<script>
+<script type="module">
     const options = {
         debug: "info",
         modules: {
@@ -71,6 +71,8 @@
         theme: "snow",
     };
     editor = new Quill("#editor", options);
+
+    
 </script>
 <script>
     document.getElementById('editorLink').addEventListener('click', () => {
@@ -147,7 +149,7 @@
 
             success: function(response) {
                 alert("Artikel Berhasil Publish");
-                document.getElementById("artikelPublish").setAttribute('disabled','true')
+                document.getElementById("artikelPublish").setAttribute('disabled', 'true')
                 // if (response != 0) {
                 //     // self.pollData(urlPoll);
                 // } else {
