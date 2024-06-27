@@ -14,7 +14,6 @@
     @stack('css')
 
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css">
-    @vite(['resources/css/app.css'])
 
     <link rel="stylesheet" href="{{ asset('src/assets/compiled/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('src/assets/compiled/css/app-dark.css') }}">
@@ -58,7 +57,6 @@
             </footer>
         </div>
     </div>
-    @vite(['resources/js/app.js'])
 <script src="{{ asset('src/assets/static/js/components/dark.js') }}"></script>
 <script src="{{ asset('src/assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('src/assets/compiled/js/app.js') }}"></script>

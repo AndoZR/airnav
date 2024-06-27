@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col">
-                <p><strong>Data Rekap Tahunan</strong><br><small>Nama : {{session()->get('name')}}</small></p>
+                <p><strong>Data Rekap Tahunan</strong><br><small id="rekap_tahun_nama">Nama : {{session()->get('name')}}</small></p>
             </div>
             <div class="col text-end">
                 <a href="{{route('logbook.createLogbook')}}"><button id="" type="button" class="btn btn-success"><b>Logbook Baru</b></button></a>
@@ -48,16 +48,19 @@
         <div class="row align-items-center">
             <div class="col">
                 <small><b>Nama</b></small>
-                <p class="mb-0"><strong>{{session()->get('name')}}</strong></p>
+                <p class="mb-0"><strong id="rekap_bulan_nama">{{session()->get('name')}}</strong></p>
             </div>
-            <div class="col text-end">
-                <form method="POST" action="{{route('logbook.form')}}">
-                    @csrf
-                    <input id="logbook_input_id" type="hidden" name="logbook_id">
-                    <input id="logbook_input_month" type="hidden" name="bulan">
-                    <input id="logbook_input_year" type="hidden" name="tahun">
-                    <button id="new_daily_input" type="submit" class="btn btn-primary"><b>Data Baru</b></button>
-                </form>
+            <div class="col">
+                <div class="d-flex flex-row justify-content-end">
+                    <form method="POST" action="{{route('logbook.form')}}">
+                        @csrf
+                        <input id="logbook_input_id" type="hidden" name="logbook_id">
+                        <input id="logbook_input_month" type="hidden" name="bulan">
+                        <input id="logbook_input_year" type="hidden" name="tahun">
+                        <button id="new_daily_input" type="submit" class="btn btn-primary"><b>Data Baru</b></button>
+                    </form>
+                    <button id="report_pdf" type="button" class="btn btn-danger ms-3"><b>Ubah PDF</b></button>
+                </div>
             </div>
         </div>
         <hr>
@@ -165,7 +168,10 @@
 @endsection
 
 @push('scripts')
+<script type="module" src="{{ asset('src/pdf-lib/pdf-lib.js') }}"></script>
+<script type="" src="{{ asset('src/pdf-lib/pdf.js') }}"></script>
 <script>
+    //toggle button for show tab
     document.getElementById('elogHarian').addEventListener('click', () => {
         if (document.getElementById("elogbookHarian").hidden) {
             menuDeactivate()
@@ -182,6 +188,22 @@
             document.getElementById("elogbookHarian").hidden = true;
             document.getElementById("rekapBulanDashboard").hidden = false;
         } else {}
+    })
+
+    document.getElementById('report_pdf').addEventListener('click', () => {
+        let logbook_id = document.getElementById('rekap_bulan_id').textContent
+        getDailyLogbook(function(callback){
+            let dataset = callback.responses;
+            let url = '<?= asset('src/ATC_Logbook.pdf') ?>';
+            let tahun = document.getElementById('rekap_bulan_tahun').value;
+            let bulan = document.getElementById('rekap_bulan_bulan').value;
+            let elogbook_id = document.getElementById('rekap_bulan_id').textContent;
+            let nama = document.getElementById('rekap_bulan_nama').textContent;
+
+            savetoPDF(dataset,url, nama, elogbook_id, tahun, bulan)
+            
+        },logbook_id)
+        
     })
 
     function menuDeactivate() {
@@ -245,7 +267,7 @@
             document.getElementById('rekap_bulan_tahun').value = dataset.year
             document.getElementById('rekap_bulan_bulan').value = dataset.month
 
-            tableDailyLogbook(function(callbackfunction) {
+            getDailyLogbook(function(callbackfunction) {
 
                 for (row in callbackfunction.responses) {
                     let daily_dataset = callbackfunction.responses
@@ -313,7 +335,7 @@
 
     }
 
-    function tableDailyLogbook(callback, rekap_id) {
+    function getDailyLogbook(callback, rekap_id) {
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -352,32 +374,40 @@
         document.getElementById('rekap_bulan_tahun').value = dataset[dataset.length - 1].year
         document.getElementById('rekap_bulan_bulan').value = dataset[dataset.length - 1].month
     }
+
+    function sortDataset(datasetBulanan) {
+        let daily_dataset = datasetBulanan.responses
+        daily_dataset.sort(function(a, b) {
+            let x = parseInt(a.day);
+            let y = parseInt(b.day);
+            if (x < y) {
+                return -1;
+            }
+            if (x > y) {
+                return 1;
+            }
+            return 0;
+        });
+        return daily_dataset;
+    }
 </script>
 <script>
+    //init elogbook process
     $(document).ready(function() {
-        getRekapTahunan(function(callback) {
-            for (i in callback.responses) {
-                tableRowCreate(callback.responses[i])
+        getRekapTahunan(function(dataset) {
+            for (i in dataset.responses) {
+                tableRowCreate(dataset.responses[i])
             }
-            let recentRekap = callback.responses[callback.responses.length - 1].uid
-            formDailyLogbook(recentRekap, callback.responses)
-            tableDailyLogbook(function(callbackfunction) {
-                let daily_dataset = callbackfunction.responses
-                daily_dataset.sort(function(a, b) {
-                    let x = parseInt(a.day);
-                    let y = parseInt(b.day);
-                    if (x < y) {
-                        return -1;
-                    }
-                    if (x > y) {
-                        return 1;
-                    }
-                    return 0;
-                });
-                for (row in daily_dataset) {
-                    tableRowDailyLogbook(daily_dataset[row])
+            let recentDataUID = dataset.responses[dataset.responses.length - 1].uid
+            //update beberapa form pada tab rekap bulanan
+            formDailyLogbook(recentDataUID, dataset.responses)
+            //ambil data logbook dan update table bulanan
+            getDailyLogbook(function(datasetBulanan) {
+                let sortedDataset = sortDataset(datasetBulanan)
+                for (row in sortedDataset) {
+                    tableRowDailyLogbook(sortedDataset[row])
                 }
-            }, recentRekap)
+            }, recentDataUID)
         })
     })
 </script>
