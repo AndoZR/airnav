@@ -1,26 +1,3 @@
-function is_null(a){
-    if (a === null) { return true; }
-    return false;
-}
-
-function addZero(i) {
-    if (is_null(i)) {i = "00"}
-    else if (i < 10 ) {i = "0" + i}
-    return i;
-}
-
-function time_format(a,b){
-    if(is_null(a) & is_null(b)){
-        a=0
-        b=0
-        return [a, b];
-    } else {
-        a = addZero(a);
-        b = addZero(b);
-        return [a, b];
-    }
-}
-
 async function fillForm(dataset, url, name, elogbook_id, tahun, bulan) {
 
     const custom_form_data = {
@@ -88,6 +65,6 @@ async function savetoPDF(dataset, url, name, elogbook_id, tahun, bulan) {
     var blob = new Blob([bytePDF], { type: "application/pdf" });
     var link = document.createElement("a");
     link.href = window.URL.createObjectURL(blob);
-    link.download = "pdf-test";
+    link.download = elogbook_id+"_"+name;
     link.click();
 }

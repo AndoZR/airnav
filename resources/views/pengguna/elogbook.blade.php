@@ -168,6 +168,56 @@
 @endsection
 
 @push('scripts')
+<script>
+    // basic javascript feature
+    function is_null(a) {
+        if (a === null) {
+            return true;
+        }
+        return false;
+    }
+
+    function addZero(i) {
+        if (is_null(i)) {
+            i = "00"
+        } else if (i < 10) {
+            i = "0" + i
+        }
+        return i;
+    }
+
+    function time_format(a, b) {
+        if (is_null(a) & is_null(b)) {
+            a = 0
+            b = 0
+            return [a, b];
+        } else {
+            a = addZero(a);
+            b = addZero(b);
+            return [a, b];
+        }
+    }
+
+    function range(size, startAt) {
+        return [...Array(size).keys()].map(i => i + startAt);
+    }
+
+    function sortDataset(datasetBulanan) {
+        let daily_dataset = datasetBulanan.responses
+        daily_dataset.sort(function(a, b) {
+            let x = parseInt(a.day);
+            let y = parseInt(b.day);
+            if (x < y) {
+                return -1;
+            }
+            if (x > y) {
+                return 1;
+            }
+            return 0;
+        });
+        return daily_dataset;
+    }
+</script>
 <script type="module" src="{{ asset('src/pdf-lib/pdf-lib.js') }}"></script>
 <script type="" src="{{ asset('src/pdf-lib/pdf.js') }}"></script>
 <script>
@@ -192,7 +242,7 @@
 
     document.getElementById('report_pdf').addEventListener('click', () => {
         let logbook_id = document.getElementById('rekap_bulan_id').textContent
-        getDailyLogbook(function(callback){
+        getDailyLogbook(function(callback) {
             let dataset = callback.responses;
             let url = '<?= asset('src/ATC_Logbook.pdf') ?>';
             let tahun = document.getElementById('rekap_bulan_tahun').value;
@@ -200,10 +250,10 @@
             let elogbook_id = document.getElementById('rekap_bulan_id').textContent;
             let nama = document.getElementById('rekap_bulan_nama').textContent;
 
-            savetoPDF(dataset,url, nama, elogbook_id, tahun, bulan)
-            
-        },logbook_id)
-        
+            savetoPDF(dataset, url, nama, elogbook_id, tahun, bulan)
+
+        }, logbook_id)
+
     })
 
     function menuDeactivate() {
@@ -214,6 +264,25 @@
     }
 </script>
 <script>
+    //view logbook dan generator tabel
+    function createRowTableBulanan(table_body, column, max_row) {
+        table_body.innerHTML = null;
+        let max_day = range(max_row, 1)
+        for (i in max_day) {
+            var row = document.createElement('tr')
+            var cell = document.createElement('td')
+            cell.append(max_day[i])
+            cell.id = 'day' + max_day[i]
+            row.append(cell)
+            for (x in column) {
+                var cell = document.createElement('td')
+                cell.id = column[x] + i
+                row.append(cell)
+            }
+            table_body.append(row)
+        }
+    }
+
     function getRekapTahunan(callback, date = new Date) {
         let yearLocal = date.getFullYear()
         $.ajax({
@@ -247,6 +316,19 @@
     }
 
     function tableRowCreate(dataset) {
+        let kolom = {
+            "morning_ctr": "morning_ctr",
+            "morning_ass": "morning_ass",
+            "morning_rest": "morning_rest",
+            "afternoon_ctr": "afternoon_ctr",
+            "afternoon_ass": "afternoon_ass",
+            "afternoon_rest": "afternoon_rest",
+            "night_ctr": "night_ctr",
+            "night_ass": "night_ass",
+            "night_rest": "night_rest",
+            "unit": "unit",
+            "option": "option"
+        };
         let tableBody = document.getElementById("rekapBulanBaris")
         let tableRow = document.createElement('tr')
         let cellRow1 = document.createElement('td')
@@ -267,23 +349,9 @@
             document.getElementById('rekap_bulan_tahun').value = dataset.year
             document.getElementById('rekap_bulan_bulan').value = dataset.month
 
-            getDailyLogbook(function(callbackfunction) {
-
-                for (row in callbackfunction.responses) {
-                    let daily_dataset = callbackfunction.responses
-                    daily_dataset.sort(function(a, b) {
-                        let x = parseInt(a.day);
-                        let y = parseInt(b.day);
-                        if (x < y) {
-                            return -1;
-                        }
-                        if (x > y) {
-                            return 1;
-                        }
-                        return 0;
-                    });
-                    tableRowDailyLogbook(daily_dataset[row])
-                }
+            getDailyLogbook(function(datasetBulanan) {
+                createRowTableBulanan(daily_body_table, kolom, 31)
+                tableRowDailyLogbook(datasetBulanan.responses)
             }, uid)
 
             if (document.getElementById("elogbookHarian").hidden) {
@@ -303,36 +371,36 @@
     }
 
     function tableRowDailyLogbook(dataset) {
-        let tableBody = document.getElementById("body_daily_logbook")
-        let tableRow = document.createElement('tr')
-        let morning_ctr = String(dataset.morning_ctr_hour || "").concat(":", String(dataset.morning_ctr_minute || ""))
-        let morning_ass = String(dataset.morning_ass_hour || "").concat(":", String(dataset.morning_ass_minute || ""))
-        let morning_rest = String(dataset.morning_rest_hour || "").concat(":", String(dataset.morning_rest_minute || ""))
-        let afternoon_ctr = String(dataset.afternoon_ctr_hour || "").concat(":", String(dataset.afternoon_ctr_minute || ""))
-        let afternoon_ass = String(dataset.afternoon_ass_hour || "").concat(":", String(dataset.afternoon_ass_minute || ""))
-        let afternoon_rest = String(dataset.afternoon_rest_hour || "").concat(":", String(dataset.afternoon_rest_minute || ""))
-        let night_ctr = String(dataset.night_ctr_hour || "").concat(":", String(dataset.night_ctr_minute || ""))
-        let night_ass = String(dataset.night_ass_hour || "").concat(":", String(dataset.night_ass_minute || ""))
-        let night_rest = String(dataset.night_rest_hour || "").concat(":", String(dataset.night_rest_minute || ""))
-        let cell_day = document.createElement('th')
-        cell_day.append(dataset.day)
-        tableRow.append(cell_day)
-
-        let sorting_cell = [morning_ctr, morning_ass, morning_rest, afternoon_ctr, afternoon_ass, afternoon_rest, night_ctr, night_ass, night_rest, String(dataset.unit).toUpperCase()]
-
-        for (cell in sorting_cell) {
-            if (sorting_cell[cell] == ':') {
-                let cellData = document.createElement('td')
-                cellData.append("")
-                tableRow.append(cellData)
-            } else {
-                let cellData = document.createElement('td')
-                cellData.append(sorting_cell[cell])
-                tableRow.append(cellData)
-            }
+        const text_field = {
+            "morning_ctr": "morning_ctr",
+            "morning_ass": "morning_ass",
+            "morning_rest": "morning_rest",
+            "afternoon_ctr": "afternoon_ctr",
+            "afternoon_ass": "afternoon_ass",
+            "afternoon_rest": "afternoon_rest",
+            "night_ctr": "night_ctr",
+            "night_ass": "night_ass",
+            "night_rest": "night_rest",
+        };
+        const unit_field = {
+            "unit": "unit"
         }
-        tableBody.insertAdjacentElement('afterbegin', tableRow)
 
+        for (i in dataset) {
+            for (fields in text_field) {
+                cell = document.getElementById(text_field[fields] + dataset[i].day)
+                var hour = dataset[i][text_field[fields] + "_hour"]
+                var minute = dataset[i][text_field[fields] + "_minute"]
+                timedata = time_format(hour, minute)
+                if (timedata[0] == 0 & timedata[1] == 0) {} else {
+                    let time = timedata[0] + ":" + timedata[1];
+                    cell.textContent = time;
+                }
+
+            }
+            cell = document.getElementById("unit" + i)
+            cell.textContent = dataset[i].unit.toUpperCase();
+        }
     }
 
     function getDailyLogbook(callback, rekap_id) {
@@ -374,26 +442,25 @@
         document.getElementById('rekap_bulan_tahun').value = dataset[dataset.length - 1].year
         document.getElementById('rekap_bulan_bulan').value = dataset[dataset.length - 1].month
     }
-
-    function sortDataset(datasetBulanan) {
-        let daily_dataset = datasetBulanan.responses
-        daily_dataset.sort(function(a, b) {
-            let x = parseInt(a.day);
-            let y = parseInt(b.day);
-            if (x < y) {
-                return -1;
-            }
-            if (x > y) {
-                return 1;
-            }
-            return 0;
-        });
-        return daily_dataset;
-    }
 </script>
 <script>
+    let table_col = {
+        "morning_ctr": "morning_ctr",
+        "morning_ass": "morning_ass",
+        "morning_rest": "morning_rest",
+        "afternoon_ctr": "afternoon_ctr",
+        "afternoon_ass": "afternoon_ass",
+        "afternoon_rest": "afternoon_rest",
+        "night_ctr": "night_ctr",
+        "night_ass": "night_ass",
+        "night_rest": "night_rest",
+        "unit": "unit",
+        "option": "option"
+    };
+    let table_body_bulan = document.getElementById("body_daily_logbook")
     //init elogbook process
     $(document).ready(function() {
+        createRowTableBulanan(table_body_bulan, table_col, 31)
         getRekapTahunan(function(dataset) {
             for (i in dataset.responses) {
                 tableRowCreate(dataset.responses[i])
@@ -403,10 +470,7 @@
             formDailyLogbook(recentDataUID, dataset.responses)
             //ambil data logbook dan update table bulanan
             getDailyLogbook(function(datasetBulanan) {
-                let sortedDataset = sortDataset(datasetBulanan)
-                for (row in sortedDataset) {
-                    tableRowDailyLogbook(sortedDataset[row])
-                }
+                tableRowDailyLogbook(datasetBulanan.responses)
             }, recentDataUID)
         })
     })
