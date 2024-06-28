@@ -25,8 +25,8 @@ class airportController extends Controller
     public function storeAirport(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'sop' => 'required|mimes:pdf|max:5120',
-            'loca' => 'required|mimes:pdf|max:5120',
+            'sop' => 'required|mimes:pdf|max:20480',
+            'loca.*' => 'required|mimes:pdf|max:20480', // Tambahkan validasi untuk array file 'loca'
         ]);
 
         if ($validator->fails()) {
@@ -34,19 +34,21 @@ class airportController extends Controller
         };
 
         try {
-            $sop = $request->file('sop');
-            $loca = $request->file('loca');
+            $arrayLoca = [];
+            foreach($request->file('loca') as $item){
+                $nameLOCA = time() . '_' . $item->getClientOriginalName();
+                Storage::putFileAs('public/airport/loca', $item, $nameLOCA);
+                $arrayLoca[] = $nameLOCA;
+            }
 
+            $sop = $request->file('sop');
             $nameSOP = time() . '_' . $sop->getClientOriginalName();
-            $nameLOCA = time() . '_' . $loca->getClientOriginalName();
-            
             Storage::putFileAs('public/airport/sop', $sop, $nameSOP);
-            Storage::putFileAs('public/airport/loca', $loca, $nameLOCA);
 
             $airport = airport::create([
                 'name' => $request->name,
                 'SOP' => $nameSOP,
-                'LOCA' => $nameLOCA,
+                'LOCA' => json_encode($arrayLoca),
             ]);
 
             return ResponseFormatter::success($airport, "Data Airport Berhasil Dibuat!");

@@ -55,7 +55,7 @@
               <div class="col-12">
                 <div class="form-group">
                   <label for="loca">LOCA <span class="text-danger">*</span></label>
-                  <input type="file" class="form-control" name="loca" id="loca" placeholder="Isi loca" autofocus autocomplete="off">
+                  <input type="file" name="loca[]" placeholder="Choose files" id="loca" placeholder="Isi loca" autofocus autocomplete="off" class="form-control" multiple >
                   <div class="invalid-feedback loca_error"></div>
                 </div>
               </div>
@@ -71,6 +71,27 @@
                   <span class="d-none d-sm-block">Simpan</span>
               </button>
           </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<!-- Modal Lihat Loca -->
+<div class="modal fade" id="modal-loca" tabindex="-1" role="dialog" aria-labelledby="modalCreate" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">LOCA</h5>
+          <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+              <i data-feather="x"></i>
+          </button>
+        </div>
+        <form id="form-loca">
+            <div class="modal-body">
+                <ul>
+                    <!-- File list will be appended here by JavaScript -->
+                </ul>
+            </div>
         </form>
       </div>
     </div>
@@ -198,6 +219,15 @@
                 contentType: false,
                 beforeSend: function() {
                     $('*').removeClass('is-invalid');
+                    // Tampilkan SweetAlert loading
+                    Swal.fire({
+                        title: 'Uploading...',
+                        text: 'Please wait while your file is being uploaded.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
                 },
                 success: function(response) {
                     $('#modal-create-airport').modal('hide');
@@ -248,7 +278,7 @@
             // show modal
             $('#modal-create-airport').modal('show');
         });
-
+        
         // Hapus Data AIRPORT
         $('#table-airport tbody').on('click', '.btn-delete', function() {
             var data = tableAirport.row($(this).parents('tr')).data();
@@ -302,11 +332,32 @@
             });
         });
 
+        // Buka Modal LOCA
         $('#table-airport tbody').on('click', '.btn-loca', function() {
-            var data = tableAirport.row($(this).parents('tr')).data();
-            var file_url = "{{ asset('storage/airport/loca') }}/" + data.LOCA;
-            $('#modal-berkas').find('.modal-title').text($(this).data('name'));
+            var data = tableAirport.row($(this).parents('tr')).data();         
+            var locaFiles = JSON.parse(data.LOCA);
+
+            // Empty previous file list in modal
+            $('#modal-loca .modal-body ul').empty();
+
+            // Generate file list in modal
+            locaFiles.forEach(function(file) {
+                var file_url = "{{ asset('storage/airport/loca') }}/" + file;
+
+                $('#modal-loca .modal-body ul').append(`<li><a class="btn btn-success btn-sm btn-loca-spesific" data-file="${file_url}" title="LOCA"><i class="fas fa-file-alt"></i>${file}</a></li>`);
+            });
+
+            // Show modal
+            $('#modal-loca').modal('show');
+        });
+
+        $(document).on('click', '.btn-loca-spesific', function() {
+            var file_url = $(this).data('file');
+
+            $('#modal-berkas').find('.modal-title').text('LIHAT BERKAS');
             $('#modal-berkas').find('embed').attr('src', file_url);
+
+            // Tampilkan modal
             $('#modal-berkas').modal('show');
         });
 
@@ -315,6 +366,7 @@
             var file_url = "{{ asset('storage/airport/sop') }}/" + data.SOP;
             $('#modal-berkas').find('.modal-title').text($(this).data('name'));
             $('#modal-berkas').find('embed').attr('src', file_url);
+            console.log(file_url);
             $('#modal-berkas').modal('show');
         });
     })
