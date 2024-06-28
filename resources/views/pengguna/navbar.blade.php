@@ -18,69 +18,27 @@
                     <li class="nav-item dropdown align-self-center">
                         <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><small>Pembelajaran</small></a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> Hang Nadim Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Tanjung Pinang Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA North Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA South Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Rajahaji Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Ranai Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Matak Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Letung Tower </a></li>
+                            @if (session('dataAirport'))
+                                @foreach (session('dataAirport') as $item)
+                                    <li>
+                                        <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> {{ $item->name }} Tower </a></li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                     <li class="nav-item dropdown align-self-center">
                         <a class="nav-link text-light fw-semibold dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><small>Test</small></a>
                         <ul class="dropdown-menu" style="background-color: #49548C;">
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('test.userIndex') }}"> Hang Nadim Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Tanjung Pinang Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA North Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> TMA South Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Rajahaji Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Ranai Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Matak Tower </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="#"> Letung Tower </a></li>
+                            @if (session('dataAirport'))
+                                @foreach (session('dataAirport') as $item)
+                                    <li>
+                                        <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('test.userIndex') }}"> {{ $item->name }} Tower </a></li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </li>
                     <li class="nav-item dropdown align-self-center">
