@@ -25,8 +25,8 @@ class airportController extends Controller
     public function storeAirport(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'sop' => 'required|mimes:pdf|max:20480',
-            'loca.*' => 'required|mimes:pdf|max:20480', // Tambahkan validasi untuk array file 'loca'
+            'sop' => 'mimes:pdf|max:20480',
+            'loca.*' => 'mimes:pdf|max:20480', // Tambahkan validasi untuk array file 'loca'
         ]);
 
         if ($validator->fails()) {
@@ -35,15 +35,20 @@ class airportController extends Controller
 
         try {
             $arrayLoca = [];
-            foreach($request->file('loca') as $item){
-                $nameLOCA = time() . '_' . $item->getClientOriginalName();
-                Storage::putFileAs('public/airport/loca', $item, $nameLOCA);
-                $arrayLoca[] = $nameLOCA;
+            if($request->file('loca')){
+                foreach($request->file('loca') as $item){
+                    $nameLOCA = time() . '_' . $item->getClientOriginalName();
+                    Storage::putFileAs('public/airport/loca', $item, $nameLOCA);
+                    $arrayLoca[] = $nameLOCA;
+                }
             }
 
-            $sop = $request->file('sop');
-            $nameSOP = time() . '_' . $sop->getClientOriginalName();
-            Storage::putFileAs('public/airport/sop', $sop, $nameSOP);
+            $nameSOP = null;
+            if($request->file('sop')){
+                $sop = $request->file('sop');
+                $nameSOP = time() . '_' . $sop->getClientOriginalName();
+                Storage::putFileAs('public/airport/sop', $sop, $nameSOP);
+            }
 
             $airport = airport::create([
                 'name' => $request->name,
@@ -61,8 +66,8 @@ class airportController extends Controller
     public function updateAirport(Request $request, $id){
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'sop' => 'mimes:pdf|max:5120',
-            'loca' => 'mimes:pdf|max:5120',
+            'sop' => 'mimes:pdf|max:20480',
+            'loca.*' => 'mimes:pdf|max:20480', // Tambahkan validasi untuk array file 'loca'
         ]);
 
         if ($validator->fails()) {
@@ -72,9 +77,8 @@ class airportController extends Controller
         try {
             $airport = airport::find($id);
             $oldSOP = $airport->SOP;
-            $oldLOCA = $airport->LOCA;
             $nameSOP = $oldSOP;
-            $nameLOCA = $oldLOCA;
+            $oldLOCA = json_decode($airport->LOCA);
 
             if ($request->hasFile('sop')) {
                 $sop = $request->file('sop');
@@ -84,16 +88,22 @@ class airportController extends Controller
             }
 
             if ($request->hasFile('loca')) {
-                $loca = $request->file('loca');
-                $nameLOCA = time() . '_' . $loca->getClientOriginalName();
-                Storage::putFileAs('public/airport/loca', $loca, $nameLOCA);
-                Storage::delete('public/airport/loca/' . $oldLOCA);
+                foreach($oldLOCA as $perLOCA){
+                    Storage::delete('public/airport/loca/' . $perLOCA);
+                }
+
+                $oldLOCA = [];
+                foreach($request->file('loca') as $item){
+                    $nameLOCA = time() . '_' . $item->getClientOriginalName();
+                    Storage::putFileAs('public/airport/loca', $item, $nameLOCA);
+                    $oldLOCA[] = $nameLOCA;
+                }
             }
 
             $airport->update([
                 'name' => $request->name,
                 'SOP' => $nameSOP,
-                'LOCA' => $nameLOCA,
+                'LOCA' => json_encode($oldLOCA),
             ]);
 
             return ResponseFormatter::success($airport, "Data Ujian Berhasil Diubah!");
@@ -107,7 +117,9 @@ class airportController extends Controller
         try{
             $airport = airport::find($id);
             Storage::delete('public/airport/sop/' . "$airport->SOP");
-            Storage::delete('public/airport/loca/' . "$airport->LOCA");
+            foreach(json_decode($airport->LOCA) as $perLOCA){
+                Storage::delete('public/airport/loca/' . $perLOCA);
+            }
             $airport->delete();
         } catch (Exception $e) {
             Log::error($e->getMessage());

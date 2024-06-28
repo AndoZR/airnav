@@ -47,14 +47,14 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="sop">SOP <span class="text-danger">*</span></label>
+                  <label for="sop">SOP</label>
                   <input type="file" class="form-control" name="sop" id="sop" placeholder="Isi sop" autofocus autocomplete="off">
                   <div class="invalid-feedback sop_error"></div>
                 </div>
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="loca">LOCA <span class="text-danger">*</span></label>
+                  <label for="loca">LOCA</label>
                   <input type="file" name="loca[]" placeholder="Choose files" id="loca" placeholder="Isi loca" autofocus autocomplete="off" class="form-control" multiple >
                   <div class="invalid-feedback loca_error"></div>
                 </div>
