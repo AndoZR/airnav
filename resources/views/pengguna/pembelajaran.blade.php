@@ -5,7 +5,7 @@
 {{-- MASTERHEAD --}}
 <header class="masterheadBelajar">
     <div class="container d-flex justify-content-between align-items-center">
-        <h1 class="headline fw-bolder" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>HANG NADIM <br> TOWER</strong></h1>
+        <h1 class="headline fw-bolder" style="text-shadow: 0px 0px 10px white, 2px 2px 3px white, -2px -2px 5px white , 5px 5px 20px white;"><strong>{{ strtoupper($airport->name) }} <br> TOWER</strong></h1>
     </div>
 </header>
 
@@ -46,12 +46,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <div class="row g-2 loca">
-        <div class="col-12 col-sm-12 col-md-3">
-            <div class="">
-                <a href="#" class="btn-loca" data-loca="airlines&gh.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/1.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+        @if (isset($airport->LOCA))
+            @foreach (json_decode($airport->LOCA) as $item)
+                <div class="col-12 col-sm-12 col-md-3">
+                    <div class="">
+                        <a href="#" class="btn-loca" data-loca="{{ $item }}"><img class="img-fluid" src="{{ asset("src/img/loca/1.png") }}" class="rounded mx-auto d-block" alt="..."></a>
+                    </div>
+                </div>
+            @endforeach
+        @else
+            <div class="alert alert-danger alert-dismissible fade show mt-5" role="alert">
+                <i class="fa fa-exclamation-circle"></i> Sepertinya tidak ada daftar LOCA!
             </div>
-        </div>
-        <div class="col-12 col-sm-12 col-md-3">
+        @endif
+        {{-- <div class="col-12 col-sm-12 col-md-3">
             <div class="">
                 <a class="btn-loca" href="#" data-loca="flybest.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/2.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
@@ -95,7 +103,7 @@
             <div class="">
                 <a class="btn-loca" href="#" data-loca="ptbib.pdf"><img class="img-fluid" src="{{ asset("src/img/loca/10.png") }}" class="rounded mx-auto d-block" alt="..."></a>
             </div>
-        </div>
+        </div> --}}
 
     </div>
 </div>

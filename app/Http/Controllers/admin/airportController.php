@@ -88,8 +88,10 @@ class airportController extends Controller
             }
 
             if ($request->hasFile('loca')) {
-                foreach($oldLOCA as $perLOCA){
-                    Storage::delete('public/airport/loca/' . $perLOCA);
+                if(isset($oldLOCA)){
+                    foreach($oldLOCA as $perLOCA){
+                        Storage::delete('public/airport/loca/' . $perLOCA);
+                    }
                 }
 
                 $oldLOCA = [];

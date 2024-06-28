@@ -21,7 +21,7 @@
                             @if (session('dataAirport'))
                                 @foreach (session('dataAirport') as $item)
                                     <li>
-                                        <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran') }}"> {{ $item->name }} Tower </a></li>
+                                        <li><a class="dropdown-item text-light fw-semibold" aria-current="page" href="{{ route('beranda.pembelajaran',["id" => $item->id]) }}"> {{ $item->name }} Tower </a></li>
                                         <hr class="dropdown-divider">
                                     </li>
                                 @endforeach

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('SOP')->nullable();
             $table->text('LOCA')->nullable();
+            $table->text('url')->nullable();
         });
     }
 

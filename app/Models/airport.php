@@ -15,6 +15,7 @@ class airport extends Model
         'name',
         'SOP',
         'LOCA',
+        'url'
     ];
 
     public $timestamps = false;

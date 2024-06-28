@@ -17,41 +17,49 @@ class airportSeeder extends Seeder
             'name' => 'Hang Nadim',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
         DB::table('airport')->insert([
             'name' => 'Tanjung Pinang',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
         DB::table('airport')->insert([
             'name' => 'TMA North',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
         DB::table('airport')->insert([
             'name' => 'TMA South',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
         DB::table('airport')->insert([
             'name' => 'Rajahaji',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
         DB::table('airport')->insert([
             'name' => 'Ranai',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
         DB::table('airport')->insert([
             'name' => 'Matak',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
         DB::table('airport')->insert([
             'name' => 'Letung',
             'sop' => null,
             'loca' => null,
+            'url' => null
         ]);
     }
 }

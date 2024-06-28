@@ -60,8 +60,8 @@ class berandaController extends Controller
         return view('pengguna.detailArtikel', ['artikel' => $dataArtikel,'content'=>$content]);
     }
 
-    public function pembelajaran() {
-        $airport = airport::where('id',8)->first();
+    public function pembelajaran($id) {
+        $airport = airport::where('id',$id)->first();
         return view('pengguna.pembelajaran',['airport'=>$airport]);
     }
 

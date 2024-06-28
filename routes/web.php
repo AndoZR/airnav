@@ -124,7 +124,7 @@ Route::group(['middleware' => 'cekStatus:4'], function () {
         Route::get('/', [berandaController::class, 'index'])->name('index');
         Route::get('/artikel', [berandaController::class, 'artikel'])->name('artikel');
         Route::get('/artikel/{id}', [berandaController::class, 'detailArtikel'])->name('detailArtikel');
-        Route::get('/pembelajaran', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
+        Route::get('/pembelajaran/{id}', [berandaController::class, 'pembelajaran'])->name('pembelajaran');
 
         Route::get('/HangNadim_ATS', [berandaController::class, 'HangNadim_ATS'])->name('HangNadim_ATS');
         Route::get('/HangNadim_CNS', [berandaController::class, 'HangNadim_CNS'])->name('HangNadim_CNS');
