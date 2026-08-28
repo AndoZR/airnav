@@ -38,6 +38,27 @@
                             <option value="12">Desember</option>
                         </select>
                     </div>
+                    <div class="m-3">
+                        <label class="form-label"><small><strong>Cabang</strong></small></label>
+                        <select class="form-select form-select-sm" name="cabang" required>
+                            <option value="batam" {{ (request()->query('cabang')=='batam' ? 'selected' : '') }}>Cabang Pembantu Batam</option>
+                            <option value="tanjung" {{ (request()->query('cabang')!='batam' ? 'selected' : '') }}>Cabang Tanjung Pinang</option>
+                        </select>
+                    </div>
+                    <div class="m-3">
+                        <label class="form-label"><small><strong>Tower</strong></small></label>
+                        <select class="form-select form-select-sm" name="tower" required>
+                            <option value="Tanjung Pinang">Tanjung Pinang</option>
+                            <option value="TMA North">TMA North</option>
+                            <option value="TMA South">TMA South</option>
+                            <option value="Hang Nadim Tower">Hang Nadim Tower</option>
+                            <option value="Rajahaji Tower">Rajahaji Tower</option>
+                            <option value="Ranai Tower">Ranai Tower</option>
+                            <option value="Matak Tower">Matak Tower</option>
+                            <option value="Letung Tower">Letung Tower</option>
+                        </select>
+                        <small class="text-muted" style="font-size:0.7rem;">Pilih tower — akan tersimpan dan jadi filter di rekap</small>
+                    </div>
                 </div>
                 <div class="col-6 text-center">
                     <button class="btn btn-primary" type="submit">Submit</button>

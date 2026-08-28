@@ -19,10 +19,12 @@ use App\Http\Controllers\pengguna\berandaController;
 Route::middleware(['guest'])->group(function () {
     Route::post('/signin', [loginController::class, 'signIn'])->name('signInPost');
     Route::get('/', [loginController::class, 'index'])->name('signIn');
+    Route::post('/forgot-password', [akunController::class, 'forgot'])->name('akun.forgot');
+    Route::get('/akun/verify-email', [akunController::class, 'verifyEmail'])->name('akun.verify');
 });
 
 Route::match(['get', 'post'], 'auth', [loginController::class, 'auth'])->name('authentication');
-Route::get('logout', [loginController::class, 'logout'])->name('logout');
+Route::match(['get','post'], 'logout', [loginController::class, 'logout'])->name('logout');
 
 Route::get('/main', [dashboardController::class, 'index'])->name('dashboard');
 
@@ -131,6 +133,13 @@ Route::group(['middleware' => 'cekStatus:4'], function () {
         Route::get('/HangNadim_Penunjang', [berandaController::class, 'HangNadim_Penunjang'])->name('HangNadim_Penunjang');
         Route::get('/HangNadim_LOCA', [berandaController::class, 'HangNadim_LOCA'])->name('HangNadim_LOCA');
         Route::get('/HangNadim_TeamChecker', [berandaController::class, 'HangNadim_TeamChecker'])->name('HangNadim_TeamChecker');
+
+        Route::get('/TanjungPinang_ATS', [berandaController::class, 'TanjungPinang_ATS'])->name('TanjungPinang_ATS');
+        Route::get('/TanjungPinang_CNS', [berandaController::class, 'TanjungPinang_CNS'])->name('TanjungPinang_CNS');
+        Route::get('/TanjungPinang_Penunjang', [berandaController::class, 'TanjungPinang_Penunjang'])->name('TanjungPinang_Penunjang');
+        Route::get('/TanjungPinang_LOCA', [berandaController::class, 'TanjungPinang_LOCA'])->name('TanjungPinang_LOCA');
+        Route::get('/TanjungPinang_TeamChecker', [berandaController::class, 'TanjungPinang_TeamChecker'])->name('TanjungPinang_TeamChecker');
+        Route::get('/BaganLengkap', [berandaController::class, 'BaganLengkap'])->name('BaganLengkap');
     });
     Route::group(['prefix' => 'elogbook', 'as' => 'logbook.'], function () {
         Route::get('/', [elogbookController::class, 'elogbook'])->name('rekap');
@@ -143,6 +152,7 @@ Route::group(['middleware' => 'cekStatus:4'], function () {
     });
     Route::group(['prefix' => 'test', 'as' => 'test.'], function () {
         Route::get('/listUjian', [testController::class, 'userIndex'])->name('userIndex');
+        Route::get('/tower/{id}', [testController::class, 'tower'])->name('tower');
         Route::get('/mulai/{id}', [testController::class, 'mulai'])->name('mulai');
         Route::post('/selesai/{id}', [testController::class, 'selesai'])->name('selesai');
         Route::get('/lihatJawaban/{id}', [testController::class, 'lihatJawaban'])->name('lihatJawaban');

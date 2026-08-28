@@ -19,37 +19,56 @@ class loginController extends Controller
 
     public function signIn(Request $request)
     {
+        // Validasi & throttle sederhana (max 5 percobaan / menit per IP+username)
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|min:3|max:255',
+        ]);
+        $throttleKey = 'login:'.strtolower($request->username).'|'.$request->ip();
+        if (\Illuminate\Support\Facades\RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = \Illuminate\Support\Facades\RateLimiter::availableIn($throttleKey);
+            return back()->with('message', 'Terlalu banyak percobaan. Coba lagi dalam '.$seconds.' detik.')->withInput();
+        }
+
         try{
-            if(strpos($request->username, 'admin') !== false){
-                if(Auth::attempt($request->only('username', 'password'))) {
-                    session()->regenerate(destroy:true);
-                    return redirect('main');
-                }
-            } else {
-                if(Auth::attempt($request->only('username', 'password'))) {
-                    session()->regenerate(destroy:true);    
-                    $dataAirport = Airport::all(); // atau gunakan query lain sesuai kebutuhan
-                    // Menyimpan data ke dalam session
+            $credentials = $request->only('username', 'password');
+            $remember = $request->boolean('remember');
+            if(Auth::attempt($credentials, $remember)) {
+                \Illuminate\Support\Facades\RateLimiter::clear($throttleKey);
+                $request->session()->regenerate();
+                // Amankan session: regenerate ID
+                $user = Auth::user();
+                if(strpos($user->username, 'admin') !== false || in_array($user->status, [1,2,3])){
+                    return redirect()->intended('main');
+                } else {
+                    $dataAirport = Airport::all();
                     $request->session()->put('dataAirport', $dataAirport);
-                    $query = DB::table('users')->select('id','name')->where('username','=',$request->input('username'))->first();
-                   
+                    $query = DB::table('users')->select('id','name')->where('id','=',$user->id)->first();
                     $request->session()->put('user_id', $query->id);
                     $request->session()->put('name', $query->name);
-                    return redirect('beranda');
+                    return redirect()->intended('beranda');
                 }
             }
-            return redirect('/')->with('message', 'Username Atau Password Salah!');
+            \Illuminate\Support\Facades\RateLimiter::hit($throttleKey, 60);
+            return back()->with('message', 'Username Atau Password Salah!')->withInput();
         }catch(Exception $e) {
             Log::error($e->getMessage());
-            return ResponseFormatter::error($e->getMessage(), "Kesalahan Server", 500);
+            return back()->with('message', 'Kesalahan Server. Coba lagi.')->withInput();
         }
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        return redirect('/');
+        try {
+            if (Auth::guard('web')->check()) {
+                Auth::guard('web')->logout();
+            }
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        } catch (Exception $e) {
+            Log::warning('Logout error: '.$e->getMessage());
+        }
+        return redirect()->route('signIn')->with('message', 'Anda telah logout.');
     }
     
     public function auth(Request $request)

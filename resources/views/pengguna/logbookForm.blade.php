@@ -15,43 +15,46 @@
                         <input type="text" class="form-control form-control-sm" name="namaUser" value="{{session('name')}}">
                     </div>
                     <div class="m-3">
-                        <label class="form-label"><small><strong>NIK</strong></small></label>
-                        <input type="text" class="form-control form-control-sm" name="NomorNik" value="****************" disabled>
+                        <label class="form-label"><small><strong>NIK</strong></small> <span class="badge" style="background:#e8ecff; color:#49548C; border-radius:2rem; font-size:0.6rem; border:1px solid #dbe0ff;">freetext</span></label>
+                        <input type="text" class="form-control form-control-sm" name="NomorNik" value="" placeholder="Ketik NIK bebas (contoh: 3501xxxxxxxx)" style="border:1px solid #dbe0ff; border-radius:0.6rem;">
                     </div>
                     <div class="m-3">
-                        <label class="form-label"><small><strong>Logbook ID</strong></small></label>
-                        <input type="number" class="form-control form-control-sm" name="logbookID" value="{{$logbook_id}}" readonly>
+                        <label class="form-label"><small><strong>Logbook ID — unique key</strong></small> <span class="badge" style="background:#fee2e2; color:#7f1d1d; border-radius:2rem; font-size:0.6rem; border:1px solid #fecaca;"><i class="fa-solid fa-lock me-1"></i> Disabled — tidak boleh diganti</span></label>
+                        <input type="number" class="form-control form-control-sm" name="logbookID" value="{{$logbook_id}}" readonly style="background:#f1f3f9; border:1px solid #e5e7eb; border-radius:0.6rem; color:#6b7280; cursor:not-allowed; font-family:'Instrument Sans',sans-serif; font-weight:700;">
+                        <input type="hidden" name="logbookID_hidden" value="{{$logbook_id}}">
+                        <small style="color:#6c757d; font-size:0.65rem;"><i class="fa-solid fa-key me-1"></i> Tiap bikin logbook baru, ID unik otomatis beda</small>
                     </div>
                 </div>
 
                 <div class="border rounded bg-light-subtle m-3 flex-grow-1">
                     <div class="m-3">
-                        <label class="form-label"><small><strong>Tanggal</strong></small></label>
-                        <input type="number" class="form-control form-control-sm" max="31" min="1" name="tanggal" value="{{date('d')}}">
+                        <label class="form-label"><small><strong>Tanggal</strong></small> <span class="badge" style="background:#e8ecff; color:#49548C; border-radius:2rem; font-size:0.6rem; border:1px solid #dbe0ff;">Default hari ini</span></label>
+                        <input type="number" class="form-control form-control-sm" max="31" min="1" name="tanggal" value="{{date('d')}}" placeholder="1-31" style="border:1px solid #dbe0ff; border-radius:0.6rem;">
                         <span>
                             <p></p>
                         </span>
-                        <label class="form-label"><small><strong>Bulan</strong></small></label>
-                        <input type="hidden" name="bulan" value="{{$logbook_bulan}}" readonly>
-                        <select class="form-select form-select-sm" aria-label="Default select example" name="" disabled>
-                            <option value="01" <?php if($logbook_bulan == '01'){print('selected');} ?> >Januari</option>
-                            <option value="02" <?php if($logbook_bulan == '02'){print('selected');} ?> >Februari</option>
-                            <option value="03" <?php if($logbook_bulan == '03'){print('selected');} ?> >Maret</option>
-                            <option value="04" <?php if($logbook_bulan == '04'){print('selected');} ?> >April</option>
-                            <option value="05" <?php if($logbook_bulan == '05'){print('selected');} ?>>Mei</option>
-                            <option value="06" <?php if($logbook_bulan == '06'){print('selected');} ?> >Juni</option>
-                            <option value="07" <?php if($logbook_bulan == '07'){echo('selected');} ?> >Juli</option>
-                            <option value="08" <?php if($logbook_bulan == '08'){echo('selected');} ?> >Agustus</option>
-                            <option value="09" <?php if($logbook_bulan == '09'){echo('selected');} ?> >September</option>
-                            <option value="10" <?php if($logbook_bulan == '10'){echo('selected');} ?> >Oktober</option>
-                            <option value="11" <?php if($logbook_bulan == '11'){echo('selected');} ?> >November</option>
-                            <option value="12" <?php if($logbook_bulan == '12'){echo('selected');} ?> >Desember</option>
+                        <label class="form-label"><small><strong>Bulan</strong></small> <span class="badge" style="background: linear-gradient(135deg, #49548C 0%, #6a7ab8 100%); color:white; border-radius:2rem; font-size:0.6rem;">Filter aktif — default hari ini</span></label>
+                        @php $defaultBulan = $logbook_bulan ?? date('m'); @endphp
+                        <select class="form-select form-select-sm" name="bulan" style="border:1px solid #dbe0ff; border-radius:0.6rem; font-family:'Instrument Sans',sans-serif; font-weight:600;">
+                            <option value="01" {{ $defaultBulan == '01' ? 'selected' : '' }} >Januari</option>
+                            <option value="02" {{ $defaultBulan == '02' ? 'selected' : '' }} >Februari</option>
+                            <option value="03" {{ $defaultBulan == '03' ? 'selected' : '' }} >Maret</option>
+                            <option value="04" {{ $defaultBulan == '04' ? 'selected' : '' }} >April</option>
+                            <option value="05" {{ $defaultBulan == '05' ? 'selected' : '' }}>Mei</option>
+                            <option value="06" {{ $defaultBulan == '06' ? 'selected' : '' }} >Juni</option>
+                            <option value="07" {{ $defaultBulan == '07' ? 'selected' : '' }} >Juli</option>
+                            <option value="08" {{ $defaultBulan == '08' ? 'selected' : '' }} >Agustus</option>
+                            <option value="09" {{ $defaultBulan == '09' ? 'selected' : '' }} >September</option>
+                            <option value="10" {{ $defaultBulan == '10' ? 'selected' : '' }} >Oktober</option>
+                            <option value="11" {{ $defaultBulan == '11' ? 'selected' : '' }} >November</option>
+                            <option value="12" {{ $defaultBulan == '12' ? 'selected' : '' }} >Desember</option>
                         </select>
+                        <small style="color:#6c757d; font-size:0.65rem;"><i class="fa-solid fa-calendar-day me-1"></i> Default hari ini ({{ date('d') }} {{ date('F') }}) — besok otomatis ganti</small>
                         <span>
                             <p></p>
                         </span>
-                        <label class="form-label"><small><strong>Tahun</strong></small></label>
-                        <input type="number" class="form-control form-control-sm" value="{{$logbook_tahun}}" name="tahun" max="{{$logbook_tahun}}" min="1945" readonly>
+                        <label class="form-label"><small><strong>Tahun — filter</strong></small> <span class="badge" style="background:#e8ecff; color:#49548C; border-radius:2rem; font-size:0.6rem; border:1px solid #dbe0ff;">Bisa diketik</span></label>
+                        <input type="number" class="form-control form-control-sm" value="{{$logbook_tahun}}" name="tahun" min="2020" max="{{ date('Y')+2 }}" placeholder="Ketik tahun, mis. {{ date('Y') }}" style="border:1px solid #dbe0ff; border-radius:0.6rem; font-family:'Instrument Sans',sans-serif; font-weight:600;">
                     </div>
                 </div>
             </div>
@@ -127,8 +130,10 @@
                             </div>
                         </div>
                     </div>
+                    <div id="positionWarning" class="alert alert-warning d-none d-flex align-items-center gap-2 py-2 px-3 mb-3" style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); border:1px solid #fde68a; border-radius:0.8rem; font-family:'Instrument Sans',sans-serif; font-size:0.78rem; color:#92400e;"><i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;"></i> <span id="positionWarningText">Total jam melebihi 24 jam — harap sesuaikan.</span></div>
                     <div class="m-3">
                         <label class="form-label"><strong>Position(Day)</strong></label>
+                        <small class="ms-2" style="color:#6c757d; font-size:0.68rem; font-family:'Instrument Sans',sans-serif;"><i class="fa-solid fa-circle-info me-1"></i> Himbauan di atas muncul langsung saat isi — bukan pas submit</small>
                         <div class="row">
                             <div class="col-1 ms-3">
                                 <label class="form-label"><small><strong>CTR</strong></small></label>

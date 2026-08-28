@@ -33,10 +33,22 @@ class elogbookController extends Controller
     {
         $uid_user = $request->get('uniq_id');
         $tahun = $request->get('year');
-        $dataset = DB::table("elogbook")->select(['uid', 'month', 'year', 'created_at'])->where([
-            ['user_id', '=', $uid_user]
-            // ['year', '=', $tahun],
-        ])->get();
+        $cabang = $request->get('cabang');
+        $tower = $request->get('tower');
+        $query = DB::table("elogbook")->select(['uid', 'month', 'year', 'cabang', 'tower', 'created_at'])->where('user_id', '=', $uid_user);
+        if ($cabang && in_array($cabang, ['batam','tanjung'])) {
+            $query->where(function($q) use ($cabang){
+                $q->where('cabang', '=', $cabang)->orWhereNull('cabang');
+            });
+        }
+        if ($tower) {
+            // tangani beda suffix: "Tanjung Pinang" vs "Tanjung Pinang Tower"
+            $base = str_replace(' Tower','', $tower);
+            $query->where(function($q) use ($tower, $base){
+                $q->where('tower', '=', $tower)->orWhere('tower', '=', $base)->orWhere('tower', 'like', '%'.$base.'%');
+            });
+        }
+        $dataset = $query->orderBy('created_at','desc')->get();
         return response($dataset);
     }
 
@@ -56,7 +68,9 @@ class elogbookController extends Controller
         $logbook_id = $request->input('logbook_id');
         $logbook_bulan = $request->input('bulan');
         $logbook_tahun = $request->input('tahun');
-        return view('pengguna.logbookForm',['logbook_id' => $logbook_id,'logbook_bulan' => $logbook_bulan,'logbook_tahun' => $logbook_tahun]);
+        $tower = $request->input('tower') ?? $request->query('tower') ?? 'Tanjung Pinang';
+        $cabang = $request->input('cabang') ?? $request->query('cabang') ?? 'tanjung';
+        return view('pengguna.logbookForm',['logbook_id' => $logbook_id,'logbook_bulan' => $logbook_bulan,'logbook_tahun' => $logbook_tahun, 'tower'=>$tower, 'cabang'=>$cabang]);
     }
 
     public function insertLogbook(Request $request)
@@ -68,6 +82,9 @@ class elogbookController extends Controller
         $tahun = $request->get('tahun');
         $duty = $request->get('duty');
         $unit = $request->get('unit');
+        $tower = $request->get('tower') ?? 'Tanjung Pinang';
+        $cabang = $request->get('cabang') ?? 'tanjung';
+        $remark = $request->get('remark') ?? '';
         $ctrHour = $request->get('ctrHour');
         $ctrMinute = $request->get('ctrMinute');
         $assHour = $request->get('assHour');
@@ -75,56 +92,48 @@ class elogbookController extends Controller
         $restHour = $request->get('restHour');
         $restMinute = $request->get('restMinute');
         
-        if ($duty == 'morning') {
-            DB::table('elogbook_harian')->insert([
+        $base = [
                 'no' => 0,
                 'elogbook_uid' => $logbookID,
                 'username' => $namaUser,
+                'user_id' => auth()->user()->id ?? null,
                 'day' => $tanggal,
                 'month' => $bulan,
                 'year' => $tahun,
+                'unit' => $unit,
+                'cabang' => $cabang,
+                'tower' => $tower,
+                'remark' => $remark,
+            ];
+        if ($duty == 'morning') {
+            DB::table('elogbook_harian')->insert(array_merge($base, [
                 'morning_ctr_hour' => $ctrHour,
                 'morning_ctr_minute' => $ctrMinute,
                 'morning_ass_hour' => $assHour ,
                 'morning_ass_minute' => $assMinute,
                 'morning_rest_hour' => $restHour,
                 'morning_rest_minute' => $restMinute,
-                'unit' => $unit
-            ]);
+            ]));
         }
         elseif($duty == 'afternoon') {
-            DB::table('elogbook_harian')->insert([
-                'no' => 0,
-                'elogbook_uid' => $logbookID,
-                'username' => $namaUser,
-                'day' => $tanggal,
-                'month' => $bulan,
-                'year' => $tahun,
+            DB::table('elogbook_harian')->insert(array_merge($base, [
                 'afternoon_ctr_hour' => $ctrHour,
                 'afternoon_ctr_minute' => $ctrMinute,
                 'afternoon_ass_hour' => $assHour ,
                 'afternoon_ass_minute' => $assMinute,
                 'afternoon_rest_hour' => $restHour,
                 'afternoon_rest_minute' => $restMinute,
-                'unit' => $unit
-            ]);
+            ]));
         }
         elseif($duty == 'night') {
-            DB::table('elogbook_harian')->insert([
-                'no' => 0,
-                'elogbook_uid' => $logbookID,
-                'username' => $namaUser,
-                'day' => $tanggal,
-                'month' => $bulan,
-                'year' => $tahun,
+            DB::table('elogbook_harian')->insert(array_merge($base, [
                 'night_ctr_hour' => $ctrHour,
                 'night_ctr_minute' => $ctrMinute,
                 'night_ass_hour' => $assHour ,
                 'night_ass_minute' => $assMinute,
                 'night_rest_hour' => $restHour,
                 'night_rest_minute' => $restMinute,
-                'unit' => $unit
-            ]);
+            ]));
         }
 
         return redirect()->route('logbook.rekap');
@@ -141,10 +150,14 @@ class elogbookController extends Controller
         $user_id = $request->input('user_id');
         $tahun = $request->input('tahun');
         $bulan = $request->input('bulan');
+        $cabang = $request->input('cabang') ?? $request->query('cabang') ?? 'batam';
 
-        $transaction = DB::transaction(function () use ($nama, $user_id, $tahun, $bulan) {
-            // Menjalankan query INSERT
-            DB::statement(sprintf("INSERT INTO `elogbook`(`no`,`nama`,`user_id`,`month`,`year`) VALUES (null,'%s','%s','%s','%s')", $nama, $user_id, $bulan, $tahun));
+        $tower = $request->input('tower') ?? $request->query('tower') ?? 'Tanjung Pinang';
+        $transaction = DB::transaction(function () use ($nama, $user_id, $tahun, $bulan, $cabang, $tower) {
+            // Menjalankan query INSERT — sertakan cabang & tower agar filter tidak hilang
+            $namaEsc = addslashes($nama);
+            $towerEsc = addslashes($tower);
+            DB::statement(sprintf("INSERT INTO `elogbook`(`no`,`nama`,`user_id`,`month`,`year`,`cabang`,`tower`) VALUES (null,'%s','%s','%s','%s','%s','%s')", $namaEsc, $user_id, $bulan, $tahun, $cabang, $towerEsc));
 
             // Mengambil LAST_INSERT_ID
             DB::statement("SET @logbook = (SELECT LAST_INSERT_ID())");

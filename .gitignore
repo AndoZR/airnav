@@ -17,3 +17,27 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+# === SENSITIVE — jangan push ke publik ===
+# Organisasi dengan nama pejabat
+resources/views/pengguna/TanjungPinang_*.blade.php
+resources/views/pengguna/HangNadim_*.blade.php
+resources/views/pengguna/TanjungPinang_BaganLengkap.blade.php
+# Bagan HD organisasi
+public/src/img/organisasi/
+public/src/img/template_loca/
+# LOCA & SOP dokumen
+storage/app/public/airport/
+# Avatar pengguna
+storage/app/public/avatars/
+# Folder referensi lokal (tidak untuk publik)
+E-logbook/
+cabang tanjung pinang dan batam/
+template/
+# File sementara HD
+public/src/img/logo_HD.png
+public/src/img/logoAirNav_HD@2x.png
+public/src/img/logoAirNav.png.bak
+# Data sensitif lain
+*.bak
+opencode.json
+.env.backup

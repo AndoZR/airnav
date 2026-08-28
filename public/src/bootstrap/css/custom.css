@@ -439,10 +439,32 @@ font-family: 'Lato';
 
 .genealogy-body{
     white-space: nowrap;
+    overflow-x: auto;
     overflow-y: hidden;
-    padding: 50px;
-    min-height: 500px;
+    padding: 30px 20px 40px;
+    min-height: 420px;
     padding-top: 10px;
+    background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 100%);
+    border-radius: 1.2rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd0ea #f1f3ff;
+    -webkit-overflow-scrolling: touch;
+}
+.genealogy-body::-webkit-scrollbar{ height:8px; }
+.genealogy-body::-webkit-scrollbar-track{ background:#f1f3ff; border-radius:10px; }
+.genealogy-body::-webkit-scrollbar-thumb{ background:#cbd0ea; border-radius:10px; }
+.genealogy-body::-webkit-scrollbar-thumb:hover{ background:#8a9ad6; }
+.genealogy-fit-wrapper{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 20px;
+}
+.genealogy-tree{
+    transform-origin: top center;
+    transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    will-change: transform;
 }
 .genealogy-tree ul {
     padding-top: 20px; 
@@ -461,13 +483,14 @@ font-family: 'Lato';
     position: absolute; 
   top: 0; 
   right: 50%;
-    border-top: 2px solid #ccc;
+    border-top: 2px solid #cbd0ea;
     width: 50%; 
   height: 18px;
+    transition: border-color 0.4s ease;
 }
 .genealogy-tree li::after{
     right: auto; left: 50%;
-    border-left: 2px solid #ccc;
+    border-left: 2px solid #cbd0ea;
 }
 .genealogy-tree li:only-child::after, .genealogy-tree li:only-child::before {
     display: none;
@@ -479,7 +502,7 @@ font-family: 'Lato';
     border: 0 none;
 }
 .genealogy-tree li:last-child::before{
-    border-right: 2px solid #ccc;
+    border-right: 2px solid #cbd0ea;
     border-radius: 0 5px 0 0;
     -webkit-border-radius: 0 5px 0 0;
     -moz-border-radius: 0 5px 0 0;
@@ -492,8 +515,15 @@ font-family: 'Lato';
 .genealogy-tree ul ul::before{
     content: '';
     position: absolute; top: 0; left: 50%;
-    border-left: 2px solid #ccc;
+    border-left: 2px solid #cbd0ea;
     width: 0; height: 20px;
+    transition: border-color 0.4s ease;
+}
+.genealogy-tree li a:hover+ul li::after, 
+.genealogy-tree li a:hover+ul li::before, 
+.genealogy-tree li a:hover+ul::before, 
+.genealogy-tree li a:hover+ul ul::before{
+    border-color:  #49548C;
 }
 /* .genealogy-tree li a{
     text-decoration: none;
@@ -535,28 +565,73 @@ font-family: 'Lato';
 
 
 .tree p {
-    /* background-color: #505EA6; */
     margin-left: 0;
     margin-bottom: 0;
-	border: 1px solid #ccc;
-	padding: 10px;
-	display: inline-grid;
-	border-radius: 5px;
-	text-decoration-line: none;
-	border-radius: 5px;
-	transition: .5s;
+    border: 1px solid #dbe0ff;
+    padding: 10px;
+    display: inline-grid;
+    border-radius: 10px;
+    text-decoration-line: none;
+    transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+    box-shadow: 0 4px 14px rgba(73,84,140,0.06);
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    animation: treeFadeIn 0.6s cubic-bezier(0.22,1,0.36,1) backwards;
 }
-
+.tree p:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 24px rgba(73,84,140,0.14);
+    border-color: #8a9ad6;
+    background: linear-gradient(135deg, #49548C 0%, #6a7ab8 100%);
+}
+.tree p:hover span {
+    color: white !important;
+    border-color: rgba(255,255,255,0.28);
+    background: rgba(255,255,255,0.12);
+}
 .tree p span {
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	color: #666;
-	padding: 8px;
-	font-size: 12px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	font-weight: 500;
+    border: 1px solid #e8ecff;
+    border-radius: 8px;
+    color: #1a1f3d;
+    padding: 8px 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    background: #f8f9ff;
+    transition: all 0.3s ease;
 }
+.tree p span:last-child {
+    color: #49548C;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.03em;
+}
+@media (max-width: 768px){
+  .genealogy-body{ padding:16px 8px 24px; min-height:360px; }
+  .genealogy-tree ul{ flex-direction: column; align-items: center; }
+  .genealogy-tree li{ padding:12px 0 0 0; float:none; }
+  .genealogy-tree li::before, .genealogy-tree li::after, .genealogy-tree ul ul::before{ display:none; }
+  .tree p{ padding:8px; font-size:10px; max-width:92vw; white-space:normal; }
+  .tree p span{ font-size:10px; padding:6px 8px; }
+  .hero-title-mobile{ font-size:clamp(1.4rem, 6vw, 1.9rem) !important; }
+  .container{ padding-left:12px !important; padding-right:12px !important; }
+}
+@media (max-width: 480px){
+  .nav-logo div{ display:none !important; }
+  .genealogy-tree{ transform: scale(0.95) !important; }
+}
+@keyframes treeFadeIn { from{ opacity:0; transform: translateY(12px) scale(0.96); } to{ opacity:1; transform: translateY(0) scale(1); } }
+.genealogy-tree li:nth-child(1) .tree p { animation-delay: 0.05s; }
+.genealogy-tree li:nth-child(2) .tree p { animation-delay: 0.10s; }
+.genealogy-tree li:nth-child(3) .tree p { animation-delay: 0.15s; }
+.genealogy-tree li:nth-child(4) .tree p { animation-delay: 0.20s; }
+.genealogy-tree li:nth-child(5) .tree p { animation-delay: 0.25s; }
+.genealogy-tree li:nth-child(6) .tree p { animation-delay: 0.30s; }
+.genealogy-tree li:nth-child(7) .tree p { animation-delay: 0.35s; }
+.genealogy-tree li:nth-child(8) .tree p { animation-delay: 0.40s; }
+.genealogy-tree li:nth-child(9) .tree p { animation-delay: 0.45s; }
 /* END TREE CABANG ORGANISASI */
 
 #slider1 {

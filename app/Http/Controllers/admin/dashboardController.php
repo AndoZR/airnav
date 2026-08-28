@@ -4,12 +4,16 @@ namespace App\Http\Controllers\admin;
 
 use Exception;
 use App\Models\User;
+use App\Models\airport;
+use App\Models\Artikel;
+use App\Models\test;
 use Illuminate\Http\Request;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\authorizationController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class dashboardController extends authorizationController
 {
@@ -17,10 +21,21 @@ class dashboardController extends authorizationController
 
     }
     public function index() {
-        $inst = new authorizationController('showMain',110);
-        $access = $inst->checkAccess();
-        var_dump($access);
-        return view('dashboard.main');
+        $stats = [
+            'airport' => airport::count(),
+            'artikel' => Artikel::count(),
+            'test' => test::count(),
+            'testAktif' => test::where('status', 1)->count(),
+            'pengguna' => User::where('status', 4)->count(),
+            'karyawan' => DB::table('karyawan')->count(),
+            'divisi' => DB::table('divisi')->count(),
+        ];
+        $recentAirport = airport::orderByDesc('id')->limit(5)->get();
+        $recentArtikel = Artikel::orderByDesc('id')->limit(5)->get();
+        $recentTest = test::orderByDesc('id')->limit(5)->get();
+        $recentUsers = User::where('status', 4)->orderByDesc('id')->limit(5)->get();
+
+        return view('dashboard.main', compact('stats', 'recentAirport', 'recentArtikel', 'recentTest', 'recentUsers'));
     }
 
     public function akun() {

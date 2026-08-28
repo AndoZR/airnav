@@ -15,16 +15,27 @@ class cekStatus
      */
     public function handle(Request $request, Closure $next, ...$status): Response
     {
-        if($request->user() && in_array($request->user()->status,$status)){
-            return $next($request);
+        // Belum login → wajib login dulu, tidak bisa lihat home/artikel dll
+        if (!$request->user()) {
+            if ($request->expectsJson() || $request->ajax()) {
+                return response()->json(['message' => 'Unauthenticated. Silakan login.'], 401);
+            }
+            return redirect()->route('signIn')->with('message', 'Silakan login terlebih dahulu untuk mengakses halaman.');
         }
-        elseif($request->user() && !(in_array($request->user()->status,$status)))
-        {
-            return back();
+        if(in_array($request->user()->status,$status)){
+            // Anti-cache agar tidak bisa back setelah logout
+            $response = $next($request);
+            return $response->header('Cache-Control','no-cache, no-store, max-age=0, must-revalidate')
+                            ->header('Pragma','no-cache')
+                            ->header('Expires','Sat, 01 Jan 2000 00:00:00 GMT');
         }
-        return redirect('/')->with('message', 'Anda tidak memiliki akses!');
-
-        // handle agar balik ke halaman login
-        // return redirect()->route('signIn');
+        // Sudah login tapi status tidak sesuai → kembalikan ke dashboard sesuai role
+        if(in_array($request->user()->status,[1,2,3])){
+            return redirect()->route('dashboard')->with('message','Akses ditolak untuk role Anda.');
+        }
+        if($request->user()->status==4){
+            return redirect()->route('beranda.index')->with('message','Akses ditolak untuk role Anda.');
+        }
+        return redirect()->route('signIn')->with('message', 'Anda tidak memiliki akses!');
     }
 }
